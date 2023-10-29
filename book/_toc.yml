@@ -1,0 +1,32 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: root
+parts:
+  - caption: Introduction
+    chapters:
+    - file: intro/preface
+    - file: intro/history
+    - file: intro/why
+    - file: intro/connect
+  - caption: Database Design
+    chapters:
+    - file: design/models
+    - file: design/relational
+    - file: design/table
+    - file: design/entity
+    - file: design/normalization
+    - file: design/foreign-keys
+  - caption: Queries 
+    chapters: 
+    - file: queries/expression
+    - file: queries/algebra 
+  - caption: Modeling Relationships
+    chapters: 
+    - file: relationships/relationships
+  - caption: Jupyter Book
+    chapters:
+    - file: markdown
+    - file: note
+    - file: markdown-notebooks
