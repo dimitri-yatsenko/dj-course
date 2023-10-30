@@ -396,32 +396,21 @@ document.write(`
 <h1>The Relational Data Model<a class="headerlink" href="#the-relational-data-model" title="Permalink to this heading">#</a></h1>
 <p>The <strong>relational data model</strong> is the brainchild of the British-American mathematician and engineer <a class="reference external" href="https://amturing.acm.org/award_winners/codd_1000892.cfm">Edgar F. Codd.</a>, earning him the Turing Award.</p>
 <p>Working at IBM, Codd explored the possibility of working on data using concepts from set theory  <span id="id1">[<a class="reference internal" href="../markdown.html#id107" title="E. F. Codd. A Relational Model of Data for Large Shared Data Banks. Commun. ACM, 13(6):377–387, June 1970. URL: http://doi.acm.org/10.1145/362384.362685 (visited on 2014-12-30), doi:10.1145/362384.362685.">Cod70</a>]</span>.
-Codd was inspired by the concept of <em>set relations</em> and the \emph{calculus of relations} proposed by the British logician <strong>Augustus De Morgan</strong> and further developed by the American logician <strong>Charles Sanders Peirce</strong>  in the mid-XIX century \sidecite{de1860syllabus, peirce1870description} — theories rooted in well-established concepts of logic and set theory.
-A mathematical \emph{relation} \index{relation} is defined as a subset of the \emph{Cartesian product} of two or more sets.
-As with other types of sets in \emph{set theory}, relations can be transformed and manipulated using set operators such as <em>union</em>, <em>intersection</em>, <em>difference</em>, <em>etc</em>.</p>
+Codd was inspired by the concept of <em>set relations</em> and the \emph{calculus of relations} proposed by the British logician <strong>Augustus De Morgan</strong> and further developed by the American logician <strong>Charles Sanders Peirce</strong>  in the mid-XIX century <span id="id2">[<a class="reference internal" href="../markdown.html#id13" title="Augustus De Morgan. Syllabus of a proposed system of logic. Walton and Maberly, 1860.">DM60</a>]</span>, <span id="id3">[<a class="reference internal" href="../markdown.html#id12" title="Charles Sanders Peirce. Description of a notation for the logic of relatives, resulting from an amplification of the conceptions of Boole's calculus of logic. Welch, Bigelow, 1870.">Pei70</a>]</span> — theories rooted in well-established concepts of logic and set theory.
+A mathematical <strong>relation</strong> is defined as a subset of the <strong>Cartesian product</strong> of multiple sets.
+As with other types of sets in <strong>set theory</strong>, relations can be transformed and manipulated using set operators such as <em>union</em>, <em>intersection</em>, <em>difference</em>, <em>etc</em>.</p>
 <p>Codd’s model was largely derived from relational theory but differed sufficiently in its basic definitions to make a new type of algebra.
 The relational data model gave mathematicians a rigorous theory for optimizing data organization and storage and to construct queries.
 Through the 1970s, before relational databases became practical, theorists derived fundamental rules for rigorous data organization and queries from first principles using mathematical proofs and derivations.
 For this reason, early work on relational databases has an abstract academic feel to it with rather simple toy examples: the ubiquitous employees/departments, products/orders, and students/courses.
-The design principles were defined through the rigorous but rather abstract principles, the \emph{normal forms} \sidecite{kent1983simple}.</p>
+The design principles were defined through the rigorous but rather abstract principles, the <strong>normal forms</strong> <span id="id4">[<a class="reference internal" href="../markdown.html#id11" title="William Kent. A simple guide to five normal forms in relational database theory. Communications of the ACM, 26(2):120–125, 1983.">Ken83</a>]</span>.</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text">Fundamentally, the <strong>relational data model</strong> is the view of data in the form of sets (as in Set Theory) of like elements.</p>
+<p class="sd-card-text">Fundamentally, the <strong>relational data model</strong> is the view of data in the form of sets of like elements.</p>
 </div>
 </div>
 <p>Relationships between data elements and rules of data integrity are expressed as constraints on set memberships.
-Precise queries take the form of query expressions as opposed to other data models where data are queried by routines that traverse and aggregate the desired data; \emph{i.e.}\ \emph{declarative} rather than \emph{imperative} queries.</p>
-<div class="docutils container" id="id2">
-<div class="citation" id="id107" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Cod70</a><span class="fn-bracket">]</span></span>
-<p>E. F. Codd. A Relational Model of Data for Large Shared Data Banks. <em>Commun. ACM</em>, 13(6):377–387, June 1970. URL: <a class="reference external" href="http://doi.acm.org/10.1145/362384.362685">http://doi.acm.org/10.1145/362384.362685</a> (visited on 2014-12-30), <a class="reference external" href="https://doi.org/10.1145/362384.362685">doi:10.1145/362384.362685</a>.</p>
-</div>
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HdHPK14<span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</div>
-</div>
-</div>
+Precise queries take the form of query expressions as opposed to other data models where data are queried by routines that traverse and aggregate the desired data; <em>i.e</em> <strong>declarative</strong> rather than <strong>imperative</strong> queries.</p>
 </section>
 
     <script type="text/x-thebe-config">
