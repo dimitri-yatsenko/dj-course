@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Why Databases &#8212; The DataJoint Course</title>
+    <title>The Essense of Databases &#8212; The DataJoint Course</title>
   
   
   
@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">DataJoint’s History</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Why Databases</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Essense of Databases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connect.html">Connecting</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database Design</span></p>
@@ -380,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Why Databases</h1>
+    <h1>The Essense of Databases</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,12 +390,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-you-use-a-database-and-why">When should you use a database and why?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-queries">Data queries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure-and-integrity">Data structure and integrity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-consistency">Data Consistency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-database">What is a Database?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-database-management-system-dbms">What is a Database Management System (DBMS)?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-our-definition-too-rigid">Is Our Definition Too Rigid?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-data-queries">Understanding Data Queries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-repositories-vs-databases">Data Repositories vs. Databases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-of-data-queries">Practical Application of Data Queries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-data-structure-and-integrity-in-databases">Ensuring Data Structure and Integrity in Databases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threats-to-data-integrity">Threats to Data Integrity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-integrity-in-databases">Data Integrity in Databases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upholding-data-consistency-in-databases">Upholding Data Consistency in Databases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#databases-in-science">Databases in Science</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-wrong-with-files">What’s wrong with files?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-limitations-of-file-based-systems">The Limitations of File-based Systems</a></li>
 </ul>
             </nav>
         </div>
@@ -407,101 +417,141 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="why-databases">
-<h1>Why Databases<a class="headerlink" href="#why-databases" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-essense-of-databases">
+<h1>The Essense of Databases<a class="headerlink" href="#the-essense-of-databases" title="Permalink to this heading">#</a></h1>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/shop.png"><img alt="scientific workflow" class="bg-primary mb-1 align-center" src="../_images/shop.png" style="width: 600px;" /></a>
-<section id="when-should-you-use-a-database-and-why">
-<h2>When should you use a database and why?<a class="headerlink" href="#when-should-you-use-a-database-and-why" title="Permalink to this heading">#</a></h2>
-<p>The word <em>database</em> is often used rather loosely to describe any <em>data collection</em>  or <em>data repository</em>.
-For the purposes of this book we will use a more specific definition:</p>
+<section id="what-is-a-database">
+<h2>What is a Database?<a class="headerlink" href="#what-is-a-database" title="Permalink to this heading">#</a></h2>
+<p>In today’s digital age, the term “database” is frequently thrown around, often encompassing any form of data storage or collection.
+For the context of this book, let’s sharpen that definition:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <p class="sd-card-text">A <strong>database</strong> is a time-varying  collection of structured data serving as an integral part of a real-world enterprise, supporting its operations and accessed in various ways by diverse participants.</p>
 </div>
 </div>
-<p>Hotels and airlines, stores, hospitals, universities,  banks, and research projects commonly rely on databases for their orderly operations.
-The database tracks the current state of the overall process and enforces the essential <em>business rules</em>, facilitating valid transactions and preventing illegal or invalid operations or anomalous states.</p>
-<p>Then a <strong>database management system</strong> is a computing system that enables defining and enforcing the data structure and the logic for specified business rules.
-Database management systems handle data storage and execute data manipulations and queries efficiently while enforcing the structure and  maintaining the integrity of the data under the stresses of such concurrent manipulations.</p>
-<p>For example, an airline may rely on a database for scheduling flights and booking tickets.
-The airline needs to enforce many business rules such as:</p>
+<p>From hotels to airlines, universities to banks, and even research projects—databases are the backbone of these entities, ensuring smooth and organized operations.
+It’s the database that captures the entity’s current operational state, enforcing critical business rules, allowing valid transactions, and preventing illegal operations or abnormal states.</p>
+</section>
+<section id="what-is-a-database-management-system-dbms">
+<h2>What is a Database Management System (DBMS)?<a class="headerlink" href="#what-is-a-database-management-system-dbms" title="Permalink to this heading">#</a></h2>
+<p>A database management system (DBMS) is akin to the brain behind a database.
+It is the computational tool that facilitates the definition and enforcement of the data structure, ensuring the logic behind specified business rules is adhered to.
+A DBMS takes on the heavy lifting of data storage, efficient data manipulation, and query execution, all the while safeguarding the data’s structure and maintaining its integrity, especially in the face of concurrent operations.</p>
+<p>Let’s illustrate with an example: consider an airline’s reliance on a database for flight schedules and ticket bookings.
+The airline has several business rules to uphold:</p>
 <ul class="simple">
-<li><p>a seat on a flight cannot have two outstanding reservation,</p></li>
-<li><p>a reservation can be made only when required information is completed and verified and the payment has been confirmed,</p></li>
-<li><p>a reservation may be cancelled 24 hours before the flight.</p></li>
+<li><p>A flight seat can’t hold two simultaneous reservations.</p></li>
+<li><p>Reservations can only be confirmed once all necessary details are verified and payment is secured.</p></li>
+<li><p>Cancellations are only permissible up to 24 hours before the flight.</p></li>
 </ul>
-<p>A good database management system would provide rich constructs for expressing and enforcing these types of constraints.</p>
-<p>The state of the data may evolve quickly through concurrent interactions with many agents: both human users and various digital processes.
-Disruptions such as power and network outages should result in no lasting anomalies, restoring the overall system to a valid state,
-To each agent, the database must appear available and responsive as if no one else mattered, quickly integrating each action without blocking or colliding with the actions of others.</p>
-<p>Is the above definition too narrow?</p>
-<p>After all, someone might build a database for much less demanding scenarios such as organizing a personal collection of cooking recipes or an address book for personal use.
-The above definition targets the functions and scenarios that only full-featured database systems can adequately support and where other approaches <em>e.g.</em> shared file repositories) will likely fail.
-Managing a personal recipe collection can be done in Google Drive nearly as well as in a relational database.
-However, running a bank, an airline, or a stock exchange will require an advanced database system.</p>
-<p>The Aristotelian <em>telos</em> of databases is to support mission-critical operations of data-driven enterprises with many diverse and dispersed participants.</p>
+<p>A robust DBMS offers the tools to articulate and enforce such constraints seamlessly.</p>
+<p>Moreover, data within a database is constantly evolving, influenced by numerous agents, both human and digital.
+Regardless of unforeseen disruptions such as  power outages, errors, or malicious attacks, the system should rebound without persistent anomalies, reverting to a valid operational state.
+To every user, the database should appear as their own personal playground—swiftly integrating actions without interference from other concurrent operations.</p>
 </section>
-<section id="data-queries">
-<h2>Data queries<a class="headerlink" href="#data-queries" title="Permalink to this heading">#</a></h2>
-<p><em>Data repositories</em>, which are a broader category of data management systems, generally allow depositing and retrieving data.</p>
+<section id="is-our-definition-too-rigid">
+<h2>Is Our Definition Too Rigid?<a class="headerlink" href="#is-our-definition-too-rigid" title="Permalink to this heading">#</a></h2>
+<p>One might argue: aren’t databases used for simpler tasks?
+For instance, creating a personal recipe book or managing a personal address list.
+While true, our definition zeroes in on the capacities that only a comprehensive database system can adequately fulfill.
+For simpler tasks, alternatives (e.g. a spreadsheet on Google Drive) might suffice.
+But for intricate operations such as managing a bank or an airline, a sophisticated database system is non-negotiable.</p>
+<p>In essence, the ultimate purpose (or the <em>Aristotelian telos</em>) of databases is to underpin the vital operations of data-centric enterprises that involve a wide array of diverse and distributed participants.</p>
+</section>
+<section id="understanding-data-queries">
+<h2>Understanding Data Queries<a class="headerlink" href="#understanding-data-queries" title="Permalink to this heading">#</a></h2>
+<section id="data-repositories-vs-databases">
+<h3>Data Repositories vs. Databases<a class="headerlink" href="#data-repositories-vs-databases" title="Permalink to this heading">#</a></h3>
+<p><em>Data repositories</em> are a broad category within data management systems, primarily designed to deposit and fetch data.</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text"><strong>Data retrieval</strong> delivers data from a <em>data repository</em> in the same form as deposited.</p>
+<p class="sd-card-text"><strong>Data Retrieval:</strong> The process of fetching data from a <em>data repository</em> in its original, deposited form.</p>
 </div>
 </div>
-<p>In contrast, databases commonly support diverse user segments with different roles and interests in the operations of their enterprise.
-To meet their needs, databases must support \emph{data queries}: requests for specific cross-section of the store data in a desired form, often quite different from the form in which the data is stored.</p>
+<p>Databases, on the other hand, cater to a more diverse user base, each with distinct roles and interests pertaining to their organization or enterprise.
+Catering to these varied needs requires databases to facilitate <em>data queries</em>, allowing users to request specific sections of stored data, often in a format that diverges from its original storage format.</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text"><strong>A data query</strong> is a function on the stored data capable of deriving and delivering a specified cross-section of the data in the database as necessary for the specific analysis—often quite different from the form in which the data are stored.
-Database systems provide rich tools for defining and executing precise queries.</p>
+<p class="sd-card-text"><strong>Data Query:</strong> Essentially a function applied to stored data, it extracts and presents a specified segment of the database’s data tailored for a particular analysis.
+The output often deviates from the original storage format.
+Database systems are equipped with sophisticated tools for defining and executing these precise queries.</p>
 </div>
 </div>
-<p>For example, university students need to register for courses and to view their transcripts whereas course instructors need to view the course rosters and to enter grades for their students while the dean may need to see the grades of all the students in her department.
-All these queries produce results derived from the same stored data through selecting and aggregating specific items across the dataset.</p>
-<p>In modern data-centric scientific studies, data queries are especially helpful for selecting and aggregating the specific pieces of data needed for a particular analysis or visualization without having to download the entire dataset from the repository where it’s collected.</p>
 </section>
-<section id="data-structure-and-integrity">
-<h2>Data structure and integrity<a class="headerlink" href="#data-structure-and-integrity" title="Permalink to this heading">#</a></h2>
-<p>Databases can provide a way to express and enforce the structure of the data and the business rules.</p>
-<p>If the database must represent processes in the real world accurately and precisely and to enforce business rules while interacting concurrently with many agents, it must provide strong measures to prevent corruption.
-Corruption may include invalid or incomplete data entry, data loss, alteration, misidentification, mismatch, duplication, loss of references.</p>
-<p>Section  describes the three from of data integrity in DataJoint:</p>
+<section id="practical-application-of-data-queries">
+<h3>Practical Application of Data Queries<a class="headerlink" href="#practical-application-of-data-queries" title="Permalink to this heading">#</a></h3>
+<p>Consider a university as an example.
+Students need functionalities to enroll in courses and view their academic records.
+Instructors, on the other hand, require access to class lists and a platform to input student grades.
+Meanwhile, a dean might wish to oversee the academic performance of every student within her department.
+Each of these operations, though sourcing from the same foundational data, demands unique selections and combinations of the data.</p>
+<p>In contemporary data-driven scientific research, data queries prove invaluable.
+They enable researchers to select and aggregate specific data fragments essential for a given analysis or visualization, eliminating the need to retrieve the entirety of a dataset from its primary repository.</p>
+</section>
+</section>
+<section id="ensuring-data-structure-and-integrity-in-databases">
+<h2>Ensuring Data Structure and Integrity in Databases<a class="headerlink" href="#ensuring-data-structure-and-integrity-in-databases" title="Permalink to this heading">#</a></h2>
+<p>Databases play a pivotal role in not just storing data, but also in ensuring that the stored data adheres to a particular structure and maintains its <strong>integrity</strong>.
+This is crucial when databases are intended to mirror real-world processes and uphold specific business rules, especially when there are multiple concurrent interactions.</p>
+<section id="threats-to-data-integrity">
+<h3>Threats to Data Integrity<a class="headerlink" href="#threats-to-data-integrity" title="Permalink to this heading">#</a></h3>
+<p>Databases need to be safeguarded against corruption. Such corruption can manifest in various forms, including:</p>
 <ul class="simple">
-<li><p>domain integrity</p></li>
-<li><p>completeness</p></li>
-<li><p>entity integrity</p></li>
-<li><p>referential integrity</p></li>
-<li><p>compositional integrity</p></li>
+<li><p>Invalid or incomplete data entry</p></li>
+<li><p>Loss of data</p></li>
+<li><p>Unwarranted alteration of data</p></li>
+<li><p>Misidentification or mismatch of data</p></li>
+<li><p>Data duplication</p></li>
+<li><p>Loss of references or linkages between data sets</p></li>
 </ul>
+<p>Each of these threats can compromise the accuracy and reliability of the data, leading to incorrect analyses, misinformed decisions, and potential operational disruptions.</p>
 </section>
-<section id="data-consistency">
-<h2>Data Consistency<a class="headerlink" href="#data-consistency" title="Permalink to this heading">#</a></h2>
-<p>To effectively represent the current state of the enterprise, the database must present the same data to all participants simultaneously and integrate their concurrent inputs. In other words, the database must ensure \emph{data consistency}.</p>
+<section id="data-integrity-in-databases">
+<h3>Data Integrity in Databases<a class="headerlink" href="#data-integrity-in-databases" title="Permalink to this heading">#</a></h3>
+<p>Relational databases excel in their ability to define valid states for entities stored in the database and in preventing deviations from valid states.</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text"><strong>Data consistency</strong> is the ability of a database to maintain the appearance of a single valid current copy of the data to all participants even as they access and change the data concurrently.
-Any successful query (read) must reflect the most recent state of the database.
-Any successful write must have immediate and durable effect on all subsequent reads.</p>
+<p class="sd-card-text"><strong>Data Integrity:</strong> A database’s capability to define, express, and enforce the rules for valid states of stored data</p>
 </div>
 </div>
-<p>Data consistency is best illustrated by cases when it’s violated.
-For example, I noticed that around 4 o’clock in the morning my bank’s  website already shows the pending transactions from the previous day without reflecting them in the checking account balance.
-By 5.30 a.m. the account balance gets updated too.
-This is an example of data inconsistency: the view of account transactions reflects a different state than the view of the account balance.
-I am confident that the data inconsistency in this case is limited to the web application since I have never observed any unreconciled account balances: the website always catches up to a consistent state.</p>
-<p>In many scenarios maintaining data consistency is rather trivial.
-The easiest way to ensure data consistency is to avoid conditions that can lead to it.
-For example, if only one participant produces the data and all others only consume it, then there is little chance for conflicts and tensions that can lead to inconsistency.
-Even delayed queries reflect a consistent state from an earlier time.
-These types of scenarios are common in science projects: a single lab produces the data and ensures its consistency while other groups only consume the data.</p>
-<p>Far more complex scenarios arise when multiple participants, human or virtual, need to access and alter the data concurrently.
-Integrating their activities with minimum delay and without introducing inconsistencies becomes much more challenging.
-To preserve consistency, the system may temporarily restrict access for some participants while another completes her transaction.
-Or the system may force participants to resolve conflicts before merging the data.</p>
+<p>DataJoint in particular defines five primary forms of data integrity to address and counter these threats:</p>
+<ol class="arabic simple">
+<li><p><strong>Domain Integrity:</strong> Ensures that all entries in a database column are within a defined set of valid values. This can be achieved using data type restrictions, constraints, and enumerations.</p></li>
+<li><p><strong>Completeness:</strong> Guarantees that all necessary data is present in the database. This ensures that there are no missing values that could lead to erroneous conclusions or operations.</p></li>
+<li><p><strong>Entity Integrity:</strong> Asserts that each entity (or row) in the database is uniquely matched to its real-world counterpart. This typically requires a reliable system for identifying entities and their records.</p></li>
+<li><p><strong>Referential Integrity:</strong> Ensures that relationships between entities  in the database are maintained consistently. This is often achieved using referential constraints that create a logical association  between entities.</p></li>
+<li><p><strong>Compositional Integrity:</strong> Guarantees that the composition of a data entity is maintained with all its constituent parts. This may require implementing all-or-nothing (atomic) transactions that prevent partial results appearing due to errors or interrupted operations.</p></li>
+</ol>
+<p>By adhering to these principles, DataJoint ensures that the data stored within its databases remains accurate, reliable, and representative of the real-world processes it is intended to reflect.</p>
+</section>
+</section>
+<section id="upholding-data-consistency-in-databases">
+<h2>Upholding Data Consistency in Databases<a class="headerlink" href="#upholding-data-consistency-in-databases" title="Permalink to this heading">#</a></h2>
+<p>Databases are not merely storage systems; they should accurately represent an enterprise’s current state.
+This means that all users, irrespective of their interactions, should view and engage with the same data simultaneously.
+This principle is known as <strong>data consistency</strong>.</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text">ACID model for database transactions:</p>
+<p class="sd-card-text"><strong>Data Consistency:</strong> A database’s capability to present a singular, valid, and current version of its data to all users, even during concurrent access and modifications.
+Successful read queries should reflect the database’s most recent state, while successful writes should immediately influence all subsequent read actions.</p>
+</div>
+</div>
+<p>Understanding data consistency becomes clearer when examining its breaches.
+For instance, during early morning hours, I’ve observed my bank’s website displaying the previous day’s pending transactions, but the account balance doesn’t reflect these changes until a couple of hours later.
+This discrepancy between transaction views and account balances exemplifies data inconsistency.
+Fortunately, such inconsistencies, in this case, seem to be confined to the web interface, as the system eventually reaches a consistent state.</p>
+<p>Ensuring data consistency is straightforward in certain scenarios.
+By avoiding conditions that might compromise it, consistency is preserved.
+For example, if only one party generates data and the rest merely access it, the likelihood of conflicts leading to inconsistency is minimal.
+Delayed queries still provide a consistent, albeit older, state.
+This is typical in scientific projects, where one lab produces data while others analyze it.</p>
+<p>Complexities arise when multiple entities, be they human or digital, access and modify data simultaneously.
+Maintaining consistency amidst such concurrent interactions becomes challenging.
+To achieve this, databases might temporarily limit access for some users during another’s transaction or force users to resolve discrepancies before data integration.</p>
+<p>Relational databases follow the ACID model, ensuring that operations are atomic, consistent, isolated, and durable.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><strong>ACID Model</strong> for Database Transactions:</p>
 <ul class="simple">
 <li><p class="sd-card-text"><strong>A</strong>tomic</p></li>
 <li><p class="sd-card-text"><strong>C</strong>onsistent</p></li>
@@ -510,71 +560,55 @@ Or the system may force participants to resolve conflicts before merging the dat
 </ul>
 </div>
 </div>
-<p>Relational databases provide a strong consistency model called ACID where data operations are ensured to be atomic, consistent, isolated, and durable.</p>
-<p>When the participants are physically dispersed and the data storage must be distributed to make the data more readily available with slow or intermittent network connectivity, then ensuring data consistency becomes particularly challenging.
-In fact, for a long time it was believed that  data systems distributed across large geographical spans were incompatible with data consistency:
-One particular result, the so-called <strong>CAP Theorem</strong> stated that one must choose between system responsiveness (availability) and data consistency in such distributed systems.</p>
-<p>Classical relational database systems such as Oracle, MySQL, Postgres, and Microsoft SQL Server provided strong consistency but did not support distributed architectures.</p>
-<p>This gap gave rise to a generation of data systems in the 2000s and 2010s with weaker consistency models in order to achieve high responsiveness in geographically distributed systems—the so-called <strong>NoSQL</strong> revolution.</p>
-<p>Fortunately, a new generation of distributed database systems solved this problem through the use of data replication and consensus algorithms such as Paxos and Raft \sidecite{lamport2001paxos, ongaro2014search}.
-Today’s distributed database systems such as Spanner \index{Spanner} and CockroachDB \index{CockroachDB} maintain high levels of availability under strict consistency models.</p>
-<p>DataJoint follows the classical ACID model for data consistency through the use of serializable transactions or modeled through the master-part relationship.
-This is described in detail in \refsec{sec:transactions}.</p>
+<p>Ensuring consistency becomes notably challenging in geographically dispersed systems with distributed data storage, especially when faced with slow or intermittent network connections.
+Historically, it was believed that data systems spanning vast areas couldn’t maintain consistency.
+The <strong>CAP Theorem</strong> suggested that in such systems, there’s an irreconcilable trade-off between system responsiveness (availability) and data consistency.</p>
+<p>Traditional relational database systems, like Oracle, MySQL, and others, maintained strong consistency but weren’t tailored for distributed setups. This limitation spurred the rise of <strong>NoSQL</strong> in the 2000s and 2010s, emphasizing responsiveness in distributed systems, albeit with weaker consistency.</p>
+<p>However, recent advancements have bridged this gap. Modern distributed systems, like Spanner and CockroachDB, leverage data replication and consensus algorithms (e.g., Paxos, Raft) to offer high availability while maintaining strict consistency.</p>
+<p>DataJoint adheres to the classic ACID consistency model, leveraging serializable transactions or the master-part relationship, detailed further in the “Transactions” section.</p>
 </section>
 <section id="databases-in-science">
 <h2>Databases in Science<a class="headerlink" href="#databases-in-science" title="Permalink to this heading">#</a></h2>
-<p>Neuroscience researchers must process copious complex data while working in large multidisciplinary teams.
-Certainly, they would benefit from using the best available tools for organizing, manipulating, analyzing, and quering data.
-Yet today, few scientists use proper databases to manage data for their studies—a situation that has remained relatively unchanged for decades.
-Instead, most scientists work with shared data in the form of files repositories organized into structured folders following some sort of a uniform naming convention.
-Why do scientists avoid using databases to organize their daily work?</p>
+<p>Neuroscience, a field rife with intricate data sets, often sees researchers navigating vast amounts of data while collaborating within extensive, multidisciplinary teams.
+Given this complexity, the logical assumption would be that cutting-edge tools for data organization, manipulation, analysis, and querying would be central to their operations.
+However, this isn’t the prevailing reality.
+Despite technological advancements, a significant portion of the scientific community still refrains from employing proper databases for their studies.
+The predominant trend is to rely on shared data in the format of file repositories, systematically organized into folders under a uniform naming convention.
+This leads to the pertinent question: Why this discernible hesitance towards databases?</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-header docutils">
-<p class="sd-card-text">Why scientists avoid databases</p>
+<p class="sd-card-text">Reasons Behind Scientists’ Reluctance to Use Databases</p>
 </div>
 <div class="sd-card-body docutils">
-<p class="sd-card-text">The 2005 technical report “Scientific Data Management in the Coming Decade” by Gray \emph{et al.}\ \sidecite{gray_scientific_2005} explored the reasons scientists cited for avoiding databases:</p>
+<p class="sd-card-text">Gray <em>et al.</em> in their 2005 technical report titled “Scientific Data Management in the Coming Decade” <span id="id1">[<a class="reference internal" href="../markdown.html#id91" title="Jim Gray, David T. Liu, Maria A. Nieto-Santisteban, Alexander S. Szalay, Gerd Heber, and David DeWitt. Scientific Data Management in the Coming Decade. ACM SIGMOD Record, 34(4):35–41, January 2005. also as MSR-TR-2005-10. URL: http://research.microsoft.com/apps/pubs/default.aspx?id=64537.">GLNS+05</a>]</span> delved deep to unearth the reasons underpinning this avoidance:</p>
 <ul class="simple">
-<li><p class="sd-card-text">We don’t see any benefit in them.</p></li>
-<li><p class="sd-card-text">They do not offer good visualization/plotting tools.</p></li>
-<li><p class="sd-card-text">I can handle my data in with my programming language.</p></li>
-<li><p class="sd-card-text">Databases do not support my data types (arrays, spatial, text, etc.)</p></li>
-<li><p class="sd-card-text">They do not support our access patterns.</p></li>
-<li><p class="sd-card-text">They are too slow.</p></li>
-<li><p class="sd-card-text">We cannot manipulate data in databases with our standard application programs.</p></li>
-<li><p class="sd-card-text">Databases require expensive database administrators</p></li>
+<li><p class="sd-card-text">Perceived lack of tangible benefits.</p></li>
+<li><p class="sd-card-text">Absence of efficient visualization/plotting tools.</p></li>
+<li><p class="sd-card-text">A belief in the sufficiency of their programming language for data management.</p></li>
+<li><p class="sd-card-text">Incompatibility with specific data types like arrays, spatial data, text, etc.</p></li>
+<li><p class="sd-card-text">Mismatch with their data access patterns.</p></li>
+<li><p class="sd-card-text">Concerns over speed and efficiency.</p></li>
+<li><p class="sd-card-text">Inability to manipulate database data using regular application programs.</p></li>
+<li><p class="sd-card-text">The cost implications of hiring database administrators.</p></li>
 </ul>
 </div>
 </div>
-<p>These are valid points: conventional database systems are designed for business, commerce, and web applications, not scientific computing.
-Scientists need different capabilities and extra degrees of freedom beyond conventional systems.
-New database systems must evolve for greater flexibility, direct support of scientific data types, distributed computation and visualization.</p>
+<p>These apprehensions are valid.
+Traditional database systems were primarily sculpted keeping in mind sectors like business, commerce, and web applications, not scientific computing.
+For scientists, there’s a clear need for a system that offers more—more flexibility, support for unique scientific data types, and capabilities tailored for distributed computation and visualization.</p>
 </section>
-<section id="what-s-wrong-with-files">
-<h2>What’s wrong with files?<a class="headerlink" href="#what-s-wrong-with-files" title="Permalink to this heading">#</a></h2>
-<p>What’s wrong then with organizing data as a structured file repository?
-When are files not good enough?</p>
-<p>Files are simply strings of bytes with names.
-No inherent structure or meta information.
-They may be organized neatly and uniformly with smart naming conventions into structured folders—but those need to be agreed upon externally.
-Many \emph{data standards} (such as BIDS\sidenote{Brain Imaging Data Structure (BIDS) data format: \url{<a class="reference external" href="https://bids.neuroimaging.io/">https://bids.neuroimaging.io/</a>}} for brain imaging) are defined simply in terms of formatted file/folder structures.
-But in these cases the file system itself provides no mechanisms for enforcing structure—that’s exactly why separate data standards must be created and followed.
-File systems simply defer the challenges of efficient operations to the processes that use them.
-Efficient work on data organized in files requires designing access patterns, creating indices for fast searches, and implementing common queries as a separate effort.
-In shared distributed projects, additional effort must be spent on data transfers, enabling safe concurrent access and manipulations, and speeding up</p>
-<p>These are valid points: conventional database systems are designed for business, commerce, and web applications, not scientific computing.
-Scientists need different capabilities and extra degrees of freedom beyond conventional systems.
-New database systems must evolve for greater flexibility, direct support of scientific data types, distributed computation and visualization.</p>
-<p>What’s wrong then with organizing data as a structured file repository?
-When are files not good enough?</p>
-<p>Files are simply strings of bytes with names.
-No inherent structure or meta information.
-They may be organized neatly and uniformly with smart naming conventions into structured folders—but those need to be agreed upon externally.
-Many \emph{data standards} (such as BIDS\sidenote{Brain Imaging Data Structure (BIDS) data format: \url{<a class="reference external" href="https://bids.neuroimaging.io/">https://bids.neuroimaging.io/</a>}} for brain imaging) are defined simply in terms of formatted file/folder structures.
-But in these cases the file system itself provides no mechanisms for enforcing structure—that’s exactly why separate data standards must be created and followed.
-File systems simply defer the challenges of efficient operations to the processes that use them.
-Efficient work on data organized in files requires designing access patterns, creating indices for fast searches, and implementing common queries as a separate effort.
-In shared distributed projects, additional effort must be spent on data transfers, enabling safe concurrent access and manipulations, and speeding up</p>
+<section id="the-limitations-of-file-based-systems">
+<h2>The Limitations of File-based Systems<a class="headerlink" href="#the-limitations-of-file-based-systems" title="Permalink to this heading">#</a></h2>
+<p>The aforementioned concerns naturally lead one to ponder: What, if any, are the drawbacks of simply organizing data as a structured file repository?
+When do file systems falter?</p>
+<p>Files, in essence, are nothing but sequences of bytes tagged with specific names.
+They inherently lack structure or any meta-information.
+While they can be systematically arranged with discerning naming conventions into structured folders, the onus of adhering to any structural framework lies externally.
+Numerous <em>data standards</em>, such as <a class="reference external" href="https://bids.neuroimaging.io/">BIDS</a> for brain imaging, essentially define their guidelines based on specific file/folder structures.
+But therein lies a challenge—the filesystem itself doesn’t enforce this structure, necessitating the creation of separate data standards.
+The filesystem essentially passes on the challenge of efficient operations to the end processes that engage with them.
+To efficiently navigate data organized in files, there’s a need for distinct efforts in crafting access patterns, generating indices for swift searches, and scripting common queries.
+In scenarios of shared distributed projects, there’s also the added logistical challenge of data transfers, ensuring data integrity during concurrent access and modifications, and optimizing data operations.</p>
 </section>
 </section>
 
@@ -641,12 +675,22 @@ In shared distributed projects, additional effort must be spent on data transfer
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-you-use-a-database-and-why">When should you use a database and why?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-queries">Data queries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure-and-integrity">Data structure and integrity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-consistency">Data Consistency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-database">What is a Database?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-database-management-system-dbms">What is a Database Management System (DBMS)?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-our-definition-too-rigid">Is Our Definition Too Rigid?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-data-queries">Understanding Data Queries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-repositories-vs-databases">Data Repositories vs. Databases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-of-data-queries">Practical Application of Data Queries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-data-structure-and-integrity-in-databases">Ensuring Data Structure and Integrity in Databases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threats-to-data-integrity">Threats to Data Integrity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-integrity-in-databases">Data Integrity in Databases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upholding-data-consistency-in-databases">Upholding Data Consistency in Databases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#databases-in-science">Databases in Science</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-wrong-with-files">What’s wrong with files?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-limitations-of-file-based-systems">The Limitations of File-based Systems</a></li>
 </ul>
   </nav></div>
 
