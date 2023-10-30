@@ -398,7 +398,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-of-data-queries">Practical Application of Data Queries</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-data-structure-and-integrity-in-databases">Ensuring Data Structure and Integrity in Databases</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-integrity">Data Integrity</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threats-to-data-integrity">Threats to Data Integrity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-integrity-in-databases">Data Integrity in Databases</a></li>
 </ul>
@@ -426,7 +426,7 @@ document.write(`
 For the context of this book, let’s sharpen that definition:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
-<p class="sd-card-text">A <strong>database</strong> is a time-varying  collection of structured data serving as an integral part of a real-world enterprise, supporting its operations and accessed in various ways by diverse participants.</p>
+<p class="sd-card-text">A <strong>database</strong> is a time-varying  collection of structured data serving as an integral part of a real-world enterprise, supporting its operations and accessible through multiple  ways by diverse participants.</p>
 </div>
 </div>
 <p>From hotels to airlines, universities to banks, and even research projects—databases are the backbone of these entities, ensuring smooth and organized operations.
@@ -489,10 +489,15 @@ Each of these operations, though sourcing from the same foundational data, deman
 They enable researchers to select and aggregate specific data fragments essential for a given analysis or visualization, eliminating the need to retrieve the entirety of a dataset from its primary repository.</p>
 </section>
 </section>
-<section id="ensuring-data-structure-and-integrity-in-databases">
-<h2>Ensuring Data Structure and Integrity in Databases<a class="headerlink" href="#ensuring-data-structure-and-integrity-in-databases" title="Permalink to this heading">#</a></h2>
+<section id="data-integrity">
+<h2>Data Integrity<a class="headerlink" href="#data-integrity" title="Permalink to this heading">#</a></h2>
 <p>Databases play a pivotal role in not just storing data, but also in ensuring that the stored data adheres to a particular structure and maintains its <strong>integrity</strong>.
 This is crucial when databases are intended to mirror real-world processes and uphold specific business rules, especially when there are multiple concurrent interactions.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><strong>Data Integrity:</strong> A database’s ability to define, express, and enforce the rules for valid states of stored data</p>
+</div>
+</div>
 <section id="threats-to-data-integrity">
 <h3>Threats to Data Integrity<a class="headerlink" href="#threats-to-data-integrity" title="Permalink to this heading">#</a></h3>
 <p>Databases need to be safeguarded against corruption. Such corruption can manifest in various forms, including:</p>
@@ -509,18 +514,18 @@ This is crucial when databases are intended to mirror real-world processes and u
 <section id="data-integrity-in-databases">
 <h3>Data Integrity in Databases<a class="headerlink" href="#data-integrity-in-databases" title="Permalink to this heading">#</a></h3>
 <p>Relational databases excel in their ability to define valid states for entities stored in the database and in preventing deviations from valid states.</p>
-<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
-<div class="sd-card-body docutils">
-<p class="sd-card-text"><strong>Data Integrity:</strong> A database’s capability to define, express, and enforce the rules for valid states of stored data</p>
-</div>
-</div>
-<p>DataJoint in particular defines five primary forms of data integrity to address and counter these threats:</p>
+<p>DataJoint in particular respects five primary forms of data integrity to address and counter these threats:</p>
 <ol class="arabic simple">
-<li><p><strong>Domain Integrity:</strong> Ensures that all entries in a database column are within a defined set of valid values. This can be achieved using data type restrictions, constraints, and enumerations.</p></li>
-<li><p><strong>Completeness:</strong> Guarantees that all necessary data is present in the database. This ensures that there are no missing values that could lead to erroneous conclusions or operations.</p></li>
-<li><p><strong>Entity Integrity:</strong> Asserts that each entity (or row) in the database is uniquely matched to its real-world counterpart. This typically requires a reliable system for identifying entities and their records.</p></li>
-<li><p><strong>Referential Integrity:</strong> Ensures that relationships between entities  in the database are maintained consistently. This is often achieved using referential constraints that create a logical association  between entities.</p></li>
-<li><p><strong>Compositional Integrity:</strong> Guarantees that the composition of a data entity is maintained with all its constituent parts. This may require implementing all-or-nothing (atomic) transactions that prevent partial results appearing due to errors or interrupted operations.</p></li>
+<li><p><strong>Domain Integrity:</strong> Ensures that all entries in a database column are within a defined set of valid values.
+This can be achieved using data type restrictions, constraints, and enumerations.</p></li>
+<li><p><strong>Completeness:</strong> Guarantees that all necessary data is present in the database.
+This ensures that there are no missing values that could lead to erroneous conclusions or operations.</p></li>
+<li><p><strong>Entity Integrity:</strong> Asserts that each entity (or row) in the database is uniquely adn reliably  matched to its real-world counterpart.
+This typically requires a reliable system for identifying entities and their records.</p></li>
+<li><p><strong>Referential Integrity:</strong> Ensures that relationships between entities  in the database are maintained consistently.
+This is often achieved using referential constraints that create a logical association  between entities.</p></li>
+<li><p><strong>Compositional Integrity:</strong> Guarantees that the composition of a data entity is maintained with all its constituent parts.
+This may require implementing all-or-nothing (atomic) transactions that prevent partial results appearing due to errors or interrupted operations.</p></li>
 </ol>
 <p>By adhering to these principles, DataJoint ensures that the data stored within its databases remains accurate, reliable, and representative of the real-world processes it is intended to reflect.</p>
 </section>
@@ -683,7 +688,7 @@ In scenarios of shared distributed projects, there’s also the added logistical
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-of-data-queries">Practical Application of Data Queries</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensuring-data-structure-and-integrity-in-databases">Ensuring Data Structure and Integrity in Databases</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-integrity">Data Integrity</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threats-to-data-integrity">Threats to Data Integrity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-integrity-in-databases">Data Integrity in Databases</a></li>
 </ul>

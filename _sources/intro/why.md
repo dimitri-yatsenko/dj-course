@@ -13,7 +13,7 @@
 In today's digital age, the term "database" is frequently thrown around, often encompassing any form of data storage or collection. 
 For the context of this book, let's sharpen that definition:
 ```{card} 
- A **database** is a time-varying  collection of structured data serving as an integral part of a real-world enterprise, supporting its operations and accessed in various ways by diverse participants. 
+ A **database** is a time-varying  collection of structured data serving as an integral part of a real-world enterprise, supporting its operations and accessible through multiple  ways by diverse participants. 
 ```
 
 From hotels to airlines, universities to banks, and even research projects—databases are the backbone of these entities, ensuring smooth and organized operations. 
@@ -77,10 +77,15 @@ Each of these operations, though sourcing from the same foundational data, deman
 In contemporary data-driven scientific research, data queries prove invaluable. 
 They enable researchers to select and aggregate specific data fragments essential for a given analysis or visualization, eliminating the need to retrieve the entirety of a dataset from its primary repository.
 
-## Ensuring Data Structure and Integrity in Databases
+## Data Integrity 
 
 Databases play a pivotal role in not just storing data, but also in ensuring that the stored data adheres to a particular structure and maintains its **integrity**. 
 This is crucial when databases are intended to mirror real-world processes and uphold specific business rules, especially when there are multiple concurrent interactions.
+
+```{card}
+**Data Integrity:** A database's ability to define, express, and enforce the rules for valid states of stored data 
+```
+
 
 ### Threats to Data Integrity
 
@@ -99,21 +104,22 @@ Each of these threats can compromise the accuracy and reliability of the data, l
 
 Relational databases excel in their ability to define valid states for entities stored in the database and in preventing deviations from valid states. 
 
-```{card}
-**Data Integrity:** A database's capability to define, express, and enforce the rules for valid states of stored data 
-```
+DataJoint in particular respects five primary forms of data integrity to address and counter these threats:
 
-DataJoint in particular defines five primary forms of data integrity to address and counter these threats:
+1. **Domain Integrity:** Ensures that all entries in a database column are within a defined set of valid values. 
+This can be achieved using data type restrictions, constraints, and enumerations.
 
-1. **Domain Integrity:** Ensures that all entries in a database column are within a defined set of valid values. This can be achieved using data type restrictions, constraints, and enumerations.
+2. **Completeness:** Guarantees that all necessary data is present in the database. 
+This ensures that there are no missing values that could lead to erroneous conclusions or operations.
 
-2. **Completeness:** Guarantees that all necessary data is present in the database. This ensures that there are no missing values that could lead to erroneous conclusions or operations.
+3. **Entity Integrity:** Asserts that each entity (or row) in the database is uniquely adn reliably  matched to its real-world counterpart. 
+This typically requires a reliable system for identifying entities and their records.
 
-3. **Entity Integrity:** Asserts that each entity (or row) in the database is uniquely matched to its real-world counterpart. This typically requires a reliable system for identifying entities and their records.
+4. **Referential Integrity:** Ensures that relationships between entities  in the database are maintained consistently. 
+This is often achieved using referential constraints that create a logical association  between entities.
 
-4. **Referential Integrity:** Ensures that relationships between entities  in the database are maintained consistently. This is often achieved using referential constraints that create a logical association  between entities.
-
-5. **Compositional Integrity:** Guarantees that the composition of a data entity is maintained with all its constituent parts. This may require implementing all-or-nothing (atomic) transactions that prevent partial results appearing due to errors or interrupted operations.
+5. **Compositional Integrity:** Guarantees that the composition of a data entity is maintained with all its constituent parts. 
+This may require implementing all-or-nothing (atomic) transactions that prevent partial results appearing due to errors or interrupted operations.
 
 By adhering to these principles, DataJoint ensures that the data stored within its databases remains accurate, reliable, and representative of the real-world processes it is intended to reflect.
 
