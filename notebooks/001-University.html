@@ -1,0 +1,3409 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Define &#8212; The DataJoint Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/001-University';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../root.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neuron.png" class="logo__image only-light" alt="The DataJoint Course - Home"/>
+    <script>document.write(`<img src="../_static/neuron.png" class="logo__image only-dark" alt="The DataJoint Course - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../root.html">
+                    The DataJoint Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database Design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/relational.html">The Relational Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/normalization.html">Database normalization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Book</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/001-University.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/001-University.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Define</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Define</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#queries">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restriction">Restriction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join">Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggr">Aggr</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="define">
+<h1>Define<a class="headerlink" href="#define" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">schema</span><span class="p">(</span><span class="s1">&#39;university&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting root@127.0.0.1:3306
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ConnectionRefusedError</span><span class="g g-Whitespace">                    </span>Traceback (most recent call last)
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:613,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">613</span>     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="k">break</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:845,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">845</span>     <span class="k">raise</span> <span class="n">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">846</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span>     <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:833,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span>     <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">source_address</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">833</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span> <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="ne">ConnectionRefusedError</span>: [Errno 61] Connection refused
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">schema</span><span class="p">(</span><span class="s1">&#39;university&#39;</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/schemas.py:69,</span> in <span class="ni">Schema.__init__</span><span class="nt">(self, schema_name, context, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="bp">self</span><span class="o">.</span><span class="n">declare_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="k">if</span> <span class="n">schema_name</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">69</span>     <span class="bp">self</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">schema_name</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/schemas.py:100,</span> in <span class="ni">Schema.activate</span><span class="nt">(self, schema_name, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">100</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">conn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">schema_name</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="k">if</span> <span class="n">create_schema</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:119,</span> in <span class="ni">conn</span><span class="nt">(host, user, password, init_fun, reset, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">init_fun</span> <span class="o">=</span> <span class="n">init_fun</span> <span class="k">if</span> <span class="n">init_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;connection.init_function&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="n">use_tls</span> <span class="o">=</span> <span class="n">use_tls</span> <span class="k">if</span> <span class="n">use_tls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database.use_tls&#39;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">init_fun</span><span class="p">,</span> <span class="n">use_tls</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">return</span> <span class="n">conn</span><span class="o">.</span><span class="n">connection</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:178,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, host, user, password, port, init_fun, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">178</span> <span class="n">connect_host_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connected </span><span class="si">{user}</span><span class="s2">@</span><span class="si">{host}</span><span class="s2">:</span><span class="si">{port}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">conn_info</span><span class="p">))</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:45,</span> in <span class="ni">connect_host_hook</span><span class="nt">(connection_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">DataJointError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>             <span class="s2">&quot;Connection plugin &#39;</span><span class="si">{}</span><span class="s2">&#39; not found.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>     <span class="n">connection_obj</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:201,</span> in <span class="ni">Connection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s1">&#39;.*deprecated.*&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>                  <span class="s2">&quot;STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>         <span class="n">charset</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;connection.charset&#39;</span><span class="p">],</span>
+<span class="nn">    206         **{k: v for k, v</span> in <span class="ni">self.conn_info.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ssl_input&#39;</span><span class="p">,</span> <span class="s1">&#39;host_input&#39;</span><span class="p">]})</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">except</span> <span class="n">client</span><span class="o">.</span><span class="n">err</span><span class="o">.</span><span class="n">InternalError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>            <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ssl_input&#39;</span><span class="p">,</span> <span class="s1">&#39;host_input&#39;</span><span class="p">]</span> <span class="ow">or</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>                   <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;ssl&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn_info</span><span class="p">[</span><span class="s1">&#39;ssl_input&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)})</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:353,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:664,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>         <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">traceback</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">664</span>     <span class="k">raise</span> <span class="n">exc</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="c1"># If e is neither DatabaseError or IOError, It&#39;s a bug.</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span> <span class="c1"># But raising AssertionError hides original error.</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="c1"># So just reraise it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span> <span class="k">raise</span>
+
+<span class="ne">OperationalError</span>: (2003, &quot;Can&#39;t connect to MySQL server on &#39;127.0.0.1&#39; ([Errno 61] Connection refused)&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    student_id : int unsigned   # university-wide ID number</span>
+<span class="s2">    ---</span>
+<span class="s2">    first_name      : varchar(40)</span>
+<span class="s2">    last_name       : varchar(40)</span>
+<span class="s2">    sex             : enum(&#39;F&#39;, &#39;M&#39;, &#39;U&#39;)</span>
+<span class="s2">    date_of_birth   : date</span>
+<span class="s2">    home_address    : varchar(120) # mailing street address</span>
+<span class="s2">    home_city       : varchar(60)  # mailing address</span>
+<span class="s2">    home_state      : char(2)      # US state acronym: e.g. OH</span>
+<span class="s2">    home_zip        : char(10)     # zipcode e.g. 93979-4979</span>
+<span class="s2">    home_phone      : varchar(20)  # e.g. 414.657.6883x0881</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    dept : varchar(6)   # abbreviated department name, e.g. BIOL</span>
+<span class="s2">    ---</span>
+<span class="s2">    dept_name    : varchar(200)  # full department name</span>
+<span class="s2">    dept_address : varchar(200)  # mailing address</span>
+<span class="s2">    dept_phone   : varchar(20)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">StudentMajor</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Student</span>
+<span class="s2">    ---</span>
+<span class="s2">    -&gt; Department</span>
+<span class="s2">    declare_date :  date  # when student declared her major</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/71ec72c99ed61ff40a892fb71c9f64c77db2c3c73e9667496066f544cc918a57.svg" src="../_images/71ec72c99ed61ff40a892fb71c9f64c77db2c3c73e9667496066f544cc918a57.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Course</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Department</span>
+<span class="s2">    course  : int unsigned   # course number, e.g. 1010</span>
+<span class="s2">    ---</span>
+<span class="s2">    course_name :  varchar(200)  # e.g. &quot;Neurobiology of Sensation and Movement.&quot;</span>
+<span class="s2">    credits     :  decimal(3,1)  # number of credits earned by completing the course</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Term</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    term_year : year</span>
+<span class="s2">    term      : enum(&#39;Spring&#39;, &#39;Summer&#39;, &#39;Fall&#39;)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Course</span>
+<span class="s2">    -&gt; Term</span>
+<span class="s2">    section : char(1)</span>
+<span class="s2">    ---</span>
+<span class="s2">    auditorium   :  varchar(12)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">CurrentTerm</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Term</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Enroll</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Student</span>
+<span class="s2">    -&gt; Section</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">LetterGrade</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    grade : char(2)</span>
+<span class="s2">    ---</span>
+<span class="s2">    points : decimal(3,2)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Grade</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Enroll</span>
+<span class="s2">    ---</span>
+<span class="s2">    -&gt; LetterGrade</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/411cdfb4f18758eac5e897a3774a4d8a04fef710aecf8fc1d997f0bdcb0df1f0.svg" src="../_images/411cdfb4f18758eac5e897a3774a4d8a04fef710aecf8fc1d997f0bdcb0df1f0.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">faker</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">fake</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">Faker</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">yield_students</span><span class="p">():</span>
+    <span class="n">fake_name</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">name_female</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">name_male</span><span class="p">}</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># ignore invalid values</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sex</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">))</span>
+            <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="o">=</span> <span class="n">fake_name</span><span class="p">[</span><span class="n">sex</span><span class="p">]()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">street_address</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">address</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">city</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+            <span class="n">state</span><span class="p">,</span> <span class="n">zipcode</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>            
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">first_name</span><span class="o">=</span><span class="n">first_name</span><span class="p">,</span>
+                <span class="n">last_name</span><span class="o">=</span><span class="n">last_name</span><span class="p">,</span>
+                <span class="n">sex</span><span class="o">=</span><span class="n">sex</span><span class="p">,</span>
+                <span class="n">home_address</span><span class="o">=</span><span class="n">street_address</span><span class="p">,</span>
+                <span class="n">home_city</span><span class="o">=</span><span class="n">city</span><span class="p">,</span>
+                <span class="n">home_state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+                <span class="n">home_zip</span><span class="o">=</span><span class="n">zipcode</span><span class="p">,</span>
+                <span class="n">date_of_birth</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span>
+                    <span class="n">fake</span><span class="o">.</span><span class="n">date_time_between</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;-35y&quot;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;-15y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()),</span>
+                <span class="n">home_phone</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">phone_number</span><span class="p">()[:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Student</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">student_id</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span> <span class="n">yield_students</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Student</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100</td>
+<td>Barbara</td>
+<td>Cruz</td>
+<td>F</td>
+<td>1995-11-15</td>
+<td>877 Perez Route</td>
+<td>South Nathanland</td>
+<td>SC</td>
+<td>37876</td>
+<td>+1-440-738-5021x919</td></tr><tr><td>101</td>
+<td>Charles</td>
+<td>Lang</td>
+<td>M</td>
+<td>2003-01-18</td>
+<td>1443 Gaines Shoal</td>
+<td>South Derrickhaven</td>
+<td>NY</td>
+<td>17676</td>
+<td>(685)341-0168x1216</td></tr><tr><td>102</td>
+<td>Lisa</td>
+<td>Howard</td>
+<td>F</td>
+<td>2001-03-22</td>
+<td>20309 Sparks Point Suite 605</td>
+<td>Kevinborough</td>
+<td>WA</td>
+<td>46193</td>
+<td>+1-496-409-0832x7028</td></tr><tr><td>103</td>
+<td>William</td>
+<td>Cabrera</td>
+<td>M</td>
+<td>2007-10-07</td>
+<td>1452 Little Squares</td>
+<td>Alexandrabury</td>
+<td>OK</td>
+<td>78525</td>
+<td>930.731.6737</td></tr><tr><td>104</td>
+<td>Emma</td>
+<td>Williams</td>
+<td>F</td>
+<td>2006-01-25</td>
+<td>1515 Andrea Ferry Suite 616</td>
+<td>North Victoriabury</td>
+<td>SC</td>
+<td>68350</td>
+<td>(725)950-3537x1651</td></tr><tr><td>105</td>
+<td>Jessica</td>
+<td>Ruiz</td>
+<td>F</td>
+<td>1988-09-16</td>
+<td>4624 Dunn Course Apt. 727</td>
+<td>Heatherburgh</td>
+<td>WV</td>
+<td>39941</td>
+<td>869.251.0923</td></tr><tr><td>106</td>
+<td>Daniel</td>
+<td>Bates</td>
+<td>M</td>
+<td>1994-10-31</td>
+<td>72318 Martinez Throughway Apt. 037</td>
+<td>Sarahborough</td>
+<td>AR</td>
+<td>18566</td>
+<td>(609)547-7753x0172</td></tr><tr><td>107</td>
+<td>Jennifer</td>
+<td>Henderson</td>
+<td>F</td>
+<td>2004-07-03</td>
+<td>2867 Brian Vista Apt. 094</td>
+<td>Port Amy</td>
+<td>NV</td>
+<td>18620</td>
+<td>209-483-8663x17357</td></tr><tr><td>108</td>
+<td>Sherry</td>
+<td>Martinez</td>
+<td>F</td>
+<td>2000-05-29</td>
+<td>53980 Jennifer Orchard</td>
+<td>Nicoleland</td>
+<td>FL</td>
+<td>88079</td>
+<td>638-594-3126x4188</td></tr><tr><td>109</td>
+<td>Jill</td>
+<td>Wilson</td>
+<td>F</td>
+<td>1994-02-28</td>
+<td>97226 Scott Estates Apt. 983</td>
+<td>Washingtonville</td>
+<td>MA</td>
+<td>42090</td>
+<td>(744)453-4573x3520</td></tr><tr><td>110</td>
+<td>Summer</td>
+<td>Brown</td>
+<td>F</td>
+<td>2000-08-14</td>
+<td>5210 Herrera Cliff</td>
+<td>East Joan</td>
+<td>IA</td>
+<td>64238</td>
+<td>(549)359-7826x6789</td></tr><tr><td>111</td>
+<td>Tina</td>
+<td>Ray</td>
+<td>F</td>
+<td>1995-04-14</td>
+<td>1407 Brandon Ridge</td>
+<td>South Samuelfort</td>
+<td>KS</td>
+<td>22351</td>
+<td>001-839-569-7092x170</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 200</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Department</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">dept</span><span class="o">=</span><span class="n">dept</span><span class="p">,</span> 
+         <span class="n">dept_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> 
+         <span class="n">dept_address</span><span class="o">=</span><span class="n">fake</span><span class="o">.</span><span class="n">address</span><span class="p">(),</span> 
+         <span class="n">dept_phone</span><span class="o">=</span><span class="n">fake</span><span class="o">.</span><span class="n">phone_number</span><span class="p">()[:</span><span class="mi">20</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">dept</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;CS&quot;</span><span class="p">,</span> <span class="s2">&quot;Computer Science&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;BIOL&quot;</span><span class="p">,</span> <span class="s2">&quot;Life Sciences&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;PHYS&quot;</span><span class="p">,</span> <span class="s2">&quot;Physics&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;MATH&quot;</span><span class="p">,</span> <span class="s2">&quot;Mathematics&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">StudentMajor</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="o">**</span><span class="n">s</span><span class="p">,</span> <span class="o">**</span><span class="n">d</span><span class="p">,</span> 
+                     <span class="s1">&#39;declare_date&#39;</span><span class="p">:</span><span class="n">fake</span><span class="o">.</span><span class="n">date_between</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">1999</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))}</span>
+    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Student</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">Department</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">Student</span><span class="p">())))</span>
+                   <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.75</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">StudentMajor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dept</p>
+                            <span class="djtooltiptext">abbreviated department name, e.g. BIOL</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">declare_date</p>
+                            <span class="djtooltiptext">when student declared her major</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100</td>
+<td>PHYS</td>
+<td>2007-01-27</td></tr><tr><td>101</td>
+<td>CS</td>
+<td>2013-05-30</td></tr><tr><td>102</td>
+<td>CS</td>
+<td>2020-04-17</td></tr><tr><td>105</td>
+<td>CS</td>
+<td>2020-11-25</td></tr><tr><td>106</td>
+<td>CS</td>
+<td>2011-09-24</td></tr><tr><td>109</td>
+<td>BIOL</td>
+<td>2012-12-01</td></tr><tr><td>111</td>
+<td>BIOL</td>
+<td>2010-08-27</td></tr><tr><td>112</td>
+<td>BIOL</td>
+<td>2018-03-31</td></tr><tr><td>115</td>
+<td>BIOL</td>
+<td>2014-04-17</td></tr><tr><td>117</td>
+<td>PHYS</td>
+<td>2018-05-03</td></tr><tr><td>118</td>
+<td>BIOL</td>
+<td>1999-01-18</td></tr><tr><td>119</td>
+<td>BIOL</td>
+<td>2014-07-12</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 149</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from https://www.utah.edu/</span>
+<span class="n">Course</span><span class="o">.</span><span class="n">insert</span><span class="p">([</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">1006</span><span class="p">,</span> <span class="s1">&#39;World of Dinosaurs&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">1010</span><span class="p">,</span> <span class="s1">&#39;Biology in the 21st Century&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">1030</span><span class="p">,</span> <span class="s1">&#39;Human Biology&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">1210</span><span class="p">,</span> <span class="s1">&#39;Principles of Biology&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="s1">&#39;Evolution &amp; Diversity of Life&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="s1">&#39;Principles of Cell Biology&#39;</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="s1">&#39;Principles of Cell Science&#39;</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2030</span><span class="p">,</span> <span class="s1">&#39;Principles of Genetics&#39;</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2210</span><span class="p">,</span> <span class="s1">&#39;Human Genetics&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2325</span><span class="p">,</span> <span class="s1">&#39;Human Anatomy&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2330</span><span class="p">,</span> <span class="s1">&#39;Plants &amp; Society&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2355</span><span class="p">,</span> <span class="s1">&#39;Field Botany&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;BIOL&#39;</span><span class="p">,</span> <span class="mi">2420</span><span class="p">,</span> <span class="s1">&#39;Human Physiology&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">2040</span><span class="p">,</span> <span class="s1">&#39;Classcal Theoretical Physics II&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">2060</span><span class="p">,</span> <span class="s1">&#39;Quantum Mechanics&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">2100</span><span class="p">,</span> <span class="s1">&#39;General Relativity and Cosmology&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">2140</span><span class="p">,</span> <span class="s1">&#39;Statistical Mechanics&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">2210</span><span class="p">,</span> <span class="s1">&#39;Physics for Scientists and Engineers I&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">2220</span><span class="p">,</span> <span class="s1">&#39;Physics for Scientists and Engineers II&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">3210</span><span class="p">,</span> <span class="s1">&#39;Physics for Scientists I (Honors)&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;PHYS&#39;</span><span class="p">,</span> <span class="mi">3220</span><span class="p">,</span> <span class="s1">&#39;Physics for Scientists II (Honors)&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">1250</span><span class="p">,</span> <span class="s1">&#39;Calculus for AP Students I&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">1260</span><span class="p">,</span> <span class="s1">&#39;Calculus for AP Students II&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">1210</span><span class="p">,</span> <span class="s1">&#39;Calculus I&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="s1">&#39;Calculus II&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">2210</span><span class="p">,</span> <span class="s1">&#39;Calculus III&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ 
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">2270</span><span class="p">,</span> <span class="s1">&#39;Linear Algebra&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">2280</span><span class="p">,</span> <span class="s1">&#39;Introduction to Differential Equations&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">3210</span><span class="p">,</span> <span class="s1">&#39;Foundations of Analysis I&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;MATH&#39;</span><span class="p">,</span> <span class="mi">3220</span><span class="p">,</span> <span class="s1">&#39;Foundations of Analysis II&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">1030</span><span class="p">,</span> <span class="s1">&#39;Foundations of Computer Science&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">1410</span><span class="p">,</span> <span class="s1">&#39;Introduction to Object-Oriented Programming&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">2420</span><span class="p">,</span> <span class="s1">&#39;Introduction to Algorithms &amp; Data Structures&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">2100</span><span class="p">,</span> <span class="s1">&#39;Discrete Structures&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">3500</span><span class="p">,</span> <span class="s1">&#39;Software Practice&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">3505</span><span class="p">,</span> <span class="s1">&#39;Software Practice II&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">3810</span><span class="p">,</span> <span class="s1">&#39;Computer Organization&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">4400</span><span class="p">,</span> <span class="s1">&#39;Computer Systems&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">4150</span><span class="p">,</span> <span class="s1">&#39;Algorithms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">3100</span><span class="p">,</span> <span class="s1">&#39;Models of Computation&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="s1">&#39;Introduction to Scientific Computing&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="s1">&#39;Senior Capstone Project - Design Phase&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">4500</span><span class="p">,</span> <span class="s1">&#39;Senior Capstone Project&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">4940</span><span class="p">,</span> <span class="s1">&#39;Undergraduate Research&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span> <span class="mi">4970</span><span class="p">,</span> <span class="s1">&#39;Computer Science Bachelor&#39;&#39;s Thesis&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Term</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">term_year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="n">term</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1999</span><span class="p">,</span> <span class="mi">2019</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Fall&#39;</span><span class="p">])</span>
+
+<span class="n">Term</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">order_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;term_year DESC&#39;</span><span class="p">,</span> <span class="s1">&#39;term DESC&#39;</span><span class="p">),</span> <span class="n">as_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">CurrentTerm</span><span class="p">()</span><span class="o">.</span><span class="n">insert1</span><span class="p">({</span>
+    <span class="o">**</span><span class="n">Term</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">order_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;term_year DESC&#39;</span><span class="p">,</span> <span class="s1">&#39;term DESC&#39;</span><span class="p">),</span> <span class="n">as_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]})</span>
+
+<span class="k">def</span> <span class="nf">make_section</span><span class="p">(</span><span class="n">prob</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Course</span> <span class="o">*</span> <span class="n">Term</span><span class="p">)</span><span class="o">.</span><span class="n">proj</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">sec</span> <span class="ow">in</span> <span class="s1">&#39;abcd&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">prob</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">yield</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;section&#39;</span><span class="p">:</span> <span class="n">sec</span><span class="p">,</span> 
+                <span class="s1">&#39;auditorium&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;ABCDEF&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">))}</span>   
+
+<span class="n">Section</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">make_section</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LetterGrade</span><span class="o">.</span><span class="n">insert</span><span class="p">([</span>
+    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>  <span class="mf">4.00</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;A-&#39;</span><span class="p">,</span> <span class="mf">3.67</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;B+&#39;</span><span class="p">,</span> <span class="mf">3.33</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span>  <span class="mf">3.00</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;B-&#39;</span><span class="p">,</span> <span class="mf">2.67</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;C+&#39;</span><span class="p">,</span> <span class="mf">2.33</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span>  <span class="mf">2.00</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;C-&#39;</span><span class="p">,</span> <span class="mf">1.67</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;D+&#39;</span><span class="p">,</span> <span class="mf">1.33</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span>  <span class="mf">1.00</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span>  <span class="mf">0.00</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LetterGrade</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">grade</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">points</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>A</td>
+<td>4.00</td></tr><tr><td>A-</td>
+<td>3.67</td></tr><tr><td>B</td>
+<td>3.00</td></tr><tr><td>B-</td>
+<td>2.67</td></tr><tr><td>B+</td>
+<td>3.33</td></tr><tr><td>C</td>
+<td>2.00</td></tr><tr><td>C-</td>
+<td>1.67</td></tr><tr><td>C+</td>
+<td>2.33</td></tr><tr><td>D</td>
+<td>1.00</td></tr><tr><td>D+</td>
+<td>1.33</td></tr><tr><td>F</td>
+<td>0.00</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 11</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enrollment </span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">Term</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)</span>
+<span class="n">quit_prob</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">Student</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)):</span>
+    <span class="n">start_term</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">[</span><span class="n">start_term</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">quit_prob</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sections</span> <span class="o">=</span> <span class="p">((</span><span class="n">Section</span> <span class="o">&amp;</span> <span class="n">term</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">Course</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Enroll</span> <span class="o">&amp;</span> <span class="n">student</span><span class="p">)))</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sections</span><span class="p">:</span>
+                <span class="n">Enroll</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="o">**</span><span class="n">student</span><span class="p">,</span> <span class="o">**</span><span class="n">section</span><span class="p">}</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> 
+                              <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sections</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sections</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 200/200 [00:10&lt;00:00, 19.38it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign random grades</span>
+<span class="n">grades</span> <span class="o">=</span> <span class="n">LetterGrade</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;grade&#39;</span><span class="p">)</span>
+
+<span class="n">grade_keys</span> <span class="o">=</span> <span class="n">Enroll</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">grade_keys</span><span class="p">)</span>
+<span class="n">grade_keys</span> <span class="o">=</span> <span class="n">grade_keys</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">grade_keys</span><span class="p">)</span><span class="o">*</span><span class="mi">9</span><span class="o">//</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">Grade</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="o">**</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;grade&#39;</span><span class="p">:</span><span class="n">grade</span><span class="p">}</span> 
+             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">grade</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">grade_keys</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">grade_keys</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Enroll</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">dept</p>
+                            <span class="djtooltiptext">abbreviated department name, e.g. BIOL</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">course</p>
+                            <span class="djtooltiptext">course number, e.g. 1010</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">term_year</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">term</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">section</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>169</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2001</td>
+<td>Spring</td>
+<td>a</td></tr><tr><td>195</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2001</td>
+<td>Spring</td>
+<td>a</td></tr><tr><td>171</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2001</td>
+<td>Spring</td>
+<td>b</td></tr><tr><td>255</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2001</td>
+<td>Summer</td>
+<td>a</td></tr><tr><td>110</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2002</td>
+<td>Fall</td>
+<td>a</td></tr><tr><td>184</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2002</td>
+<td>Fall</td>
+<td>a</td></tr><tr><td>245</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2002</td>
+<td>Fall</td>
+<td>a</td></tr><tr><td>143</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2002</td>
+<td>Fall</td>
+<td>b</td></tr><tr><td>148</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2002</td>
+<td>Fall</td>
+<td>c</td></tr><tr><td>114</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2003</td>
+<td>Fall</td>
+<td>a</td></tr><tr><td>151</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2003</td>
+<td>Fall</td>
+<td>a</td></tr><tr><td>225</td>
+<td>BIOL</td>
+<td>1006</td>
+<td>2003</td>
+<td>Fall</td>
+<td>a</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 2863</p></div>
+        </div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="queries">
+<h1>Queries<a class="headerlink" href="#queries" title="Permalink to this heading">#</a></h1>
+<section id="restriction">
+<h2>Restriction<a class="headerlink" href="#restriction" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students from Texas</span>
+<span class="n">Student</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;home_state&#39;</span><span class="p">:</span> <span class="s1">&#39;TX&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>198</td>
+<td>Gary</td>
+<td>Arias</td>
+<td>M</td>
+<td>2001-08-26</td>
+<td>5693 Rachel Fort</td>
+<td>Johnsonhaven</td>
+<td>TX</td>
+<td>80473</td>
+<td>(614)716-3998x72349</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 1</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Student</span> <span class="o">&amp;</span> <span class="s1">&#39;home_state=&quot;TX&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Male students from outside Texas</span>
+<span class="p">(</span><span class="n">Student</span> <span class="o">&amp;</span> <span class="s1">&#39;sex=&quot;M&quot;&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;home_state&#39;</span><span class="p">:</span> <span class="s1">&#39;TX&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students from TX, OK, or NM</span>
+<span class="n">Student</span> <span class="o">&amp;</span> <span class="p">[{</span><span class="s1">&#39;home_state&#39;</span><span class="p">:</span><span class="s1">&#39;OK&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;home_state&#39;</span><span class="p">:</span><span class="s1">&#39;NM&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;home_state&#39;</span><span class="p">:</span><span class="s1">&#39;TX&#39;</span><span class="p">}]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Millenials</span>
+<span class="n">millennials</span> <span class="o">=</span> <span class="n">Student</span> <span class="o">&amp;</span> <span class="s1">&#39;date_of_birth between &quot;1981-01-01&quot; and &quot;1996-12-31&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">millennials</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100</td>
+<td>Barbara</td>
+<td>Cruz</td>
+<td>F</td>
+<td>1995-11-15</td>
+<td>877 Perez Route</td>
+<td>South Nathanland</td>
+<td>SC</td>
+<td>37876</td>
+<td>+1-440-738-5021x919</td></tr><tr><td>105</td>
+<td>Jessica</td>
+<td>Ruiz</td>
+<td>F</td>
+<td>1988-09-16</td>
+<td>4624 Dunn Course Apt. 727</td>
+<td>Heatherburgh</td>
+<td>WV</td>
+<td>39941</td>
+<td>869.251.0923</td></tr><tr><td>106</td>
+<td>Daniel</td>
+<td>Bates</td>
+<td>M</td>
+<td>1994-10-31</td>
+<td>72318 Martinez Throughway Apt. 037</td>
+<td>Sarahborough</td>
+<td>AR</td>
+<td>18566</td>
+<td>(609)547-7753x0172</td></tr><tr><td>109</td>
+<td>Jill</td>
+<td>Wilson</td>
+<td>F</td>
+<td>1994-02-28</td>
+<td>97226 Scott Estates Apt. 983</td>
+<td>Washingtonville</td>
+<td>MA</td>
+<td>42090</td>
+<td>(744)453-4573x3520</td></tr><tr><td>111</td>
+<td>Tina</td>
+<td>Ray</td>
+<td>F</td>
+<td>1995-04-14</td>
+<td>1407 Brandon Ridge</td>
+<td>South Samuelfort</td>
+<td>KS</td>
+<td>22351</td>
+<td>001-839-569-7092x170</td></tr><tr><td>113</td>
+<td>Joshua</td>
+<td>Foster</td>
+<td>M</td>
+<td>1995-12-05</td>
+<td>5977 Hannah Gateway Apt. 455</td>
+<td>Alexaburgh</td>
+<td>IL</td>
+<td>25439</td>
+<td>954-732-8286</td></tr><tr><td>115</td>
+<td>Sarah</td>
+<td>Cantu</td>
+<td>F</td>
+<td>1993-11-22</td>
+<td>0746 Gloria Mills Suite 175</td>
+<td>Howardton</td>
+<td>NM</td>
+<td>71040</td>
+<td>605.358.8159</td></tr><tr><td>116</td>
+<td>Alfred</td>
+<td>Snyder</td>
+<td>M</td>
+<td>1992-07-17</td>
+<td>31613 Frank Road Apt. 815</td>
+<td>Martinside</td>
+<td>PA</td>
+<td>33470</td>
+<td>880.832.0572x198</td></tr><tr><td>117</td>
+<td>Lauren</td>
+<td>Mack</td>
+<td>F</td>
+<td>1992-11-30</td>
+<td>09867 Ronald Islands</td>
+<td>Lewisborough</td>
+<td>NC</td>
+<td>52039</td>
+<td>660-258-8038</td></tr><tr><td>120</td>
+<td>Wanda</td>
+<td>Frey</td>
+<td>F</td>
+<td>1996-01-22</td>
+<td>917 Woods Meadow</td>
+<td>South Lisa</td>
+<td>FL</td>
+<td>96002</td>
+<td>(624)972-1055x79856</td></tr><tr><td>121</td>
+<td>Michele</td>
+<td>Black</td>
+<td>F</td>
+<td>1990-06-18</td>
+<td>193 Arroyo Ramp Suite 437</td>
+<td>Crystalhaven</td>
+<td>WA</td>
+<td>97851</td>
+<td>967.573.9745</td></tr><tr><td>124</td>
+<td>Cynthia</td>
+<td>Steele</td>
+<td>F</td>
+<td>1994-11-15</td>
+<td>63503 Garcia Park Apt. 871</td>
+<td>Ginaport</td>
+<td>FL</td>
+<td>22097</td>
+<td>(641)890-0271</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 83</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students who have taken classes</span>
+<span class="n">Student</span> <span class="o">&amp;</span> <span class="n">Enroll</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100</td>
+<td>Barbara</td>
+<td>Cruz</td>
+<td>F</td>
+<td>1995-11-15</td>
+<td>877 Perez Route</td>
+<td>South Nathanland</td>
+<td>SC</td>
+<td>37876</td>
+<td>+1-440-738-5021x919</td></tr><tr><td>101</td>
+<td>Charles</td>
+<td>Lang</td>
+<td>M</td>
+<td>2003-01-18</td>
+<td>1443 Gaines Shoal</td>
+<td>South Derrickhaven</td>
+<td>NY</td>
+<td>17676</td>
+<td>(685)341-0168x1216</td></tr><tr><td>102</td>
+<td>Lisa</td>
+<td>Howard</td>
+<td>F</td>
+<td>2001-03-22</td>
+<td>20309 Sparks Point Suite 605</td>
+<td>Kevinborough</td>
+<td>WA</td>
+<td>46193</td>
+<td>+1-496-409-0832x7028</td></tr><tr><td>104</td>
+<td>Emma</td>
+<td>Williams</td>
+<td>F</td>
+<td>2006-01-25</td>
+<td>1515 Andrea Ferry Suite 616</td>
+<td>North Victoriabury</td>
+<td>SC</td>
+<td>68350</td>
+<td>(725)950-3537x1651</td></tr><tr><td>105</td>
+<td>Jessica</td>
+<td>Ruiz</td>
+<td>F</td>
+<td>1988-09-16</td>
+<td>4624 Dunn Course Apt. 727</td>
+<td>Heatherburgh</td>
+<td>WV</td>
+<td>39941</td>
+<td>869.251.0923</td></tr><tr><td>106</td>
+<td>Daniel</td>
+<td>Bates</td>
+<td>M</td>
+<td>1994-10-31</td>
+<td>72318 Martinez Throughway Apt. 037</td>
+<td>Sarahborough</td>
+<td>AR</td>
+<td>18566</td>
+<td>(609)547-7753x0172</td></tr><tr><td>107</td>
+<td>Jennifer</td>
+<td>Henderson</td>
+<td>F</td>
+<td>2004-07-03</td>
+<td>2867 Brian Vista Apt. 094</td>
+<td>Port Amy</td>
+<td>NV</td>
+<td>18620</td>
+<td>209-483-8663x17357</td></tr><tr><td>108</td>
+<td>Sherry</td>
+<td>Martinez</td>
+<td>F</td>
+<td>2000-05-29</td>
+<td>53980 Jennifer Orchard</td>
+<td>Nicoleland</td>
+<td>FL</td>
+<td>88079</td>
+<td>638-594-3126x4188</td></tr><tr><td>109</td>
+<td>Jill</td>
+<td>Wilson</td>
+<td>F</td>
+<td>1994-02-28</td>
+<td>97226 Scott Estates Apt. 983</td>
+<td>Washingtonville</td>
+<td>MA</td>
+<td>42090</td>
+<td>(744)453-4573x3520</td></tr><tr><td>110</td>
+<td>Summer</td>
+<td>Brown</td>
+<td>F</td>
+<td>2000-08-14</td>
+<td>5210 Herrera Cliff</td>
+<td>East Joan</td>
+<td>IA</td>
+<td>64238</td>
+<td>(549)359-7826x6789</td></tr><tr><td>111</td>
+<td>Tina</td>
+<td>Ray</td>
+<td>F</td>
+<td>1995-04-14</td>
+<td>1407 Brandon Ridge</td>
+<td>South Samuelfort</td>
+<td>KS</td>
+<td>22351</td>
+<td>001-839-569-7092x170</td></tr><tr><td>112</td>
+<td>Craig</td>
+<td>Nolan</td>
+<td>M</td>
+<td>2001-12-08</td>
+<td>425 Nathan Turnpike Apt. 256</td>
+<td>Seanstad</td>
+<td>CA</td>
+<td>17904</td>
+<td>898.625.6573x46193</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 180</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Millenials who have never enrolled</span>
+<span class="n">millennials</span> <span class="o">-</span> <span class="n">Enroll</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>168</td>
+<td>Susan</td>
+<td>Smith</td>
+<td>F</td>
+<td>1994-12-30</td>
+<td>560 Lopez Branch Apt. 788</td>
+<td>New Jasonfurt</td>
+<td>FL</td>
+<td>96037</td>
+<td>001-232-425-7123x362</td></tr><tr><td>194</td>
+<td>Christopher</td>
+<td>Hernandez</td>
+<td>M</td>
+<td>1990-07-31</td>
+<td>534 Amanda Hill Apt. 376</td>
+<td>South Amandaville</td>
+<td>WA</td>
+<td>25494</td>
+<td>(787)577-0513x07471</td></tr><tr><td>208</td>
+<td>Christine</td>
+<td>Barron</td>
+<td>F</td>
+<td>1996-07-06</td>
+<td>1691 Burke Lake</td>
+<td>Caldwellville</td>
+<td>CA</td>
+<td>88933</td>
+<td>283.966.1713</td></tr><tr><td>226</td>
+<td>Joseph</td>
+<td>Evans</td>
+<td>M</td>
+<td>1990-10-07</td>
+<td>539 Thomas Crossroad Apt. 694</td>
+<td>West Emily</td>
+<td>WV</td>
+<td>81719</td>
+<td>726.837.3774x03599</td></tr><tr><td>284</td>
+<td>Monica</td>
+<td>Burton</td>
+<td>F</td>
+<td>1995-08-03</td>
+<td>550 Alison Dale Suite 863</td>
+<td>Randallland</td>
+<td>WI</td>
+<td>14516</td>
+<td>637.445.3376x631</td></tr><tr><td>289</td>
+<td>Jerry</td>
+<td>Ramirez</td>
+<td>M</td>
+<td>1989-06-12</td>
+<td>95936 Lara Skyway</td>
+<td>Randyberg</td>
+<td>AS</td>
+<td>34131</td>
+<td>996.978.0755</td></tr><tr><td>292</td>
+<td>Amanda</td>
+<td>Dougherty</td>
+<td>F</td>
+<td>1995-02-26</td>
+<td>37994 Smith Island</td>
+<td>Cartershire</td>
+<td>AL</td>
+<td>59865</td>
+<td>566.392.0752x22812</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 7</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students who have not taken classes</span>
+<span class="n">Student</span> <span class="o">-</span> <span class="n">Enroll</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>103</td>
+<td>William</td>
+<td>Cabrera</td>
+<td>M</td>
+<td>2007-10-07</td>
+<td>1452 Little Squares</td>
+<td>Alexandrabury</td>
+<td>OK</td>
+<td>78525</td>
+<td>930.731.6737</td></tr><tr><td>127</td>
+<td>Cheryl</td>
+<td>Hawkins</td>
+<td>F</td>
+<td>2007-08-09</td>
+<td>2653 Lance Drive</td>
+<td>Crossborough</td>
+<td>RI</td>
+<td>72648</td>
+<td>7447138304</td></tr><tr><td>128</td>
+<td>Michael</td>
+<td>Dixon</td>
+<td>M</td>
+<td>1997-02-27</td>
+<td>022 Smith Courts</td>
+<td>South Zachary</td>
+<td>ID</td>
+<td>97892</td>
+<td>4037310777</td></tr><tr><td>133</td>
+<td>Paul</td>
+<td>Hall</td>
+<td>M</td>
+<td>1998-05-30</td>
+<td>54772 Zachary Viaduct Apt. 395</td>
+<td>Sarahside</td>
+<td>IA</td>
+<td>92005</td>
+<td>+1-609-773-3976</td></tr><tr><td>153</td>
+<td>April</td>
+<td>Sims</td>
+<td>F</td>
+<td>2000-07-22</td>
+<td>619 Levy Burgs Apt. 847</td>
+<td>South Oscar</td>
+<td>NH</td>
+<td>75765</td>
+<td>940-428-5035x9354</td></tr><tr><td>165</td>
+<td>Cindy</td>
+<td>Barnes</td>
+<td>F</td>
+<td>2005-01-03</td>
+<td>8306 Barry Gateway</td>
+<td>Elizabethmouth</td>
+<td>ND</td>
+<td>32608</td>
+<td>001-297-459-1311</td></tr><tr><td>168</td>
+<td>Susan</td>
+<td>Smith</td>
+<td>F</td>
+<td>1994-12-30</td>
+<td>560 Lopez Branch Apt. 788</td>
+<td>New Jasonfurt</td>
+<td>FL</td>
+<td>96037</td>
+<td>001-232-425-7123x362</td></tr><tr><td>175</td>
+<td>Danielle</td>
+<td>Paul</td>
+<td>F</td>
+<td>2003-02-15</td>
+<td>35339 James Crescent Suite 466</td>
+<td>New Stephen</td>
+<td>MA</td>
+<td>72663</td>
+<td>001-901-663-8095</td></tr><tr><td>178</td>
+<td>Frank</td>
+<td>Perkins</td>
+<td>M</td>
+<td>2003-06-03</td>
+<td>95950 Jasmine Locks</td>
+<td>East Gary</td>
+<td>SD</td>
+<td>76339</td>
+<td>+1-461-513-2595x005</td></tr><tr><td>194</td>
+<td>Christopher</td>
+<td>Hernandez</td>
+<td>M</td>
+<td>1990-07-31</td>
+<td>534 Amanda Hill Apt. 376</td>
+<td>South Amandaville</td>
+<td>WA</td>
+<td>25494</td>
+<td>(787)577-0513x07471</td></tr><tr><td>208</td>
+<td>Christine</td>
+<td>Barron</td>
+<td>F</td>
+<td>1996-07-06</td>
+<td>1691 Burke Lake</td>
+<td>Caldwellville</td>
+<td>CA</td>
+<td>88933</td>
+<td>283.966.1713</td></tr><tr><td>213</td>
+<td>Michael</td>
+<td>Rice</td>
+<td>M</td>
+<td>2007-09-14</td>
+<td>37237 Paul Island</td>
+<td>New Aaronshire</td>
+<td>MN</td>
+<td>23096</td>
+<td>(443)808-2349</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 20</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students who have taken Biology classes but no MATH courses</span>
+<span class="p">(</span><span class="n">Student</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Enroll</span> <span class="o">&amp;</span> <span class="s1">&#39;dept=&quot;BIOL&quot;&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">Enroll</span> <span class="o">&amp;</span> <span class="s1">&#39;dept=&quot;MATH&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>101</td>
+<td>Charles</td>
+<td>Lang</td>
+<td>M</td>
+<td>2003-01-18</td>
+<td>1443 Gaines Shoal</td>
+<td>South Derrickhaven</td>
+<td>NY</td>
+<td>17676</td>
+<td>(685)341-0168x1216</td></tr><tr><td>119</td>
+<td>Sarah</td>
+<td>Lin</td>
+<td>F</td>
+<td>2001-09-13</td>
+<td>6469 Jesus Stravenue Suite 497</td>
+<td>Lake Thomaschester</td>
+<td>WY</td>
+<td>35503</td>
+<td>408.292.3880</td></tr><tr><td>130</td>
+<td>Pamela</td>
+<td>Blevins</td>
+<td>F</td>
+<td>1990-08-13</td>
+<td>3266 Michael Villages Apt. 068</td>
+<td>New Nathanland</td>
+<td>VI</td>
+<td>97258</td>
+<td>274.333.7892</td></tr><tr><td>136</td>
+<td>Stephanie</td>
+<td>Morgan</td>
+<td>F</td>
+<td>2003-12-25</td>
+<td>39130 Lewis Divide</td>
+<td>West Nicoleside</td>
+<td>DC</td>
+<td>09460</td>
+<td>(926)699-2959x61499</td></tr><tr><td>142</td>
+<td>Gregory</td>
+<td>Cross</td>
+<td>M</td>
+<td>2000-03-29</td>
+<td>8455 Beth Spring Apt. 986</td>
+<td>Timothymouth</td>
+<td>MO</td>
+<td>81976</td>
+<td>705.668.5361</td></tr><tr><td>158</td>
+<td>Robyn</td>
+<td>Sherman</td>
+<td>F</td>
+<td>2001-01-12</td>
+<td>78443 Shelley Glens</td>
+<td>Arnoldmouth</td>
+<td>PR</td>
+<td>37442</td>
+<td>+1-301-611-8059</td></tr><tr><td>161</td>
+<td>Angela</td>
+<td>Hall</td>
+<td>F</td>
+<td>1993-03-31</td>
+<td>992 Richards Trail</td>
+<td>Timothybury</td>
+<td>ND</td>
+<td>02774</td>
+<td>991-551-7347</td></tr><tr><td>166</td>
+<td>Kelsey</td>
+<td>Kelly</td>
+<td>F</td>
+<td>2007-10-08</td>
+<td>905 Danny Rapid</td>
+<td>New Douglas</td>
+<td>CO</td>
+<td>85978</td>
+<td>+1-984-965-9423</td></tr><tr><td>170</td>
+<td>Wesley</td>
+<td>Porter</td>
+<td>M</td>
+<td>2004-04-23</td>
+<td>407 Hunt Course Suite 409</td>
+<td>Bridgetbury</td>
+<td>AZ</td>
+<td>94654</td>
+<td>680-470-1676x41754</td></tr><tr><td>179</td>
+<td>Brandon</td>
+<td>Schroeder</td>
+<td>M</td>
+<td>2001-05-22</td>
+<td>248 Rose Mountain</td>
+<td>Lake Tamiburgh</td>
+<td>MP</td>
+<td>21021</td>
+<td>+1-845-637-4872x588</td></tr><tr><td>185</td>
+<td>Randy</td>
+<td>Clark</td>
+<td>M</td>
+<td>1989-09-16</td>
+<td>90744 Riley Island Suite 143</td>
+<td>New Rebeccahaven</td>
+<td>VT</td>
+<td>80027</td>
+<td>610-310-9648x9223</td></tr><tr><td>189</td>
+<td>Jacob</td>
+<td>Dixon</td>
+<td>M</td>
+<td>1999-07-09</td>
+<td>2523 Baker Forges Apt. 339</td>
+<td>South Jessica</td>
+<td>SC</td>
+<td>28224</td>
+<td>001-729-347-2962x297</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 34</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students who have not selected a major</span>
+<span class="n">Student</span> <span class="o">-</span> <span class="n">StudentMajor</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>103</td>
+<td>William</td>
+<td>Cabrera</td>
+<td>M</td>
+<td>2007-10-07</td>
+<td>1452 Little Squares</td>
+<td>Alexandrabury</td>
+<td>OK</td>
+<td>78525</td>
+<td>930.731.6737</td></tr><tr><td>104</td>
+<td>Emma</td>
+<td>Williams</td>
+<td>F</td>
+<td>2006-01-25</td>
+<td>1515 Andrea Ferry Suite 616</td>
+<td>North Victoriabury</td>
+<td>SC</td>
+<td>68350</td>
+<td>(725)950-3537x1651</td></tr><tr><td>107</td>
+<td>Jennifer</td>
+<td>Henderson</td>
+<td>F</td>
+<td>2004-07-03</td>
+<td>2867 Brian Vista Apt. 094</td>
+<td>Port Amy</td>
+<td>NV</td>
+<td>18620</td>
+<td>209-483-8663x17357</td></tr><tr><td>108</td>
+<td>Sherry</td>
+<td>Martinez</td>
+<td>F</td>
+<td>2000-05-29</td>
+<td>53980 Jennifer Orchard</td>
+<td>Nicoleland</td>
+<td>FL</td>
+<td>88079</td>
+<td>638-594-3126x4188</td></tr><tr><td>110</td>
+<td>Summer</td>
+<td>Brown</td>
+<td>F</td>
+<td>2000-08-14</td>
+<td>5210 Herrera Cliff</td>
+<td>East Joan</td>
+<td>IA</td>
+<td>64238</td>
+<td>(549)359-7826x6789</td></tr><tr><td>113</td>
+<td>Joshua</td>
+<td>Foster</td>
+<td>M</td>
+<td>1995-12-05</td>
+<td>5977 Hannah Gateway Apt. 455</td>
+<td>Alexaburgh</td>
+<td>IL</td>
+<td>25439</td>
+<td>954-732-8286</td></tr><tr><td>114</td>
+<td>George</td>
+<td>Sanchez</td>
+<td>M</td>
+<td>2007-12-26</td>
+<td>55281 Small Glens Suite 794</td>
+<td>East Justin</td>
+<td>FL</td>
+<td>95631</td>
+<td>4979279923</td></tr><tr><td>116</td>
+<td>Alfred</td>
+<td>Snyder</td>
+<td>M</td>
+<td>1992-07-17</td>
+<td>31613 Frank Road Apt. 815</td>
+<td>Martinside</td>
+<td>PA</td>
+<td>33470</td>
+<td>880.832.0572x198</td></tr><tr><td>125</td>
+<td>Ariel</td>
+<td>Hawkins</td>
+<td>F</td>
+<td>2002-01-02</td>
+<td>20104 Kimberly Club</td>
+<td>Heatherside</td>
+<td>NV</td>
+<td>33834</td>
+<td>(953)452-1914x02596</td></tr><tr><td>126</td>
+<td>Tara</td>
+<td>Duncan</td>
+<td>F</td>
+<td>1992-10-19</td>
+<td>95977 Victoria Creek Suite 442</td>
+<td>New Paul</td>
+<td>GU</td>
+<td>91322</td>
+<td>+1-386-829-2550x2027</td></tr><tr><td>127</td>
+<td>Cheryl</td>
+<td>Hawkins</td>
+<td>F</td>
+<td>2007-08-09</td>
+<td>2653 Lance Drive</td>
+<td>Crossborough</td>
+<td>RI</td>
+<td>72648</td>
+<td>7447138304</td></tr><tr><td>130</td>
+<td>Pamela</td>
+<td>Blevins</td>
+<td>F</td>
+<td>1990-08-13</td>
+<td>3266 Michael Villages Apt. 068</td>
+<td>New Nathanland</td>
+<td>VI</td>
+<td>97258</td>
+<td>274.333.7892</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 51</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students who are taking courses in the current term</span>
+<span class="n">Student</span> <span class="o">-</span> <span class="p">(</span><span class="n">Enroll</span> <span class="o">&amp;</span> <span class="n">CurrentTerm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100</td>
+<td>Barbara</td>
+<td>Cruz</td>
+<td>F</td>
+<td>1995-11-15</td>
+<td>877 Perez Route</td>
+<td>South Nathanland</td>
+<td>SC</td>
+<td>37876</td>
+<td>+1-440-738-5021x919</td></tr><tr><td>101</td>
+<td>Charles</td>
+<td>Lang</td>
+<td>M</td>
+<td>2003-01-18</td>
+<td>1443 Gaines Shoal</td>
+<td>South Derrickhaven</td>
+<td>NY</td>
+<td>17676</td>
+<td>(685)341-0168x1216</td></tr><tr><td>103</td>
+<td>William</td>
+<td>Cabrera</td>
+<td>M</td>
+<td>2007-10-07</td>
+<td>1452 Little Squares</td>
+<td>Alexandrabury</td>
+<td>OK</td>
+<td>78525</td>
+<td>930.731.6737</td></tr><tr><td>105</td>
+<td>Jessica</td>
+<td>Ruiz</td>
+<td>F</td>
+<td>1988-09-16</td>
+<td>4624 Dunn Course Apt. 727</td>
+<td>Heatherburgh</td>
+<td>WV</td>
+<td>39941</td>
+<td>869.251.0923</td></tr><tr><td>106</td>
+<td>Daniel</td>
+<td>Bates</td>
+<td>M</td>
+<td>1994-10-31</td>
+<td>72318 Martinez Throughway Apt. 037</td>
+<td>Sarahborough</td>
+<td>AR</td>
+<td>18566</td>
+<td>(609)547-7753x0172</td></tr><tr><td>107</td>
+<td>Jennifer</td>
+<td>Henderson</td>
+<td>F</td>
+<td>2004-07-03</td>
+<td>2867 Brian Vista Apt. 094</td>
+<td>Port Amy</td>
+<td>NV</td>
+<td>18620</td>
+<td>209-483-8663x17357</td></tr><tr><td>109</td>
+<td>Jill</td>
+<td>Wilson</td>
+<td>F</td>
+<td>1994-02-28</td>
+<td>97226 Scott Estates Apt. 983</td>
+<td>Washingtonville</td>
+<td>MA</td>
+<td>42090</td>
+<td>(744)453-4573x3520</td></tr><tr><td>110</td>
+<td>Summer</td>
+<td>Brown</td>
+<td>F</td>
+<td>2000-08-14</td>
+<td>5210 Herrera Cliff</td>
+<td>East Joan</td>
+<td>IA</td>
+<td>64238</td>
+<td>(549)359-7826x6789</td></tr><tr><td>111</td>
+<td>Tina</td>
+<td>Ray</td>
+<td>F</td>
+<td>1995-04-14</td>
+<td>1407 Brandon Ridge</td>
+<td>South Samuelfort</td>
+<td>KS</td>
+<td>22351</td>
+<td>001-839-569-7092x170</td></tr><tr><td>112</td>
+<td>Craig</td>
+<td>Nolan</td>
+<td>M</td>
+<td>2001-12-08</td>
+<td>425 Nathan Turnpike Apt. 256</td>
+<td>Seanstad</td>
+<td>CA</td>
+<td>17904</td>
+<td>898.625.6573x46193</td></tr><tr><td>113</td>
+<td>Joshua</td>
+<td>Foster</td>
+<td>M</td>
+<td>1995-12-05</td>
+<td>5977 Hannah Gateway Apt. 455</td>
+<td>Alexaburgh</td>
+<td>IL</td>
+<td>25439</td>
+<td>954-732-8286</td></tr><tr><td>114</td>
+<td>George</td>
+<td>Sanchez</td>
+<td>M</td>
+<td>2007-12-26</td>
+<td>55281 Small Glens Suite 794</td>
+<td>East Justin</td>
+<td>FL</td>
+<td>95631</td>
+<td>4979279923</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 170</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Student</span> <span class="o">-</span> <span class="p">(</span><span class="n">Enroll</span> <span class="o">&amp;</span> <span class="n">CurrentTerm</span><span class="p">))</span><span class="o">.</span><span class="n">make_sql</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;SELECT `student_id`,`first_name`,`last_name`,`sex`,`date_of_birth`,`home_address`,`home_city`,`home_state`,`home_zip`,`home_phone` FROM `university`.`student` WHERE ((`student_id`) not in (SELECT `student_id` FROM `university`.`enroll` WHERE ((`term_year`,`term`) in (SELECT `term_year`,`term` FROM `university`.`current_term`))))&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ungraded courses</span>
+<span class="n">Enroll</span> <span class="o">-</span> <span class="n">Grade</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ungraded courses in the current term</span>
+<span class="p">(</span><span class="n">Enroll</span> <span class="o">&amp;</span> <span class="n">CurrentTerm</span><span class="p">)</span> <span class="o">-</span> <span class="n">Grade</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students who have taken classes and have chosen a major</span>
+<span class="p">(</span><span class="n">Student</span> <span class="o">&amp;</span> <span class="n">Enroll</span> <span class="o">&amp;</span> <span class="n">StudentMajor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Students who have taken classes or have chosen a major</span>
+<span class="n">Student</span> <span class="o">&amp;</span> <span class="p">[</span><span class="n">Enroll</span><span class="p">,</span> <span class="n">StudentMajor</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enrollment in courses from the same department as the students&#39; major</span>
+<span class="n">Enroll</span> <span class="o">&amp;</span> <span class="n">StudentMajor</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="join">
+<h2>Join<a class="headerlink" href="#join" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grade point values</span>
+<span class="n">Grade</span> <span class="o">*</span> <span class="n">LetterGrade</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">dept</p>
+                            <span class="djtooltiptext">abbreviated department name, e.g. BIOL</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">course</p>
+                            <span class="djtooltiptext">course number, e.g. 1010</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">term_year</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">term</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">section</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">grade</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">points</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr>  </tr> </tbody>
+        </table>
+        
+        <p>Total: 0</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graded enrollments with complete course and student information</span>
+<span class="n">Student</span> <span class="o">*</span> <span class="n">Enroll</span> <span class="o">*</span> <span class="n">Course</span> <span class="o">*</span> <span class="n">Section</span> <span class="o">*</span> <span class="n">Grade</span> <span class="o">*</span> <span class="n">LetterGrade</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">student_id</p>
+                            <span class="djtooltiptext">university-wide ID number</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">dept</p>
+                            <span class="djtooltiptext">abbreviated department name, e.g. BIOL</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">course</p>
+                            <span class="djtooltiptext">course number, e.g. 1010</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">term_year</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">term</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">section</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">grade</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_address</p>
+                            <span class="djtooltiptext">mailing street address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_city</p>
+                            <span class="djtooltiptext">mailing address</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_state</p>
+                            <span class="djtooltiptext">US state acronym: e.g. OH</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_zip</p>
+                            <span class="djtooltiptext">zipcode e.g. 93979-4979</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">home_phone</p>
+                            <span class="djtooltiptext">e.g. 414.657.6883x0881</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">course_name</p>
+                            <span class="djtooltiptext">e.g. "Neurobiology of Sensation and Movement."</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">credits</p>
+                            <span class="djtooltiptext">number of credits earned by completing the course</span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">auditorium</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">points</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr>  </tr> </tbody>
+        </table>
+        
+        <p>Total: 0</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enrollment with major information</span>
+<span class="n">Enroll</span> <span class="o">*</span> <span class="n">StudentMajor</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="s1">&#39;dept&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enrollment outside chosen major</span>
+<span class="n">Enroll</span> <span class="o">*</span> <span class="n">StudentMajor</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="s1">&#39;dept&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="s1">&#39;major&lt;&gt;dept&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enrollment not matching major </span>
+<span class="n">Enroll</span> <span class="o">-</span> <span class="n">StudentMajor</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total grade points</span>
+<span class="p">(</span><span class="n">Course</span> <span class="o">*</span> <span class="n">Grade</span> <span class="o">*</span> <span class="n">LetterGrade</span><span class="p">)</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="s1">&#39;points*credits&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aggr">
+<h2>Aggr<a class="headerlink" href="#aggr" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Students in each section</span>
+<span class="n">Section</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Enroll</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(*)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Average grade in each course</span>
+<span class="n">Course</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Grade</span><span class="o">*</span><span class="n">LetterGrade</span><span class="p">,</span> <span class="n">avg_grade</span><span class="o">=</span><span class="s1">&#39;avg(points)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fraction graded in each section</span>
+<span class="p">(</span><span class="n">Section</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Enroll</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(*)&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">Section</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Grade</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="s1">&#39;count(*)&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span>
+    <span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="n">frac</span><span class="o">=</span><span class="s1">&#39;m/n&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Student GPA</span>
+<span class="n">Student</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Course</span> <span class="o">*</span> <span class="n">Grade</span> <span class="o">*</span> <span class="n">LetterGrade</span><span class="p">,</span> 
+             <span class="n">gpa</span><span class="o">=</span><span class="s1">&#39;sum(points*credits)/sum(credits)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Average GPA for each major</span>
+<span class="n">gpa</span> <span class="o">=</span> <span class="n">Student</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Course</span> <span class="o">*</span> <span class="n">Grade</span> <span class="o">*</span> <span class="n">LetterGrade</span><span class="p">,</span>
+                   <span class="n">gpa</span><span class="o">=</span><span class="s1">&#39;sum(points*credits)/sum(credits)&#39;</span><span class="p">)</span>
+<span class="n">Department</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">StudentMajor</span><span class="o">*</span><span class="n">gpa</span><span class="p">,</span> <span class="n">avg_gpa</span><span class="o">=</span><span class="s1">&#39;avg(gpa)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Define</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#queries">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restriction">Restriction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join">Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggr">Aggr</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dimitri Yatsenko, PhD
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

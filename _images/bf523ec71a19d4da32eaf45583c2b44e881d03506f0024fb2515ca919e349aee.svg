@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="172pt" height="327pt" viewBox="0.00 0.00 172.00 327.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 323)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-323 168,-323 168,4 -4,4"/>
+<!-- CheckOut -->
+<g id="node1" class="node">
+<title>CheckOut</title>
+<g id="a_node1"><a xlink:title="→ CheckIn
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="129,-35 59,-35 59,0 129,0 129,-35"/>
+<text text-anchor="middle" x="94" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">CheckOut</text>
+</a>
+</g>
+</g>
+<!-- RoomAvailable -->
+<g id="node2" class="node">
+<title>RoomAvailable</title>
+<g id="a_node2"><a xlink:title="→ Room
+date                 
+------------------------------
+price                
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="98,-248 0,-248 0,-213 98,-213 98,-248"/>
+<text text-anchor="start" x="8" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">RoomAvailable</text>
+</a>
+</g>
+</g>
+<!-- Reservation -->
+<g id="node5" class="node">
+<title>Reservation</title>
+<g id="a_node5"><a xlink:title="→ RoomAvailable
+------------------------------
+→ Guest
+credit_card          
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="134.5,-177 53.5,-177 53.5,-142 134.5,-142 134.5,-177"/>
+<text text-anchor="middle" x="94" y="-156.4" font-family="arial" font-size="12.00" fill="darkgreen">Reservation</text>
+</a>
+</g>
+</g>
+<!-- RoomAvailable&#45;&gt;Reservation -->
+<g id="edge1" class="edge">
+<title>RoomAvailable-&gt;Reservation</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M59.89,-212.8C66.97,-201.95 76.15,-187.87 83.21,-177.05"/>
+</g>
+<!-- CheckIn -->
+<g id="node3" class="node">
+<title>CheckIn</title>
+<g id="a_node3"><a xlink:title="→ Reservation
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="124.5,-106 63.5,-106 63.5,-71 124.5,-71 124.5,-106"/>
+<text text-anchor="middle" x="94" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">CheckIn</text>
+</a>
+</g>
+</g>
+<!-- CheckIn&#45;&gt;CheckOut -->
+<g id="edge2" class="edge">
+<title>CheckIn-&gt;CheckOut</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M94,-70.8C94,-59.95 94,-45.87 94,-35.05"/>
+</g>
+<!-- Guest -->
+<g id="node4" class="node">
+<title>Guest</title>
+<g id="a_node4"><a xlink:title="guest_id             
+------------------------------
+guest_name           
+INDEX (guest_name)
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="164,-248 116,-248 116,-213 164,-213 164,-248"/>
+<text text-anchor="start" x="124" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Guest</text>
+</a>
+</g>
+</g>
+<!-- Guest&#45;&gt;Reservation -->
+<g id="edge3" class="edge">
+<title>Guest-&gt;Reservation</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M128.86,-212.8C121.63,-201.95 112.24,-187.87 105.03,-177.05"/>
+</g>
+<!-- Reservation&#45;&gt;CheckIn -->
+<g id="edge4" class="edge">
+<title>Reservation-&gt;CheckIn</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M94,-141.8C94,-130.95 94,-116.87 94,-106.05"/>
+</g>
+<!-- Room -->
+<g id="node6" class="node">
+<title>Room</title>
+<g id="a_node6"><a xlink:title="room                 
+------------------------------
+room_type            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="73.5,-319 24.5,-319 24.5,-284 73.5,-284 73.5,-319"/>
+<text text-anchor="start" x="32.5" y="-299.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Room</text>
+</a>
+</g>
+</g>
+<!-- Room&#45;&gt;RoomAvailable -->
+<g id="edge5" class="edge">
+<title>Room-&gt;RoomAvailable</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M49,-283.8C49,-272.95 49,-258.87 49,-248.05"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="76pt" height="185pt" viewBox="0.00 0.00 76.00 185.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 181)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-181 72,-181 72,4 -4,4"/>
+<!-- Shipment -->
+<g id="node1" class="node">
+<title>Shipment</title>
+<g id="a_node1"><a xlink:title="→ Order
+------------------------------
+ship_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="68,-106 0,-106 0,-71 68,-71 68,-106"/>
+<text text-anchor="middle" x="34" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Shipment</text>
+</a>
+</g>
+</g>
+<!-- Confirm -->
+<g id="node3" class="node">
+<title>Confirm</title>
+<g id="a_node3"><a xlink:title="→ Shipment
+------------------------------
+confirm_date         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="63.5,-35 4.5,-35 4.5,0 63.5,0 63.5,-35"/>
+<text text-anchor="middle" x="34" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Confirm</text>
+</a>
+</g>
+</g>
+<!-- Shipment&#45;&gt;Confirm -->
+<g id="edge1" class="edge">
+<title>Shipment-&gt;Confirm</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M34,-70.8C34,-59.95 34,-45.87 34,-35.05"/>
+</g>
+<!-- Order -->
+<g id="node2" class="node">
+<title>Order</title>
+<g id="a_node2"><a xlink:title="order_number         
+------------------------------
+order_date           
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="57.5,-177 10.5,-177 10.5,-142 57.5,-142 57.5,-177"/>
+<text text-anchor="start" x="18.5" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Order</text>
+</a>
+</g>
+</g>
+<!-- Order&#45;&gt;Shipment -->
+<g id="edge2" class="edge">
+<title>Order-&gt;Shipment</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M34,-141.8C34,-130.95 34,-116.87 34,-106.05"/>
+</g>
+</g>
+</svg>

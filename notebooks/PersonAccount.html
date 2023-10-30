@@ -1,0 +1,1415 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Relationships and default values &#8212; The DataJoint Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/PersonAccount';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../root.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neuron.png" class="logo__image only-light" alt="The DataJoint Course - Home"/>
+    <script>document.write(`<img src="../_static/neuron.png" class="logo__image only-dark" alt="The DataJoint Course - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../root.html">
+                    The DataJoint Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database Design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/relational.html">The Relational Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/normalization.html">Database normalization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Book</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/PersonAccount.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/PersonAccount.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Relationships and default values</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Relationships and default values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agenda">Agenda:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-the-design-so-that-each-person-could-only-have-one-account">Modify the design so that each person could only have one account.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-this-design-to-allow-multiple-owners-for-each-account">Modify this design to allow multiple owners for each account</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#translate-accountperson5-into-sql">translate <code class="docutils literal notranslate"><span class="pre">AccountPerson5</span></code> into SQL:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-values-nulls-and-secondary-indexes">Default values, nulls, and secondary indexes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#translate-person6-and-account6-into-sql">Translate Person6 and Account6 into SQL</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="relationships-and-default-values">
+<h1>Relationships and default values<a class="headerlink" href="#relationships-and-default-values" title="Permalink to this heading">#</a></h1>
+<section id="agenda">
+<h2>Agenda:<a class="headerlink" href="#agenda" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Modeling 1:1, 1:N, M:N relationships</p></li>
+<li><p>Default values, NULLs, and autoincrement</p></li>
+<li><p>UUIDs</p></li>
+<li><p>Secondary unique keys</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;dimitri_bank&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2023-10-29 14:10:46,232][INFO]: Connecting root@127.0.0.1:3306
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ConnectionRefusedError</span><span class="g g-Whitespace">                    </span>Traceback (most recent call last)
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/pymysql/connections.py:613,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">613</span>     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="k">break</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/socket.py:845,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">845</span>     <span class="k">raise</span> <span class="n">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">846</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span>     <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/socket.py:833,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span>     <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">source_address</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">833</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span> <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="ne">ConnectionRefusedError</span>: [Errno 61] Connection refused
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;dimitri_bank&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/schemas.py:78,</span> in <span class="ni">Schema.__init__</span><span class="nt">(self, schema_name, context, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="bp">self</span><span class="o">.</span><span class="n">declare_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">if</span> <span class="n">schema_name</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">78</span>     <span class="bp">self</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">schema_name</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/schemas.py:120,</span> in <span class="ni">Schema.activate</span><span class="nt">(self, schema_name, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">120</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">conn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">schema_name</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">if</span> <span class="n">create_schema</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:131,</span> in <span class="ni">conn</span><span class="nt">(host, user, password, init_fun, reset, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="n">init_fun</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>         <span class="n">init_fun</span> <span class="k">if</span> <span class="n">init_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;connection.init_function&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">use_tls</span> <span class="o">=</span> <span class="n">use_tls</span> <span class="k">if</span> <span class="n">use_tls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;database.use_tls&quot;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">131</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">init_fun</span><span class="p">,</span> <span class="n">use_tls</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="k">return</span> <span class="n">conn</span><span class="o">.</span><span class="n">connection</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:193,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, host, user, password, port, init_fun, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">193</span> <span class="n">connect_host_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connected </span><span class="si">{user}</span><span class="s2">@</span><span class="si">{host}</span><span class="s2">:</span><span class="si">{port}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">conn_info</span><span class="p">))</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:52,</span> in <span class="ni">connect_host_hook</span><span class="nt">(connection_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>         <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">DataJointError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span>             <span class="s2">&quot;Connection plugin &#39;</span><span class="si">{}</span><span class="s2">&#39; not found.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">52</span>     <span class="n">connection_obj</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:217,</span> in <span class="ni">Connection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="s2">&quot;.*deprecated.*&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">217</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="s2">&quot;STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="n">charset</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;connection.charset&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="o">**</span><span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span>             <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+<span class="nn">    224             for k, v</span> in <span class="ni">self.conn_info.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span>             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ssl_input&quot;</span><span class="p">,</span> <span class="s2">&quot;host_input&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>         <span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span> <span class="k">except</span> <span class="n">client</span><span class="o">.</span><span class="n">err</span><span class="o">.</span><span class="n">InternalError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>         <span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span>     <span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/pymysql/connections.py:353,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/pymysql/connections.py:664,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>         <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">traceback</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">664</span>     <span class="k">raise</span> <span class="n">exc</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="c1"># If e is neither DatabaseError or IOError, It&#39;s a bug.</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span> <span class="c1"># But raising AssertionError hides original error.</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="c1"># So just reraise it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span> <span class="k">raise</span>
+
+<span class="ne">OperationalError</span>: (2003, &quot;Can&#39;t connect to MySQL server on &#39;127.0.0.1&#39; ([Errno 61] Connection refused)&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    person_id : int unsigned</span>
+<span class="s2">    ---</span>
+<span class="s2">    date_of_birth : date</span>
+<span class="s2">    full_name : varchar(30)</span>
+<span class="s2">    ssn : int</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">faker</span>
+<span class="n">fake</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">Faker</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Person</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">person_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100_000_000</span><span class="p">,</span> <span class="mi">999_999_999</span><span class="p">),</span>
+        <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">(),</span>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span>
+        <span class="n">ssn</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100_00_0000</span><span class="p">,</span> <span class="mi">999_99_9999</span><span class="p">)</span>
+    <span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Person</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">person_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">full_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">ssn</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100736996</td>
+<td>1988-01-21</td>
+<td>Ryan Carroll</td>
+<td>693662313</td></tr><tr><td>101089368</td>
+<td>1949-10-31</td>
+<td>Rodney Larson</td>
+<td>624997449</td></tr><tr><td>101179524</td>
+<td>1914-11-28</td>
+<td>Joshua Hendricks</td>
+<td>989102464</td></tr><tr><td>101628159</td>
+<td>1968-10-24</td>
+<td>Joshua Grant</td>
+<td>589612296</td></tr><tr><td>102215010</td>
+<td>1977-04-27</td>
+<td>Robert Becker</td>
+<td>757141219</td></tr><tr><td>102429993</td>
+<td>1986-10-16</td>
+<td>Mark Brown</td>
+<td>691647217</td></tr><tr><td>102697273</td>
+<td>1955-12-06</td>
+<td>Edward Jones</td>
+<td>846903546</td></tr><tr><td>102872608</td>
+<td>2020-03-18</td>
+<td>Rachel Newton</td>
+<td>696859337</td></tr><tr><td>102884207</td>
+<td>1918-12-08</td>
+<td>Nicole Goodwin</td>
+<td>499530867</td></tr><tr><td>103149497</td>
+<td>1931-01-16</td>
+<td>Hannah Manning</td>
+<td>692374987</td></tr><tr><td>103171264</td>
+<td>1931-09-20</td>
+<td>Christy Fisher</td>
+<td>520790110</td></tr><tr><td>103242752</td>
+<td>2022-05-01</td>
+<td>Nancy Johnson</td>
+<td>952655808</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 3000</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Account</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    account : int unsigned </span>
+<span class="s2">    ---</span>
+<span class="s2">    -&gt; Person</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;KEY&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;person_id&#39;: 591537366}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">account</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;person_id&#39;: 953003224, &#39;account&#39;: 10}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">account</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">account</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">person_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>558</td>
+<td>104728015</td></tr><tr><td>420</td>
+<td>105467497</td></tr><tr><td>366</td>
+<td>123340380</td></tr><tr><td>384</td>
+<td>127479809</td></tr><tr><td>511</td>
+<td>128464454</td></tr><tr><td>523</td>
+<td>129280391</td></tr><tr><td>594</td>
+<td>135845005</td></tr><tr><td>567</td>
+<td>137392646</td></tr><tr><td>555</td>
+<td>140593584</td></tr><tr><td>365</td>
+<td>143078002</td></tr><tr><td>476</td>
+<td>145303761</td></tr><tr><td>329</td>
+<td>152318047</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 300</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/430c066fb231be132e9bdcd6f4e683da6661005631bd9c3cfceb037d5f59f793.svg" src="../_images/430c066fb231be132e9bdcd6f4e683da6661005631bd9c3cfceb037d5f59f793.svg" /></div>
+</div>
+<ul class="simple">
+<li><p>A foreign key from Child to Parent creates a one-to-one relationship if the foreign key is also a unique index.</p></li>
+<li><p>If the foreign key is not a unique index, then this becomes a many-to-one relationship.</p></li>
+<li><p>A single foreign key never creates a many-to-many relationship. For such relationships you need a separate <em>association table</em>.</p></li>
+</ul>
+</section>
+<section id="modify-the-design-so-that-each-person-could-only-have-one-account">
+<h2>Modify the design so that each person could only have one account.<a class="headerlink" href="#modify-the-design-so-that-each-person-could-only-have-one-account" title="Permalink to this heading">#</a></h2>
+<p>One person can only have one bank account.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Person2</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    person_id : int unsigned</span>
+<span class="s2">    ---</span>
+<span class="s2">    date_of_birth : date</span>
+<span class="s2">    full_name : varchar(30)</span>
+<span class="s2">    ssn : int</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Account2</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Person2</span>
+<span class="s2">    --- </span>
+<span class="s2">    balance : decimal(10, 2)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/88746a055e86acbf1c47eda412764e9d6d2cc1a70e117eb0a555bcf552ffe248.svg" src="../_images/88746a055e86acbf1c47eda412764e9d6d2cc1a70e117eb0a555bcf552ffe248.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Person3</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    person_id : int unsigned</span>
+<span class="s2">    ---</span>
+<span class="s2">    date_of_birth : date</span>
+<span class="s2">    full_name : varchar(30)</span>
+<span class="s2">    ssn : int</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Account3</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    account : int</span>
+<span class="s2">    --- </span>
+<span class="s2">    -&gt; Person3</span>
+<span class="s2">    balance : decimal(10, 2)</span>
+<span class="s2">    unique index (person_id) </span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is how you would define Account3 in SQL:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">account3</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">account</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">person_id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">balance</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">account</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"> </span><span class="n">REFERENCE</span><span class="w"> </span><span class="n">person3</span><span class="p">(</span><span class="n">person_id</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/60286f752054ec395487c311feed7bc64d49722b38ff666a71ce7e52a675cbce.svg" src="../_images/60286f752054ec395487c311feed7bc64d49722b38ff666a71ce7e52a675cbce.svg" /></div>
+</div>
+</section>
+<section id="modify-this-design-to-allow-multiple-owners-for-each-account">
+<h2>Modify this design to allow multiple owners for each account<a class="headerlink" href="#modify-this-design-to-allow-multiple-owners-for-each-account" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Person4</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    person_id : int unsigned</span>
+<span class="s2">    ---</span>
+<span class="s2">    date_of_birth : date</span>
+<span class="s2">    full_name : varchar(30)</span>
+<span class="s2">    ssn : int</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Account4</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    account : int unsigned</span>
+<span class="s2">    --- </span>
+<span class="s2">    balance : decimal(10, 2)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">AccountPerson4</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Person4</span>
+<span class="s2">    -&gt; Account4</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Person4</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">person_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100_000_000</span><span class="p">,</span> <span class="mi">999_999_999</span><span class="p">),</span>
+        <span class="n">date_of_birth</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">(),</span>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span>
+        <span class="n">ssn</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100_00_0000</span><span class="p">,</span> <span class="mi">999_99_9999</span><span class="p">)</span>
+    <span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account4</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">account</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100_000_000</span><span class="p">,</span> <span class="mi">999_999_999</span><span class="p">),</span>
+        <span class="n">balance</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100_000_000</span><span class="p">,</span> <span class="mi">999_999_999</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">person_keys</span> <span class="o">=</span> <span class="n">Person4</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)</span>
+<span class="n">account_keys</span> <span class="o">=</span> <span class="n">Account4</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">**</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">person_keys</span><span class="p">),</span> <span class="o">**</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">account_keys</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;person_id&#39;: 642100582, &#39;account&#39;: 665472440}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AccountPerson4</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="p">({</span><span class="o">**</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">person_keys</span><span class="p">),</span> <span class="o">**</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">account_keys</span><span class="p">)}</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4000</span><span class="p">)),</span>
+    <span class="n">skip_duplicates</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AccountPerson4</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">person_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">account</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>100099454</td>
+<td>943839668</td></tr><tr><td>100935914</td>
+<td>181717356</td></tr><tr><td>100986864</td>
+<td>142949824</td></tr><tr><td>101210981</td>
+<td>341379745</td></tr><tr><td>101210981</td>
+<td>466908323</td></tr><tr><td>101652587</td>
+<td>294663607</td></tr><tr><td>101756491</td>
+<td>241891345</td></tr><tr><td>102792954</td>
+<td>667276575</td></tr><tr><td>102792954</td>
+<td>725969106</td></tr><tr><td>102792954</td>
+<td>748896047</td></tr><tr><td>104205720</td>
+<td>662618046</td></tr><tr><td>105030464</td>
+<td>260892984</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 4000</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/942e6c84de5b4335713d057bda1c1a88875a4c9653089ffbfde3a0d381602e98.svg" src="../_images/942e6c84de5b4335713d057bda1c1a88875a4c9653089ffbfde3a0d381602e98.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Person5</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    person_id : int unsigned</span>
+<span class="s2">    ---</span>
+<span class="s2">    date_of_birth : date</span>
+<span class="s2">    full_name : varchar(30)</span>
+<span class="s2">    ssn : int</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Account5</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    account : int unsigned</span>
+<span class="s2">    --- </span>
+<span class="s2">    balance : decimal(10, 2)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">AccountPerson5</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Account5</span>
+<span class="s2">    ---</span>
+<span class="s2">    -&gt; Person5</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="translate-accountperson5-into-sql">
+<h3>translate <code class="docutils literal notranslate"><span class="pre">AccountPerson5</span></code> into SQL:<a class="headerlink" href="#translate-accountperson5-into-sql" title="Permalink to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">AccountPerson5</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">account</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">person_id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">account</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">account</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Account5</span><span class="p">(</span><span class="n">account</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Person5</span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2bc18fe923926bd79f595ef070493363d0b8e282cd8e7ced2afc5797c7ba13cc.svg" src="../_images/2bc18fe923926bd79f595ef070493363d0b8e282cd8e7ced2afc5797c7ba13cc.svg" /></div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="default-values-nulls-and-secondary-indexes">
+<h1>Default values, nulls, and secondary indexes<a class="headerlink" href="#default-values-nulls-and-secondary-indexes" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Person6</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    person_id : int unsigned</span>
+<span class="s2">    ---</span>
+<span class="s2">    date_of_birth = null : date</span>
+<span class="s2">    full_name = &quot;&quot;: varchar(30)</span>
+<span class="s2">    ssn = null : int</span>
+<span class="s2">    unique index (ssn)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    
+<span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Account6</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    account : int unsigned</span>
+<span class="s2">    --- </span>
+<span class="s2">    -&gt; [nullable] Person6</span>
+<span class="s2">    balance = 0.0: decimal(10, 2)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Person6</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Person6</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">full_name</span><span class="o">=</span><span class="s2">&quot;Alice Cooper&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Person6</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">person_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">date_of_birth</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">full_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">ssn</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>1</td>
+<td>None</td>
+<td></td>
+<td>None</td></tr><tr><td>2</td>
+<td>None</td>
+<td>Alice Cooper</td>
+<td>None</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 2</p></div>
+        </div></div>
+</div>
+<section id="translate-person6-and-account6-into-sql">
+<h2>Translate Person6 and Account6 into SQL<a class="headerlink" href="#translate-person6-and-account6-into-sql" title="Permalink to this heading">#</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Person6</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">person_id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">date_of_birth</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">full_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ssn</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">person_id</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="p">(</span><span class="n">ssn</span><span class="p">))</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Account6</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">account</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">person_id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">unsigned</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">balance</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">account</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Person6</span><span class="w"> </span><span class="p">(</span><span class="n">person_id</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "benv"
+        },
+        kernelOptions: {
+            name: "benv",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'benv'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Relationships and default values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agenda">Agenda:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-the-design-so-that-each-person-could-only-have-one-account">Modify the design so that each person could only have one account.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-this-design-to-allow-multiple-owners-for-each-account">Modify this design to allow multiple owners for each account</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#translate-accountperson5-into-sql">translate <code class="docutils literal notranslate"><span class="pre">AccountPerson5</span></code> into SQL:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#default-values-nulls-and-secondary-indexes">Default values, nulls, and secondary indexes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#translate-person6-and-account6-into-sql">Translate Person6 and Account6 into SQL</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dimitri Yatsenko, PhD
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

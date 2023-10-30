@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="76pt" height="114pt" viewBox="0.00 0.00 76.00 114.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 110)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-110 72,-110 72,4 -4,4"/>
+<!-- Message -->
+<g id="node1" class="node">
+<title>Message</title>
+<g id="a_node1"><a xlink:title="message_id           
+------------------------------
+message_body         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="66.5,-106 1.5,-106 1.5,-71 66.5,-71 66.5,-106"/>
+<text text-anchor="start" x="9.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Message</text>
+</a>
+</g>
+</g>
+<!-- Comment -->
+<g id="node2" class="node">
+<title>Comment</title>
+<g id="a_node2"><a xlink:title="comment_id           
+------------------------------
+→ Message
+comment_body         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="68,-35 0,-35 0,0 68,0 68,-35"/>
+<text text-anchor="start" x="8" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Comment</text>
+</a>
+</g>
+</g>
+<!-- Message&#45;&gt;Comment -->
+<g id="edge1" class="edge">
+<title>Message-&gt;Comment</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M34,-70.8C34,-59.95 34,-45.87 34,-35.05"/>
+</g>
+</g>
+</svg>

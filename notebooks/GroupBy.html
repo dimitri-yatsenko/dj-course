@@ -1,0 +1,1465 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Aggregation queries &#8212; The DataJoint Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/GroupBy';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../root.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neuron.png" class="logo__image only-light" alt="The DataJoint Course - Home"/>
+    <script>document.write(`<img src="../_static/neuron.png" class="logo__image only-dark" alt="The DataJoint Course - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../root.html">
+                    The DataJoint Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database Design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/relational.html">The Relational Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/normalization.html">Database normalization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Book</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/GroupBy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/GroupBy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Aggregation queries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Aggregation queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Aggregation Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#increasing-complexity-of-queries">Increasing complexity of queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-functions-max-min-avg-sum-count">Aggregation functions MAX, MIN, AVG, SUM, COUNT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-problems">Example problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-principles">Summary of principles</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-12-total-aggregation-no-grouping">Chapter 12 (total aggregation – no grouping)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-13-aggregation-with-grouping">Chapter 13 (aggregation with grouping)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-due-nov-12">Homework — Due Nov 12</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-12">Chapter 12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-13">Chapter 13</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-14">Chapter 14</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregations-in-datajoint">Aggregations in Datajoint</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-show-all-the-triplets-of-products-that-appear-together-on-at-least-100-unique-orders">Challenge: Show all the triplets of products that appear together on at least 100 unique orders</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="aggregation-queries">
+<h1>Aggregation queries<a class="headerlink" href="#aggregation-queries" title="Permalink to this heading">#</a></h1>
+<p>In this assigment, we will fetch data from a relational database server directly into Python variables. Using these new skills, we will complete the problems from Chapters 12, 13, and 14 in <em>SQL Queries for Mere Mortals</em>.</p>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this heading">#</a></h2>
+<p>Review the MySQL aggregate functions: <a class="reference external" href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html">https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html</a></p>
+<p>Three types of queries</p>
+<ol class="arabic simple">
+<li><p>Aggregation functions with no <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause produce 1 row.</p></li>
+<li><p>Aggregation functions combined with a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause. The unique key of the result is composed of the columns of the <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause.</p></li>
+<li><p>Most common pattern: <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> or <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> of a table pair in a one-to-many relationship, grouped by the primary key of the left table. This aggregates the right entity set with respect to the left entity set.</p></li>
+</ol>
+<p>Note that MySQL with the default settings allows mixing aggregated and non-aggregated values (See <a class="reference external" href="https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_only_full_group_by">https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_only_full_group_by</a>). So you have to watch avoid invalid mixes of values.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> is equivalent to using a <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause in an outer query.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Aggregation Queries<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>Queries using aggregation functions, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, and <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> clauses. Using <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> in combination with <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pymysql</span> 
+
+<span class="n">pymysql</span><span class="o">.</span><span class="n">install_as_MySQLdb</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cred.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">creds</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">connection_string</span> <span class="o">=</span> <span class="s2">&quot;mysql://</span><span class="si">{user}</span><span class="s2">:</span><span class="si">{password}</span><span class="s2">@</span><span class="si">{host}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">creds</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">load_ext</span> sql
+<span class="o">%</span><span class="k">config</span> SqlMagic.autocommit=True
+<span class="o">%</span><span class="k">sql</span> $connection_string
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pymysql</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">install_as_MySQLdb</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cred.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">creds</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">connection_string</span> <span class="o">=</span> <span class="s2">&quot;mysql://</span><span class="si">{user}</span><span class="s2">:</span><span class="si">{password}</span><span class="s2">@</span><span class="si">{host}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">creds</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;cred.json&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">create_virtual_module</span><span class="p">(</span><span class="s1">&#39;sales&#39;</span><span class="p">,</span> <span class="s1">&#39;shared_sales&#39;</span><span class="p">)</span>
+<span class="n">airport</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">create_virtual_module</span><span class="p">(</span><span class="s1">&#39;airport&#39;</span><span class="p">,</span> <span class="s1">&#39;shared_airport&#39;</span><span class="p">)</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span> <span class="o">+</span> <span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">airport</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2022-11-01 18:34:02,978][INFO]: Connecting dimitri@db.ust-data-sci.net:3306
+[2022-11-01 18:34:03,305][INFO]: Connected dimitri@db.ust-data-sci.net:3306
+</pre></div>
+</div>
+<img alt="../_images/fb8152d8c1434f006529e8db71092c169c0f7bdeaca7fb79ff41cd5529378c3f.svg" src="../_images/fb8152d8c1434f006529e8db71092c169c0f7bdeaca7fb79ff41cd5529378c3f.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/935bd96847f87b1f6cdc4c467c8d6c63f1caeff702761daa380fd7f5cde4ce1c.svg" src="../_images/935bd96847f87b1f6cdc4c467c8d6c63f1caeff702761daa380fd7f5cde4ce1c.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales</span><span class="o">.</span><span class="n">ProductVendor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">product_number</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">vendor_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">wholesale_price</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">days_to_deliver</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>1</td>
+<td>4</td>
+<td>804.00</td>
+<td>6</td></tr><tr><td>1</td>
+<td>9</td>
+<td>854.22</td>
+<td>7</td></tr><tr><td>2</td>
+<td>6</td>
+<td>1269.00</td>
+<td>9</td></tr><tr><td>2</td>
+<td>9</td>
+<td>1477.81</td>
+<td>7</td></tr><tr><td>3</td>
+<td>7</td>
+<td>54.19</td>
+<td>10</td></tr><tr><td>3</td>
+<td>9</td>
+<td>57.27</td>
+<td>6</td></tr><tr><td>4</td>
+<td>6</td>
+<td>44.22</td>
+<td>10</td></tr><tr><td>4</td>
+<td>9</td>
+<td>41.62</td>
+<td>14</td></tr><tr><td>5</td>
+<td>7</td>
+<td>5.38</td>
+<td>10</td></tr><tr><td>5</td>
+<td>9</td>
+<td>5.87</td>
+<td>9</td></tr><tr><td>6</td>
+<td>2</td>
+<td>403.22</td>
+<td>3</td></tr><tr><td>6</td>
+<td>9</td>
+<td>448.73</td>
+<td>7</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 90</p></div>
+        </div></div>
+</div>
+<section id="increasing-complexity-of-queries">
+<h2>Increasing complexity of queries<a class="headerlink" href="#increasing-complexity-of-queries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+USE shared_sales
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aggregation-functions-max-min-avg-sum-count">
+<h2>Aggregation functions MAX, MIN, AVG, SUM, COUNT<a class="headerlink" href="#aggregation-functions-max-min-avg-sum-count" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT *
+FROM product 
+LIMIT 10;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- show the max retail price and the average retail price of products
+
+SELECT COUNT(*) AS n, MAX(retail_price) max_price, 
+    AVG(retail_price) avg_price 
+FROM product
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT count(*) n,
+MAX(retail_price) max_price, 
+AVG(retail_price) avg_price 
+FROM product
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- aggregation with condition
+-- show the average retail price for non-bikes
+
+SELECT AVG(retail_price) as avg_price 
+FROM product 
+WHERE category_id NOT IN (
+    SELECT category_id 
+    FROM category
+    WHERE category_description = &quot;Bikes&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- show products above average price
+-- The following does NOT work
+
+SELECT * 
+FROM product 
+WHERE retail_price &gt; avg(retail_price)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- show products above average price
+-- Use a scalar subquery
+
+SELECT * 
+FROM product 
+WHERE retail_price &gt; (SELECT avg(retail_price) FROM product)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- what not to do:
+
+SELECT *
+FROM product
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- this is good
+
+SELECT category_id
+FROM product
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT DISTINCT category_id
+FROM product
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- show the numbers and average price of products in each category
+
+SELECT category_id, 
+   count(*) as n, 
+   ROUND(AVG(retail_price), 2) as avg_price
+FROM  product
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
+
+-- using in a subquery
+
+SELECT * FROM (
+    SELECT category_id, round(AVG(retail_price), 2) as avg_price
+    FROM product
+    GROUP BY category_id) as _ NATURAL JOIN category
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
+
+-- pre-join before group
+
+SELECT category.*, avg(retail_price) as avg_price 
+FROM category NATURAL LEFT JOIN product
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show number of products in each  category with retail price &gt; 100.00
+
+SELECT category.*, count(*) as n
+FROM category NATURAL JOIN product 
+WHERE retail_price &gt; 100
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
+-- show the number of items in each category priced over $100
+SELECT category.*, count(product_number) as number_of_products
+FROM category NATURAL LEFT JOIN (
+    SELECT * FROM product WHERE retail_price &gt; 100) as _
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show the top 10 customers who placed most orders
+
+SELECT customer_id, count(order_number) as number_of_orders
+FROM customer NATURAL LEFT JOIN `order` 
+GROUP BY customer_id
+ORDER BY number_of_orders DESC
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show all customers who have placed over 40 orders since 
+-- the start of 2016
+
+SELECT * FROM (
+    SELECT customer_id, count(order_number) as number_of_orders
+    FROM customer NATURAL JOIN `order` 
+    WHERE order_date &gt; &quot;2016-01-01&quot;
+    GROUP BY customer_id) as _
+WHERE number_of_orders &gt; 40
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show all customers who have placed over 40 orders 
+-- since the start of 2016
+
+SELECT customer_id, count(order_number) as number_of_orders
+FROM customer NATURAL LEFT JOIN `order` 
+WHERE order_date &gt; &quot;2016-01-01&quot;
+GROUP BY customer_id
+HAVING number_of_orders &gt; 40
+ORDER BY number_of_orders DESC
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show the customer who has spent the most money
+
+SELECT customer.*, sum(quoted_price * quantity_ordered) as total
+FROM customer NATURAL LEFT JOIN 
+   (SELECT * FROM `order` NATURAL JOIN `order__item`) as _
+GROUP BY customer_id
+ORDER BY total DESC
+LIMIT 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT customer.*, sum(quoted_price * quantity_ordered) as total
+FROM customer NATURAL JOIN `order` NATURAL JOIN `order__item`
+GROUP BY customer_id
+ORDER BY total DESC
+LIMIT 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show averages prices per category for products with 
+-- retail price &gt; 100.00
+
+SELECT category.*, round(AVG(retail_price), 2) as avg_price 
+FROM category NATURAL JOIN product
+WHERE retail_price &gt; 100
+GROUP BY category_id
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- Categories with the average prices &gt; 100
+
+SELECT * FROM (
+    SELECT category.*, AVG(retail_price) as avg_price 
+    FROM category NATURAL JOIN product
+    GROUP BY category_id) as q
+WHERE avg_price &gt; 100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- Categories with the average prices &gt; 100
+
+SELECT category.*, AVG(retail_price) as avg_price 
+FROM category NATURAL JOIN product
+GROUP BY category_id
+HAVING avg_price &gt; 100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- show empty orders 
+
+SELECT * 
+FROM `order` 
+WHERE order_number NOT IN (
+    SELECT order_number 
+    FROM order__item)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- show empty orders
+
+SELECT * 
+FROM `order` NATURAL LEFT JOIN order__item
+WHERE product_number is NULL
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- bad because mixes aggregated and random 
+
+SELECT * FROM `order`  NATURAL LEFT JOIN order__item
+GROUP BY order_number
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- show empty orders
+
+SELECT `order`.*, COUNT(product_number) as nitems 
+FROM `order` NATURAL LEFT JOIN order__item
+GROUP BY order_number
+HAVING nitems = 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT `order`.*, product_number as nitems 
+FROM `order`  NATURAL LEFT JOIN order__item
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-problems">
+<h2>Example problems<a class="headerlink" href="#example-problems" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- Customers and the number of orders that they made
+
+SELECT customer_id, customer_first_name, customer_last_name, 
+  count(order_number) as norders
+FROM customer NATURAL LEFT JOIN `order`
+GROUP BY customer_id
+ORDER BY norders DESC
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- orders with their total amounts
+
+SELECT `order`.*, IFNULL(sum(quoted_price * quantity_ordered), 0) as total_amount
+FROM `order` NATURAL LEFT JOIN `order__item` 
+GROUP BY order_number
+ORDER BY total_amount 
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- customers and the total $$$ spent
+
+SELECT customer_id, customer_last_name, sum(total_amount) money_spent
+FROM customer NATURAL LEFT JOIN (
+    SELECT `order`.*, IFNULL(sum(quoted_price * quantity_ordered), 0) as total_amount
+    FROM `order` NATURAL LEFT JOIN `order__item` 
+    GROUP BY order_number) as q
+GROUP BY customer_id
+ORDER BY money_spent DESC
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+-- customers and the total $$$ spent
+
+SELECT customer_id, customer_last_name, 
+   IFNULL(sum(quoted_price * quantity_ordered), 0) money_spent
+FROM customer NATURAL LEFT JOIN `order` NATURAL JOIN `order__item`
+GROUP BY customer_id
+ORDER BY money_spent DESC
+LIMIT 10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary-of-principles">
+<h1>Summary of principles<a class="headerlink" href="#summary-of-principles" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Without a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, aggregation functions collapse the table into a single row.</p></li>
+<li><p>With <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, the grouping attributes become the new primary key of the result.</p></li>
+<li><p>Do not mix aggregated and non-aggregated values in the result with or without a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HAVING</span></code> plays the same role as the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause in a nesting outer query so it can use the output of the aggregation functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> is often follwed with a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> by the primary key attributes of the left table. In this scenario the entities in the right table are aggregated for each matching row in the left table.</p></li>
+</ol>
+<section id="chapter-12-total-aggregation-no-grouping">
+<h2>Chapter 12 (total aggregation – no grouping)<a class="headerlink" href="#chapter-12-total-aggregation-no-grouping" title="Permalink to this heading">#</a></h2>
+<p>Problem 1.
+“How many customers do we have in the state of California?”</p>
+<p>Viescas, John L.. SQL Queries for Mere Mortals (p. 460). Pearson Education. Kindle Edition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">U</span><span class="p">()</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">sales</span><span class="o">.</span><span class="n">Customer</span><span class="p">()</span> <span class="o">&amp;</span> <span class="s1">&#39;customer_state=&quot;CA&quot;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(*)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT count(*) as n FROM customer WHERE customer_state=&quot;CA&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>“What is the average retail price of a mountain bike?”</p>
+<p>Viescas, John L.. SQL Queries for Mere Mortals (p. 467). Pearson Education. Kindle Edition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>“What was the date of our most recent order?”
+
+Viescas, John L.. SQL Queries for Mere Mortals (p. 467). Pearson Education. Kindle Edition. 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
+SELECT order_number, order_date as latest_order
+FROM `order`
+ORDER BY latest_order DESC
+LIMIT 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+SELECT max(order_date) as last_date 
+FROM `order`
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+-- When was the last order to a customer in California
+
+SELECT max(order_date) as last_date
+FROM `order`
+WHERE customer_id in 
+(SELECT customer_id FROM customer WHERE customer_state=&quot;WA&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
+SELECT max(order_date) as last_date
+FROM `order` NATURAL JOIN customer
+WHERE customer_state=&quot;WA&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">U</span><span class="p">()</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">sales</span><span class="o">.</span><span class="n">Order</span> <span class="o">*</span> <span class="n">sales</span><span class="o">.</span><span class="n">Customer</span> <span class="o">&amp;</span> <span class="s1">&#39;customer_state=&quot;WA&quot;&#39;</span><span class="p">,</span> 
+            <span class="n">last_date</span><span class="o">=</span><span class="s1">&#39;max(order_date)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="chapter-13-aggregation-with-grouping">
+<h2>Chapter 13 (aggregation with grouping)<a class="headerlink" href="#chapter-13-aggregation-with-grouping" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>“Display for each product the product name and the total sales.”
+
+Viescas, John L.. SQL Queries for Mere Mortals (p. 490). Pearson Education. Kindle Edition. 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="homework-due-nov-12">
+<h1>Homework — Due Nov 12<a class="headerlink" href="#homework-due-nov-12" title="Permalink to this heading">#</a></h1>
+<section id="chapter-12">
+<h2>Chapter 12<a class="headerlink" href="#chapter-12" title="Permalink to this heading">#</a></h2>
+<p><strong>Problem 1 (Sales):</strong> Show the total amount of order number 8.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Answer $1492.60
+</pre></div>
+</div>
+</section>
+<section id="chapter-13">
+<h2>Chapter 13<a class="headerlink" href="#chapter-13" title="Permalink to this heading">#</a></h2>
+<p><strong>Problem 3 (Sales):</strong> List vendors along with the average number of days they take to deliver the order.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Answer 10 rows.
+</pre></div>
+</div>
+<p><strong>Problem 4 (Sales):</strong> List vendors along with the number of products each sells.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Answer 10 rows.
+</pre></div>
+</div>
+</section>
+<section id="chapter-14">
+<h2>Chapter 14<a class="headerlink" href="#chapter-14" title="Permalink to this heading">#</a></h2>
+<p><strong>Problem 6 (Sales):</strong> Count the orders that only have one product</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 row
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aggregations-in-datajoint">
+<h1>Aggregations in Datajoint<a class="headerlink" href="#aggregations-in-datajoint" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;shared_sales&#39;</span><span class="p">)</span>
+<span class="n">schema</span><span class="o">.</span><span class="n">spawn_missing_classes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Customer</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Order</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(order_number)&#39;</span><span class="p">,</span> 
+              <span class="n">duration</span><span class="o">=</span><span class="s1">&#39;datediff(max(order_date), min(order_date))&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="s1">&#39;n&gt;30&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show total amount spent by customer</span>
+
+<span class="n">Customer</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Order</span> <span class="o">*</span> <span class="n">Order</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span> 
+              <span class="n">spent</span><span class="o">=</span><span class="s1">&#39;sum(quantity_ordered * quoted_price)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Order</span><span class="o">.</span><span class="n">Item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s1">&#39;customer_state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">Customer</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(customer_id)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Customer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="challenge-show-all-the-triplets-of-products-that-appear-together-on-at-least-100-unique-orders">
+<h2>Challenge: Show all the triplets of products that appear together on at least 100 unique orders<a class="headerlink" href="#challenge-show-all-the-triplets-of-products-that-appear-together-on-at-least-100-unique-orders" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">Order</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">p1</span> <span class="o">=</span> <span class="s1">&#39;product_number&#39;</span><span class="p">)</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">Order</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">p2</span> <span class="o">=</span> <span class="s1">&#39;product_number&#39;</span><span class="p">)</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">Order</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">p3</span> <span class="o">=</span> <span class="s1">&#39;product_number&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triplets</span> <span class="o">=</span> <span class="n">P1</span> <span class="o">*</span> <span class="n">P2</span> <span class="o">*</span> <span class="n">P3</span> <span class="o">&amp;</span> <span class="s1">&#39;p1 &lt; p2&#39;</span> <span class="o">&amp;</span> <span class="s1">&#39;p2 &lt; p3&#39;</span>
+<span class="n">triplets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s1">&#39;p1&#39;</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">,</span> <span class="s1">&#39;p3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span><span class="n">triplets</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(p1)&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="s1">&#39;n&gt;=100&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+use shared_sales
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT order_number, 
+    i1.product_number AS p1, 
+    i2.product_number AS p2, 
+    i3.product_number AS p3,
+    count(*) AS n
+FROM order__item AS i1 JOIN order__item AS i2 USING (order_number) 
+                       JOIN order__item AS i3 USING (order_number)
+WHERE i1.product_number &lt; i2.product_number 
+     AND i2.product_number &lt; i3.product_number
+GROUP BY p1, p2, p3
+HAVING n&gt;=100
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Challenge</strong>: Find the most common list of products on an order (Hint: The same list of 8 products is found on 23 orders. You may find the GROUP_CONCAT function helpful. Note that it has an ORDER_BY option)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="s1">&#39;item_list&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">Order</span><span class="o">.</span><span class="n">aggr</span><span class="p">(</span>
+    <span class="n">sales</span><span class="o">.</span><span class="n">Order</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span> 
+    <span class="n">item_list</span> <span class="o">=</span> <span class="s1">&#39;GROUP_CONCAT(product_number ORDER BY product_number)&#39;</span><span class="p">),</span>
+    <span class="n">n</span><span class="o">=</span><span class="s1">&#39;count(item_list)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+SELECT order_number, GROUP_CONCAT(product_number ORDER BY product_number) item_list
+FROM `order` NATURAL JOIN order__item
+GROUP BY order_number
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+SELECT item_list, count(*) as n
+FROM  (SELECT order_number, 
+       GROUP_CONCAT(product_number ORDER BY product_number) item_list
+FROM `order` NATURAL JOIN order__item
+GROUP BY order_number) as q
+GROUP BY item_list
+ORDER BY n DESC
+LIMIT 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "benv"
+        },
+        kernelOptions: {
+            name: "benv",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'benv'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Aggregation queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Aggregation Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#increasing-complexity-of-queries">Increasing complexity of queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-functions-max-min-avg-sum-count">Aggregation functions MAX, MIN, AVG, SUM, COUNT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-problems">Example problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-principles">Summary of principles</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-12-total-aggregation-no-grouping">Chapter 12 (total aggregation – no grouping)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-13-aggregation-with-grouping">Chapter 13 (aggregation with grouping)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-due-nov-12">Homework — Due Nov 12</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-12">Chapter 12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-13">Chapter 13</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapter-14">Chapter 14</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregations-in-datajoint">Aggregations in Datajoint</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-show-all-the-triplets-of-products-that-appear-together-on-at-least-100-unique-orders">Challenge: Show all the triplets of products that appear together on at least 100 unique orders</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dimitri Yatsenko, PhD
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

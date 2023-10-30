@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="206pt" height="114pt" viewBox="0.00 0.00 205.50 114.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 110)">
+<title>%3</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-110 201.5,-110 201.5,4 -4,4"/>
+<!-- Department -->
+<g id="node1" class="node">
+<title>Department</title>
+<g id="a_node1"><a xlink:title="dept_code            
+------------------------------
+dept_name            
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="transparent" points="68,-106 0,-106 0,-71 68,-71 68,-106"/>
+<text text-anchor="start" x="8" y="-87" font-family="arial" text-decoration="underline" font-size="10.00">Department</text>
+</a>
+</g>
+</g>
+<!-- Student -->
+<g id="node3" class="node">
+<title>Student</title>
+<g id="a_node3"><a xlink:title="→ Person
+------------------------------
+→ Department
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="93,-35 35,-35 35,0 93,0 93,-35"/>
+<text text-anchor="middle" x="64" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Student</text>
+</a>
+</g>
+</g>
+<!-- Department&#45;&gt;Student -->
+<g id="edge1" class="edge">
+<title>Department-&gt;Student</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M41.26,-70.8C45.98,-59.95 52.1,-45.87 56.8,-35.05"/>
+</g>
+<!-- Employee -->
+<g id="node2" class="node">
+<title>Employee</title>
+<g id="a_node2"><a xlink:title="→ Person
+------------------------------
+→ Title
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="197.5,-35 126.5,-35 126.5,0 197.5,0 197.5,-35"/>
+<text text-anchor="middle" x="162" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Employee</text>
+</a>
+</g>
+</g>
+<!-- Title -->
+<g id="node4" class="node">
+<title>Title</title>
+<g id="a_node4"><a xlink:title="title_code           
+------------------------------
+full_title           
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="transparent" points="194.5,-106 159.5,-106 159.5,-71 194.5,-71 194.5,-106"/>
+<text text-anchor="start" x="167.5" y="-87" font-family="arial" text-decoration="underline" font-size="10.00">Title</text>
+</a>
+</g>
+</g>
+<!-- Title&#45;&gt;Employee -->
+<g id="edge2" class="edge">
+<title>Title-&gt;Employee</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M173.37,-70.8C171.01,-59.95 167.95,-45.87 165.6,-35.05"/>
+</g>
+<!-- Person -->
+<g id="node5" class="node">
+<title>Person</title>
+<g id="a_node5"><a xlink:title="person_id            
+------------------------------
+first_name           
+last_name            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="141.5,-106 86.5,-106 86.5,-71 141.5,-71 141.5,-106"/>
+<text text-anchor="start" x="94.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person</text>
+</a>
+</g>
+</g>
+<!-- Person&#45;&gt;Employee -->
+<g id="edge3" class="edge">
+<title>Person-&gt;Employee</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M125.62,-70.8C133.17,-59.95 142.96,-45.87 150.49,-35.05"/>
+</g>
+<!-- Person&#45;&gt;Student -->
+<g id="edge4" class="edge">
+<title>Person-&gt;Student</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M101.9,-70.8C94.04,-59.95 83.83,-45.87 75.99,-35.05"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,314 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="618pt" height="256pt" viewBox="0.00 0.00 617.50 256.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-252 613.5,-252 613.5,4 -4,4"/>
+<!-- Answer -->
+<g id="node1" class="node">
+<title>Answer</title>
+<g id="a_node1"><a xlink:title="→ Question
+answer_id            
+------------------------------
+answer               
+correct=null         
+UNIQUE INDEX (subject_id, question_id, correct)
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="233,-106 176,-106 176,-71 233,-71 233,-106"/>
+<text text-anchor="start" x="184" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Answer</text>
+</a>
+</g>
+</g>
+<!-- SubmittedAnswer -->
+<g id="node14" class="node">
+<title>SubmittedAnswer</title>
+<g id="a_node14"><a xlink:title="→ QuizQuestion
+→ Answer
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="215,-35 104,-35 104,0 215,0 215,-35"/>
+<text text-anchor="middle" x="159.5" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">SubmittedAnswer</text>
+</a>
+</g>
+</g>
+<!-- Answer&#45;&gt;SubmittedAnswer -->
+<g id="edge1" class="edge">
+<title>Answer-&gt;SubmittedAnswer</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M193.61,-70.8C186.53,-59.95 177.35,-45.87 170.29,-35.05"/>
+</g>
+<!-- Subject2 -->
+<g id="node2" class="node">
+<title>Subject2</title>
+<g id="a_node2"><a xlink:title="subject_id           
+------------------------------
+subject_name         
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="none" points="329,-248 274,-248 274,-213 329,-213 329,-248"/>
+<text text-anchor="start" x="282" y="-229" font-family="arial" text-decoration="underline" font-size="10.00">Subject2</text>
+</a>
+</g>
+</g>
+<!-- Question2 -->
+<g id="node10" class="node">
+<title>Question2</title>
+<g id="a_node10"><a xlink:title="→ Subject2
+question_id          
+------------------------------
+question             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="333,-177 262,-177 262,-142 333,-142 333,-177"/>
+<text text-anchor="start" x="270" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Question2</text>
+</a>
+</g>
+</g>
+<!-- Subject2&#45;&gt;Question2 -->
+<g id="edge2" class="edge">
+<title>Subject2-&gt;Question2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M300.53,-212.8C299.9,-201.95 299.09,-187.87 298.46,-177.05"/>
+</g>
+<!-- Quiz2 -->
+<g id="node12" class="node">
+<title>Quiz2</title>
+<g id="a_node12"><a xlink:title="→ User2
+→ Subject2
+year                 
+------------------------------
+date                 
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="399.5,-177 351.5,-177 351.5,-142 399.5,-142 399.5,-177"/>
+<text text-anchor="start" x="359.5" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Quiz2</text>
+</a>
+</g>
+</g>
+<!-- Subject2&#45;&gt;Quiz2 -->
+<g id="edge3" class="edge">
+<title>Subject2-&gt;Quiz2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M319.41,-212.8C331.05,-201.95 346.15,-187.87 357.75,-177.05"/>
+</g>
+<!-- User -->
+<g id="node3" class="node">
+<title>User</title>
+<g id="a_node3"><a xlink:title="user_id              
+------------------------------
+first_name           
+last_name            
+birthday             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="99.5,-248 57.5,-248 57.5,-213 99.5,-213 99.5,-248"/>
+<text text-anchor="start" x="65.5" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">User</text>
+</a>
+</g>
+</g>
+<!-- Quiz -->
+<g id="node4" class="node">
+<title>Quiz</title>
+<g id="a_node4"><a xlink:title="→ User
+→ Subject
+year                 
+------------------------------
+date                 
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="99,-177 58,-177 58,-142 99,-142 99,-177"/>
+<text text-anchor="start" x="66" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Quiz</text>
+</a>
+</g>
+</g>
+<!-- User&#45;&gt;Quiz -->
+<g id="edge4" class="edge">
+<title>User-&gt;Quiz</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M78.5,-212.8C78.5,-201.95 78.5,-187.87 78.5,-177.05"/>
+</g>
+<!-- Result -->
+<g id="node5" class="node">
+<title>Result</title>
+<g id="a_node5"><a xlink:title="→ Quiz
+------------------------------
+number_correct       
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="51,-106 0,-106 0,-71 51,-71 51,-106"/>
+<text text-anchor="middle" x="25.5" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Result</text>
+</a>
+</g>
+</g>
+<!-- Quiz&#45;&gt;Result -->
+<g id="edge5" class="edge">
+<title>Quiz-&gt;Result</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M65.67,-141.8C57.34,-130.95 46.52,-116.87 38.21,-106.05"/>
+</g>
+<!-- QuizQuestion -->
+<g id="node6" class="node">
+<title>QuizQuestion</title>
+<g id="a_node6"><a xlink:title="→ Quiz
+→ Question
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="158,-106 69,-106 69,-71 158,-71 158,-106"/>
+<text text-anchor="middle" x="113.5" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">QuizQuestion</text>
+</a>
+</g>
+</g>
+<!-- Quiz&#45;&gt;QuizQuestion -->
+<g id="edge6" class="edge">
+<title>Quiz-&gt;QuizQuestion</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M86.97,-141.8C92.48,-130.95 99.62,-116.87 105.11,-106.05"/>
+</g>
+<!-- QuizQuestion&#45;&gt;SubmittedAnswer -->
+<g id="edge7" class="edge">
+<title>QuizQuestion-&gt;SubmittedAnswer</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M124.64,-70.8C131.87,-59.95 141.26,-45.87 148.47,-35.05"/>
+</g>
+<!-- Submission2 -->
+<g id="node7" class="node">
+<title>Submission2</title>
+<g id="a_node7"><a xlink:title="→ Quiz2
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="521.5,-106 435.5,-106 435.5,-71 521.5,-71 521.5,-106"/>
+<text text-anchor="middle" x="478.5" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Submission2</text>
+</a>
+</g>
+</g>
+<!-- Result2 -->
+<g id="node8" class="node">
+<title>Result2</title>
+<g id="a_node8"><a xlink:title="→ Submission2
+------------------------------
+number_correct       
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="609.5,-35 551.5,-35 551.5,0 609.5,0 609.5,-35"/>
+<text text-anchor="middle" x="580.5" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Result2</text>
+</a>
+</g>
+</g>
+<!-- Submission2&#45;&gt;Result2 -->
+<g id="edge8" class="edge">
+<title>Submission2-&gt;Result2</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M502.93,-70.97C518.96,-60.13 539.85,-46 555.91,-35.13"/>
+</g>
+<!-- Submission2.Answer -->
+<g id="node11" class="node">
+<title>Submission2.Answer</title>
+<g id="a_node11"><a xlink:title="→ Submission2
+→ Answer2
+">
+<polygon fill="none" stroke="none" points="533,-27 424,-27 424,-8 533,-8 533,-27"/>
+<text text-anchor="middle" x="478.5" y="-15" font-family="arial" font-size="10.00">Submission2.Answer</text>
+</a>
+</g>
+</g>
+<!-- Submission2&#45;&gt;Submission2.Answer -->
+<g id="edge9" class="edge">
+<title>Submission2-&gt;Submission2.Answer</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M478.5,-70.8C478.5,-57.08 478.5,-38.19 478.5,-27.27"/>
+</g>
+<!-- Subject -->
+<g id="node9" class="node">
+<title>Subject</title>
+<g id="a_node9"><a xlink:title="subject_id           
+------------------------------
+subject_name         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="177,-248 120,-248 120,-213 177,-213 177,-248"/>
+<text text-anchor="start" x="128" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Subject</text>
+</a>
+</g>
+</g>
+<!-- Subject&#45;&gt;Quiz -->
+<g id="edge10" class="edge">
+<title>Subject-&gt;Quiz</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M131.55,-212.8C120.55,-201.95 106.26,-187.87 95.29,-177.05"/>
+</g>
+<!-- Question -->
+<g id="node17" class="node">
+<title>Question</title>
+<g id="a_node17"><a xlink:title="→ Subject
+question_id          
+------------------------------
+question             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="182,-177 117,-177 117,-142 182,-142 182,-177"/>
+<text text-anchor="start" x="125" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Question</text>
+</a>
+</g>
+</g>
+<!-- Subject&#45;&gt;Question -->
+<g id="edge11" class="edge">
+<title>Subject-&gt;Question</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M148.74,-212.8C148.9,-201.95 149.1,-187.87 149.26,-177.05"/>
+</g>
+<!-- Quiz2.Question -->
+<g id="node13" class="node">
+<title>Quiz2.Question</title>
+<g id="a_node13"><a xlink:title="→ Quiz2
+→ Question2
+">
+<polygon fill="none" stroke="none" points="417.5,-98 333.5,-98 333.5,-79 417.5,-79 417.5,-98"/>
+<text text-anchor="middle" x="375.5" y="-86" font-family="arial" font-size="10.00">Quiz2.Question</text>
+</a>
+</g>
+</g>
+<!-- Question2&#45;&gt;Quiz2.Question -->
+<g id="edge12" class="edge">
+<title>Question2-&gt;Quiz2.Question</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M316.38,-141.8C331.89,-128.08 353.25,-109.19 365.59,-98.27"/>
+</g>
+<!-- Answer2 -->
+<g id="node15" class="node">
+<title>Answer2</title>
+<g id="a_node15"><a xlink:title="→ Question2
+answer_id            
+------------------------------
+answer               
+correct=null         
+UNIQUE INDEX (subject_id, question_id, correct)
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="315.5,-106 251.5,-106 251.5,-71 315.5,-71 315.5,-106"/>
+<text text-anchor="start" x="259.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Answer2</text>
+</a>
+</g>
+</g>
+<!-- Question2&#45;&gt;Answer2 -->
+<g id="edge13" class="edge">
+<title>Question2-&gt;Answer2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M294.11,-141.8C291.91,-130.95 289.05,-116.87 286.86,-106.05"/>
+</g>
+<!-- Quiz2&#45;&gt;Submission2 -->
+<g id="edge14" class="edge">
+<title>Quiz2-&gt;Submission2</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M399.65,-142.32C415.94,-131.41 437.38,-117.05 453.79,-106.06"/>
+</g>
+<!-- Quiz2&#45;&gt;Quiz2.Question -->
+<g id="edge15" class="edge">
+<title>Quiz2-&gt;Quiz2.Question</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M375.5,-141.8C375.5,-128.08 375.5,-109.19 375.5,-98.27"/>
+</g>
+<!-- Answer2&#45;&gt;Submission2.Answer -->
+<g id="edge16" class="edge">
+<title>Answer2-&gt;Submission2.Answer</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M315.67,-74.36C318.64,-73.21 321.62,-72.07 324.5,-71 368.85,-54.53 421.09,-37.14 451.91,-27.08"/>
+</g>
+<!-- User2 -->
+<g id="node16" class="node">
+<title>User2</title>
+<g id="a_node16"><a xlink:title="user_id              
+------------------------------
+first_name           
+last_name            
+birthday             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="400,-248 351,-248 351,-213 400,-213 400,-248"/>
+<text text-anchor="start" x="359" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">User2</text>
+</a>
+</g>
+</g>
+<!-- User2&#45;&gt;Quiz2 -->
+<g id="edge17" class="edge">
+<title>User2-&gt;Quiz2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M375.5,-212.8C375.5,-201.95 375.5,-187.87 375.5,-177.05"/>
+</g>
+<!-- Question&#45;&gt;Answer -->
+<g id="edge18" class="edge">
+<title>Question-&gt;Answer</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M162.81,-141.8C171.46,-130.95 182.69,-116.87 191.31,-106.05"/>
+</g>
+<!-- Question&#45;&gt;QuizQuestion -->
+<g id="edge19" class="edge">
+<title>Question-&gt;QuizQuestion</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M140.79,-141.8C135.13,-130.95 127.78,-116.87 122.13,-106.05"/>
+</g>
+</g>
+</svg>

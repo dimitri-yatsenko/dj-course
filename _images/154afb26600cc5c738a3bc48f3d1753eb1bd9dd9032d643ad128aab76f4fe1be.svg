@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="116pt" height="43pt" viewBox="0.00 0.00 116.00 43.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 39)">
+<title>%3</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-39 112,-39 112,4 -4,4"/>
+<!-- Title -->
+<g id="node1" class="node">
+<title>Title</title>
+<g id="a_node1"><a xlink:title="title_code           
+------------------------------
+full_title           
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="transparent" points="35,-35 0,-35 0,0 35,0 35,-35"/>
+<text text-anchor="start" x="8" y="-16" font-family="arial" text-decoration="underline" font-size="10.00">Title</text>
+</a>
+</g>
+</g>
+<!-- Person -->
+<g id="node2" class="node">
+<title>Person</title>
+<g id="a_node2"><a xlink:title="person_id            
+------------------------------
+first_name           
+last_name            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="108,-35 53,-35 53,0 108,0 108,-35"/>
+<text text-anchor="start" x="61" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person</text>
+</a>
+</g>
+</g>
+</g>
+</svg>

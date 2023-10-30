@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="63pt" height="43pt" viewBox="0.00 0.00 63.00 43.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 39)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-39 59,-39 59,4 -4,4"/>
+<!-- Person -->
+<g id="node1" class="node">
+<title>Person</title>
+<g id="a_node1"><a xlink:title="person               
+------------------------------
+first_name           
+last_name            
+date_of_birth        
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="55,-35 0,-35 0,0 55,0 55,-35"/>
+<text text-anchor="start" x="8" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person</text>
+</a>
+</g>
+</g>
+</g>
+</svg>

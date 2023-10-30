@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="318pt" height="114pt" viewBox="0.00 0.00 318.00 114.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 110)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-110 314,-110 314,4 -4,4"/>
+<!-- `shared_projects`.`final__student` -->
+<g id="node1" class="node">
+<title>`shared_projects`.`final__student`</title>
+<polygon fill="transparent" stroke="transparent" points="170.5,-27 4.5,-27 4.5,-8 170.5,-8 170.5,-27"/>
+<text text-anchor="middle" x="87.5" y="-15" font-family="arial" font-size="10.00">`shared_projects`.`final__student`</text>
+</g>
+<!-- `shared_projects`.`final` -->
+<g id="node2" class="node">
+<title>`shared_projects`.`final`</title>
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="143,-106 0,-106 0,-71 143,-71 143,-106"/>
+<text text-anchor="start" x="8" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">`shared_projects`.`final`</text>
+</g>
+<!-- `shared_projects`.`final`&#45;&gt;`shared_projects`.`final__student` -->
+<g id="edge1" class="edge">
+<title>`shared_projects`.`final`-&gt;`shared_projects`.`final__student`</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M75.37,-70.8C78.55,-57.08 82.94,-38.19 85.47,-27.27"/>
+</g>
+<!-- Student -->
+<g id="node3" class="node">
+<title>Student</title>
+<g id="a_node3"><a xlink:title="username             
+------------------------------
+first_name           
+last_name            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="219.5,-106 161.5,-106 161.5,-71 219.5,-71 219.5,-106"/>
+<text text-anchor="start" x="169.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Student</text>
+</a>
+</g>
+</g>
+<!-- Student&#45;&gt;`shared_projects`.`final__student` -->
+<g id="edge2" class="edge">
+<title>Student-&gt;`shared_projects`.`final__student`</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M165.83,-70.97C145.24,-57.18 116.7,-38.06 100.37,-27.12"/>
+</g>
+<!-- GroupAssignment -->
+<g id="node4" class="node">
+<title>GroupAssignment</title>
+<g id="a_node4"><a xlink:title="→ Project
+→ Student
+------------------------------
+group_id             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="310,-35 197,-35 197,0 310,0 310,-35"/>
+<text text-anchor="middle" x="253.5" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">GroupAssignment</text>
+</a>
+</g>
+</g>
+<!-- Student&#45;&gt;GroupAssignment -->
+<g id="edge3" class="edge">
+<title>Student-&gt;GroupAssignment</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M205.75,-70.8C215.66,-59.95 228.51,-45.87 238.39,-35.05"/>
+</g>
+<!-- Project -->
+<g id="node5" class="node">
+<title>Project</title>
+<g id="a_node5"><a xlink:title="project_number       
+------------------------------
+project_name         
+due_date             
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="transparent" points="285.5,-106 237.5,-106 237.5,-71 285.5,-71 285.5,-106"/>
+<text text-anchor="start" x="245.5" y="-87" font-family="arial" text-decoration="underline" font-size="10.00">Project</text>
+</a>
+</g>
+</g>
+<!-- Project&#45;&gt;GroupAssignment -->
+<g id="edge4" class="edge">
+<title>Project-&gt;GroupAssignment</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M259.56,-70.8C258.31,-59.95 256.67,-45.87 255.42,-35.05"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="239pt" height="114pt" viewBox="0.00 0.00 238.50 114.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 110)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-110 234.5,-110 234.5,4 -4,4"/>
+<!-- Person -->
+<g id="node1" class="node">
+<title>Person</title>
+<g id="a_node1"><a xlink:title="person_id            
+------------------------------
+date_of_birth        
+full_name            
+ssn                  
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="57.5,-106 2.5,-106 2.5,-71 57.5,-71 57.5,-106"/>
+<text text-anchor="start" x="10.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person</text>
+</a>
+</g>
+</g>
+<!-- Account -->
+<g id="node6" class="node">
+<title>Account</title>
+<g id="a_node6"><a xlink:title="account              
+------------------------------
+→ Person
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="60,-35 0,-35 0,0 60,0 60,-35"/>
+<text text-anchor="start" x="8" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Account</text>
+</a>
+</g>
+</g>
+<!-- Person&#45;&gt;Account -->
+<g id="edge1" class="edge">
+<title>Person-&gt;Account</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M30,-70.8C30,-59.95 30,-45.87 30,-35.05"/>
+</g>
+<!-- Account2 -->
+<g id="node2" class="node">
+<title>Account2</title>
+<g id="a_node2"><a xlink:title="→ Person2
+------------------------------
+balance              
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="145.5,-35 78.5,-35 78.5,0 145.5,0 145.5,-35"/>
+<text text-anchor="middle" x="112" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Account2</text>
+</a>
+</g>
+</g>
+<!-- Account3 -->
+<g id="node3" class="node">
+<title>Account3</title>
+<g id="a_node3"><a xlink:title="account              
+------------------------------
+→ [unique] Person3
+balance              
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="230.5,-35 163.5,-35 163.5,0 230.5,0 230.5,-35"/>
+<text text-anchor="start" x="171.5" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Account3</text>
+</a>
+</g>
+</g>
+<!-- Person3 -->
+<g id="node4" class="node">
+<title>Person3</title>
+<g id="a_node4"><a xlink:title="person_id            
+------------------------------
+date_of_birth        
+full_name            
+ssn                  
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="228,-106 166,-106 166,-71 228,-71 228,-106"/>
+<text text-anchor="start" x="174" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person3</text>
+</a>
+</g>
+</g>
+<!-- Person3&#45;&gt;Account3 -->
+<g id="edge2" class="edge">
+<title>Person3-&gt;Account3</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M197,-70.8C197,-59.95 197,-45.87 197,-35.05"/>
+</g>
+<!-- Person2 -->
+<g id="node5" class="node">
+<title>Person2</title>
+<g id="a_node5"><a xlink:title="person_id            
+------------------------------
+date_of_birth        
+full_name            
+ssn                  
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="143,-106 81,-106 81,-71 143,-71 143,-106"/>
+<text text-anchor="start" x="89" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person2</text>
+</a>
+</g>
+</g>
+<!-- Person2&#45;&gt;Account2 -->
+<g id="edge3" class="edge">
+<title>Person2-&gt;Account2</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M112,-70.8C112,-59.95 112,-45.87 112,-35.05"/>
+</g>
+</g>
+</svg>

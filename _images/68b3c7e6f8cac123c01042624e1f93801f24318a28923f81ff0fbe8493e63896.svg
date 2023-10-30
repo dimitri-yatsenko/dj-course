@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="178pt" height="114pt" viewBox="0.00 0.00 178.00 114.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 110)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-110 174,-110 174,4 -4,4"/>
+<!-- Pet -->
+<g id="node1" class="node">
+<title>Pet</title>
+<g id="a_node1"><a xlink:title="→ Owner
+→ Species
+nickname             
+------------------------------
+birthdate            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="43.5,-35 8.5,-35 8.5,0 43.5,0 43.5,-35"/>
+<text text-anchor="start" x="16.5" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Pet</text>
+</a>
+</g>
+</g>
+<!-- RequiredVaccine -->
+<g id="node2" class="node">
+<title>RequiredVaccine</title>
+<g id="a_node2"><a xlink:title="→ Species
+vaccine              
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="170,-35 62,-35 62,0 170,0 170,-35"/>
+<text text-anchor="start" x="70" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">RequiredVaccine</text>
+</a>
+</g>
+</g>
+<!-- Owner -->
+<g id="node3" class="node">
+<title>Owner</title>
+<g id="a_node3"><a xlink:title="cell_phone           
+------------------------------
+full_name            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="52,-106 0,-106 0,-71 52,-71 52,-106"/>
+<text text-anchor="start" x="8" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Owner</text>
+</a>
+</g>
+</g>
+<!-- Owner&#45;&gt;Pet -->
+<g id="edge1" class="edge">
+<title>Owner-&gt;Pet</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M26,-70.8C26,-59.95 26,-45.87 26,-35.05"/>
+</g>
+<!-- Species -->
+<g id="node4" class="node">
+<title>Species</title>
+<g id="a_node4"><a xlink:title="species              
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="none" points="132,-106 80,-106 80,-71 132,-71 132,-106"/>
+<text text-anchor="start" x="88" y="-87" font-family="arial" text-decoration="underline" font-size="10.00">Species</text>
+</a>
+</g>
+</g>
+<!-- Species&#45;&gt;Pet -->
+<g id="edge2" class="edge">
+<title>Species-&gt;Pet</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M86.63,-70.8C73.5,-59.47 56.28,-44.62 43.55,-33.64"/>
+</g>
+<!-- Species&#45;&gt;RequiredVaccine -->
+<g id="edge3" class="edge">
+<title>Species-&gt;RequiredVaccine</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M108.42,-70.8C109.99,-59.95 112.03,-45.87 113.6,-35.05"/>
+</g>
+</g>
+</svg>

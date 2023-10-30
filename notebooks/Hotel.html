@@ -1,0 +1,1972 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Hotel Database &#8212; The DataJoint Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Hotel';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../root.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neuron.png" class="logo__image only-light" alt="The DataJoint Course - Home"/>
+    <script>document.write(`<img src="../_static/neuron.png" class="logo__image only-dark" alt="The DataJoint Course - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../root.html">
+                    The DataJoint Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database Design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/relational.html">The Relational Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/normalization.html">Database normalization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Book</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Hotel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/Hotel.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hotel Database</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Hotel Database</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-database">Define the database</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#populate-room-availability">Populate Room Availability</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#queries">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-1-list-all-guests-who-have-stayed-in-room-1">Query 1: List all guests who have stayed in room 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-2-list-all-nights-when-a-guest-stayed-at-a-hotel">Query 2: List all nights when a guest stayed at a hotel</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hotel-database">
+<h1>Hotel Database<a class="headerlink" href="#hotel-database" title="Permalink to this heading">#</a></h1>
+<section id="assignment">
+<h2>Assignment<a class="headerlink" href="#assignment" title="Permalink to this heading">#</a></h2>
+<p>Design, populate, and query a database for a hotel reservation system with the following business rules:</p>
+<ol class="arabic simple">
+<li><p>The hotel has a number of rooms of two types: Deluxe and Suite</p></li>
+<li><p>For every night, some rooms are made available for reservation for a specific price.</p></li>
+<li><p>A guest can make a reservation for an avavilable room for one night. The reservation must include credit card payment info. At most one reservation can be made per night per room.</p></li>
+<li><p>A guest can check into a room that has been reserved. An attempt to check in without a reservation will generate an error.</p></li>
+<li><p>A guest can check out only after checking in. An attempt to check out multiple times or check out without checking in will generate an error.</p></li>
+</ol>
+<p>Your Python code should provide the following:</p>
+<ol class="arabic simple">
+<li><p>A section to create the tables. The design must be in 3rd normal form following the conventions discussed in class and enforcing the business rules above.</p></li>
+<li><p>Provide code to populate rooms and room availability with prices.</p></li>
+<li><p>The function <code class="docutils literal notranslate"><span class="pre">reserve_room(room,</span> <span class="pre">date,</span> <span class="pre">guest_name,</span> <span class="pre">credit_card)</span></code> to make a reservation. A script that populates at least 300 reservations (e.g. use <code class="docutils literal notranslate"><span class="pre">faker</span></code>)</p></li>
+<li><p>The functions <code class="docutils literal notranslate"><span class="pre">checkin(room,</span> <span class="pre">date)</span></code> and <code class="docutils literal notranslate"><span class="pre">checkout(room,</span> <span class="pre">date)</span></code> to check guests in and out. Write a script that invokes <code class="docutils literal notranslate"><span class="pre">checkin</span></code> and <code class="docutils literal notranslate"><span class="pre">checkout</span></code> for a buncha guests.  Demonstrate that that the functions enforces the rules of the business.</p></li>
+<li><p>Write a query to list all guests who have stayed in a given room in 2021.</p></li>
+<li><p>Write a query to list all dates on which a specific guest stayed at the hotel.</p></li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="define-the-database">
+<h1>Define the database<a class="headerlink" href="#define-the-database" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;shared_hotel&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2023-10-29 14:10:34,288][INFO]: Connecting root@127.0.0.1:3306
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ConnectionRefusedError</span><span class="g g-Whitespace">                    </span>Traceback (most recent call last)
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/pymysql/connections.py:613,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">613</span>     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="k">break</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/socket.py:845,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">845</span>     <span class="k">raise</span> <span class="n">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">846</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span>     <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/socket.py:833,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span>     <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">source_address</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">833</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span> <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="ne">ConnectionRefusedError</span>: [Errno 61] Connection refused
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;shared_hotel&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/schemas.py:78,</span> in <span class="ni">Schema.__init__</span><span class="nt">(self, schema_name, context, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="bp">self</span><span class="o">.</span><span class="n">declare_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">if</span> <span class="n">schema_name</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">78</span>     <span class="bp">self</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">schema_name</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/schemas.py:120,</span> in <span class="ni">Schema.activate</span><span class="nt">(self, schema_name, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">120</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">conn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">schema_name</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">if</span> <span class="n">create_schema</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:131,</span> in <span class="ni">conn</span><span class="nt">(host, user, password, init_fun, reset, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="n">init_fun</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>         <span class="n">init_fun</span> <span class="k">if</span> <span class="n">init_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;connection.init_function&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">use_tls</span> <span class="o">=</span> <span class="n">use_tls</span> <span class="k">if</span> <span class="n">use_tls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;database.use_tls&quot;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">131</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">init_fun</span><span class="p">,</span> <span class="n">use_tls</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="k">return</span> <span class="n">conn</span><span class="o">.</span><span class="n">connection</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:193,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, host, user, password, port, init_fun, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">193</span> <span class="n">connect_host_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connected </span><span class="si">{user}</span><span class="s2">@</span><span class="si">{host}</span><span class="s2">:</span><span class="si">{port}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">conn_info</span><span class="p">))</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:52,</span> in <span class="ni">connect_host_hook</span><span class="nt">(connection_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>         <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">DataJointError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span>             <span class="s2">&quot;Connection plugin &#39;</span><span class="si">{}</span><span class="s2">&#39; not found.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">52</span>     <span class="n">connection_obj</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/datajoint/connection.py:217,</span> in <span class="ni">Connection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="s2">&quot;.*deprecated.*&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">217</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="s2">&quot;STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="n">charset</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;connection.charset&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="o">**</span><span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span>             <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+<span class="nn">    224             for k, v</span> in <span class="ni">self.conn_info.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span>             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ssl_input&quot;</span><span class="p">,</span> <span class="s2">&quot;host_input&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>         <span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span> <span class="k">except</span> <span class="n">client</span><span class="o">.</span><span class="n">err</span><span class="o">.</span><span class="n">InternalError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>         <span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span>     <span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/pymysql/connections.py:353,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/benv/lib/python3.10/site-packages/pymysql/connections.py:664,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>         <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">traceback</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">664</span>     <span class="k">raise</span> <span class="n">exc</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="c1"># If e is neither DatabaseError or IOError, It&#39;s a bug.</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span> <span class="c1"># But raising AssertionError hides original error.</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="c1"># So just reraise it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span> <span class="k">raise</span>
+
+<span class="ne">OperationalError</span>: (2003, &quot;Can&#39;t connect to MySQL server on &#39;127.0.0.1&#39; ([Errno 61] Connection refused)&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Room</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    room : int</span>
+<span class="s2">    --- </span>
+<span class="s2">    room_type : enum(&#39;Deluxe&#39;, &#39;Suite&#39;)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">RoomAvailable</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Room</span>
+<span class="s2">    date : date </span>
+<span class="s2">    ---</span>
+<span class="s2">    price : decimal(6, 2)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Guest</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    guest_id : int unsigned</span>
+<span class="s2">    --- </span>
+<span class="s2">    guest_name : varchar(60)</span>
+<span class="s2">    index(guest_name)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">Reservation</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; RoomAvailable</span>
+<span class="s2">    ---</span>
+<span class="s2">    -&gt; Guest</span>
+<span class="s2">    credit_card : varchar(80)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">CheckIn</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; Reservation</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@schema</span>
+<span class="k">class</span> <span class="nc">CheckOut</span><span class="p">(</span><span class="n">dj</span><span class="o">.</span><span class="n">Manual</span><span class="p">):</span>
+    <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    -&gt; CheckIn</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bf523ec71a19d4da32eaf45583c2b44e881d03506f0024fb2515ca919e349aee.svg" src="../_images/bf523ec71a19d4da32eaf45583c2b44e881d03506f0024fb2515ca919e349aee.svg" /></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="populate-room-availability">
+<h1>Populate Room Availability<a class="headerlink" href="#populate-room-availability" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">faker</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="n">fake</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">Faker</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># populate rooms</span>
+<span class="n">Room</span><span class="o">.</span><span class="n">insert</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Deluxe&quot;</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span> else &quot;Suite&quot;) for i in range(80))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Populate Room availability: 45 days starting on start_date</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">days</span> <span class="o">=</span> <span class="mi">45</span>
+
+<span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">days</span><span class="p">)):</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">350</span><span class="p">)</span> 
+    <span class="n">RoomAvailable</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> 
+             <span class="n">date</span><span class="o">=</span><span class="n">start_date</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">day</span><span class="p">),</span> 
+             <span class="n">price</span><span class="o">=</span><span class="n">price</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Room</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">))</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 45/45 [00:03&lt;00:00, 11.92it/s]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HotelException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">RoomUnavailable</span><span class="p">(</span><span class="n">HotelException</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">RoomAlreadyReserved</span><span class="p">(</span><span class="n">HotelException</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">AlreadyChecked</span><span class="p">(</span><span class="n">HotelException</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">NoReservation</span><span class="p">(</span><span class="n">HotelException</span><span class="p">):</span> <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">NotCheckedIn</span><span class="p">(</span><span class="n">HotelException</span><span class="p">):</span> <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reserve_room</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">guest_name</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
+    <span class="c1"># lookup guest by name</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">(</span><span class="n">Guest</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;guest_name&#39;</span><span class="p">:</span> <span class="n">guest_name</span><span class="p">})</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="c1"># if multiple found, use the first, for example</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># if not registered before, create a new guest id</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">guest_id</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">Guest</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">guest_name</span><span class="o">=</span><span class="n">guest_name</span><span class="p">))</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">Reservation</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">room</span><span class="o">=</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">=</span><span class="n">credit_card</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DuplicateError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">RoomAlreadyReserved</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+    <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">RoomUnavailable</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_in</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">CheckIn</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">room</span><span class="o">=</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DuplicateError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlreadyChecked</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+    <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NoReservation</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_out</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">CheckOut</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">room</span><span class="o">=</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DuplicateError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AlreadyChecked</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+    <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotCheckedIn</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="operations">
+<h1>Operations<a class="headerlink" href="#operations" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a bunch of random reservations</span>
+
+<span class="n">number_of_guests</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">max_nights</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">number_of_guests</span><span class="p">)):</span>
+    <span class="n">guest</span> <span class="o">=</span> <span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+    <span class="n">credit_card</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">fake</span><span class="o">.</span><span class="n">credit_card_number</span><span class="p">(),</span> 
+                          <span class="n">fake</span><span class="o">.</span><span class="n">credit_card_expire</span><span class="p">(),</span> 
+                          <span class="n">fake</span><span class="o">.</span><span class="n">credit_card_security_code</span><span class="p">()))</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_nights</span><span class="p">)):</span>
+        <span class="n">date</span> <span class="o">=</span>  <span class="n">fake</span><span class="o">.</span><span class="n">date_between_dates</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">start_date</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">45</span><span class="p">))</span>
+        <span class="n">room</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">reserve_room</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">guest</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">HotelException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            
+<span class="c1"># show successful reservations</span>
+<span class="n">Reservation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|████████████▉                                                                                                                                                     | 8/100 [00:06&lt;01:16,  1.21it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-01&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|██████████████▌                                                                                                                                                   | 9/100 [00:07&lt;01:14,  1.22it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(51, &#39;2021-11-04&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|█████████████████▋                                                                                                                                               | 11/100 [00:09&lt;01:27,  1.02it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-11-09&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|███████████████████▎                                                                                                                                             | 12/100 [00:10&lt;01:20,  1.09it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(2, &#39;2021-10-29&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|█████████████████████████████████▊                                                                                                                               | 21/100 [00:18&lt;01:07,  1.16it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-24&#39;)
+RoomAlreadyReserved(11, &#39;2021-11-12&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|███████████████████████████████████▍                                                                                                                             | 22/100 [00:18&lt;00:58,  1.34it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(58, &#39;2021-10-29&#39;)
+RoomUnavailable(80, &#39;2021-10-16&#39;)
+RoomUnavailable(80, &#39;2021-10-22&#39;)
+RoomAlreadyReserved(32, &#39;2021-11-11&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 23%|█████████████████████████████████████                                                                                                                            | 23/100 [00:19&lt;01:09,  1.11it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(71, &#39;2021-10-28&#39;)
+RoomAlreadyReserved(16, &#39;2021-10-28&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|████████████████████████████████████████▎                                                                                                                        | 25/100 [00:20&lt;00:49,  1.52it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-19&#39;)
+RoomAlreadyReserved(38, &#39;2021-10-26&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|█████████████████████████████████████████▊                                                                                                                       | 26/100 [00:21&lt;01:01,  1.20it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(70, &#39;2021-11-11&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|█████████████████████████████████████████████                                                                                                                    | 28/100 [00:22&lt;00:47,  1.52it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(75, &#39;2021-10-14&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|████████████████████████████████████████████████▎                                                                                                                | 30/100 [00:24&lt;00:53,  1.32it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(58, &#39;2021-10-29&#39;)
+RoomAlreadyReserved(64, &#39;2021-10-24&#39;)
+RoomUnavailable(80, &#39;2021-10-09&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 31%|█████████████████████████████████████████████████▉                                                                                                               | 31/100 [00:26&lt;01:02,  1.11it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(44, &#39;2021-10-29&#39;)
+RoomAlreadyReserved(39, &#39;2021-10-28&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|███████████████████████████████████████████████████▌                                                                                                             | 32/100 [00:27&lt;01:14,  1.10s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(9, &#39;2021-10-31&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|█████████████████████████████████████████████████████▏                                                                                                           | 33/100 [00:28&lt;01:12,  1.08s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-03&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 34%|██████████████████████████████████████████████████████▋                                                                                                          | 34/100 [00:29&lt;01:04,  1.03it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-18&#39;)
+RoomAlreadyReserved(44, &#39;2021-11-10&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|████████████████████████████████████████████████████████▎                                                                                                        | 35/100 [00:29&lt;00:55,  1.17it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(36, &#39;2021-11-13&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|█████████████████████████████████████████████████████████▉                                                                                                       | 36/100 [00:30&lt;00:47,  1.34it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(52, &#39;2021-10-21&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 37%|███████████████████████████████████████████████████████████▌                                                                                                     | 37/100 [00:31&lt;00:54,  1.15it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(65, &#39;2021-10-03&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|█████████████████████████████████████████████████████████████▏                                                                                                   | 38/100 [00:32&lt;00:58,  1.05it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(30, &#39;2021-10-06&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████████████████████████████████████████████████████████████████▍                                                                                                | 40/100 [00:34&lt;00:57,  1.04it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(55, &#39;2021-10-08&#39;)
+RoomAlreadyReserved(56, &#39;2021-10-09&#39;)
+RoomAlreadyReserved(32, &#39;2021-10-28&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|██████████████████████████████████████████████████████████████████                                                                                               | 41/100 [00:36&lt;01:04,  1.09s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(56, &#39;2021-10-28&#39;)
+RoomAlreadyReserved(46, &#39;2021-11-07&#39;)
+RoomAlreadyReserved(14, &#39;2021-10-19&#39;)
+RoomAlreadyReserved(34, &#39;2021-10-06&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 42%|███████████████████████████████████████████████████████████████████▌                                                                                             | 42/100 [00:37&lt;01:07,  1.16s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(59, &#39;2021-11-13&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 43%|█████████████████████████████████████████████████████████████████████▏                                                                                           | 43/100 [00:38&lt;01:05,  1.15s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(45, &#39;2021-10-27&#39;)
+RoomAlreadyReserved(59, &#39;2021-10-22&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|██████████████████████████████████████████████████████████████████████▊                                                                                          | 44/100 [00:40&lt;01:11,  1.28s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(28, &#39;2021-10-09&#39;)
+RoomAlreadyReserved(42, &#39;2021-10-27&#39;)
+RoomAlreadyReserved(54, &#39;2021-11-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████████████████████████████████████████████████████████████████████████▍                                                                                        | 45/100 [00:40&lt;00:59,  1.09s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(37, &#39;2021-11-12&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|██████████████████████████████████████████████████████████████████████████                                                                                       | 46/100 [00:41&lt;00:54,  1.00s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(75, &#39;2021-10-06&#39;)
+RoomAlreadyReserved(25, &#39;2021-11-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|███████████████████████████████████████████████████████████████████████████▋                                                                                     | 47/100 [00:42&lt;00:52,  1.01it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(8, &#39;2021-10-12&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 48%|█████████████████████████████████████████████████████████████████████████████▎                                                                                   | 48/100 [00:43&lt;00:44,  1.16it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-13&#39;)
+RoomAlreadyReserved(73, &#39;2021-10-04&#39;)
+RoomAlreadyReserved(6, &#39;2021-10-20&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|████████████████████████████████████████████████████████████████████████████████▌                                                                                | 50/100 [00:44&lt;00:34,  1.46it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(2, &#39;2021-11-03&#39;)
+RoomAlreadyReserved(3, &#39;2021-10-23&#39;)
+RoomAlreadyReserved(34, &#39;2021-10-28&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 51%|██████████████████████████████████████████████████████████████████████████████████                                                                               | 51/100 [00:44&lt;00:34,  1.44it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(24, &#39;2021-10-03&#39;)
+RoomAlreadyReserved(50, &#39;2021-10-30&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████████████████████████████████████████████████████████████████████████████████████▎                                                                           | 53/100 [00:46&lt;00:36,  1.28it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-11-12&#39;)
+RoomAlreadyReserved(68, &#39;2021-10-12&#39;)
+RoomUnavailable(80, &#39;2021-10-14&#39;)
+RoomUnavailable(80, &#39;2021-10-04&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|███████████████████████████████████████████████████████████████████████████████████████████▊                                                                     | 57/100 [00:50&lt;00:34,  1.26it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(44, &#39;2021-10-30&#39;)
+RoomUnavailable(80, &#39;2021-10-11&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 58%|█████████████████████████████████████████████████████████████████████████████████████████████▍                                                                   | 58/100 [00:51&lt;00:39,  1.08it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(43, &#39;2021-10-06&#39;)
+RoomAlreadyReserved(32, &#39;2021-11-11&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|████████████████████████████████████████████████████████████████████████████████████████████████▌                                                                | 60/100 [00:54&lt;00:39,  1.02it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(65, &#39;2021-10-23&#39;)
+RoomAlreadyReserved(56, &#39;2021-11-01&#39;)
+RoomAlreadyReserved(44, &#39;2021-10-01&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 61%|██████████████████████████████████████████████████████████████████████████████████████████████████▏                                                              | 61/100 [00:54&lt;00:37,  1.05it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(42, &#39;2021-10-10&#39;)
+RoomAlreadyReserved(16, &#39;2021-10-28&#39;)
+RoomUnavailable(80, &#39;2021-11-03&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|███████████████████████████████████████████████████████████████████████████████████████████████████▊                                                             | 62/100 [00:56&lt;00:38,  1.02s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(37, &#39;2021-10-07&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 63%|█████████████████████████████████████████████████████████████████████████████████████████████████████▍                                                           | 63/100 [00:57&lt;00:40,  1.09s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(25, &#39;2021-11-14&#39;)
+RoomUnavailable(80, &#39;2021-10-18&#39;)
+RoomAlreadyReserved(50, &#39;2021-10-30&#39;)
+RoomAlreadyReserved(36, &#39;2021-10-09&#39;)
+RoomAlreadyReserved(69, &#39;2021-11-04&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                        | 65/100 [00:58&lt;00:26,  1.34it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(17, &#39;2021-10-13&#39;)
+RoomAlreadyReserved(6, &#39;2021-10-09&#39;)
+RoomAlreadyReserved(62, &#39;2021-10-05&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 68%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                                   | 68/100 [01:00&lt;00:18,  1.76it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(26, &#39;2021-11-12&#39;)
+RoomAlreadyReserved(28, &#39;2021-11-05&#39;)
+RoomAlreadyReserved(23, &#39;2021-10-26&#39;)
+RoomAlreadyReserved(63, &#39;2021-11-08&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 69%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████                                                  | 69/100 [01:01&lt;00:24,  1.28it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(71, &#39;2021-10-04&#39;)
+RoomAlreadyReserved(4, &#39;2021-10-19&#39;)
+RoomAlreadyReserved(39, &#39;2021-11-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                | 70/100 [01:02&lt;00:28,  1.05it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(23, &#39;2021-11-06&#39;)
+RoomAlreadyReserved(69, &#39;2021-10-20&#39;)
+RoomAlreadyReserved(41, &#39;2021-11-03&#39;)
+RoomAlreadyReserved(66, &#39;2021-11-11&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                                              | 71/100 [01:04&lt;00:31,  1.08s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(42, &#39;2021-10-27&#39;)
+RoomAlreadyReserved(44, &#39;2021-10-28&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 72%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                                             | 72/100 [01:05&lt;00:29,  1.07s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(43, &#39;2021-11-01&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                                           | 73/100 [01:06&lt;00:28,  1.05s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(72, &#39;2021-10-29&#39;)
+RoomAlreadyReserved(2, &#39;2021-11-11&#39;)
+RoomAlreadyReserved(11, &#39;2021-10-30&#39;)
+RoomAlreadyReserved(38, &#39;2021-11-07&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                                         | 74/100 [01:07&lt;00:28,  1.10s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-11-04&#39;)
+RoomAlreadyReserved(42, &#39;2021-10-06&#39;)
+RoomAlreadyReserved(62, &#39;2021-11-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                                        | 75/100 [01:08&lt;00:26,  1.08s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-09&#39;)
+RoomAlreadyReserved(13, &#39;2021-10-22&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                                      | 76/100 [01:08&lt;00:21,  1.14it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(58, &#39;2021-11-04&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 77%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                                     | 77/100 [01:09&lt;00:16,  1.44it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(52, &#39;2021-10-26&#39;)
+RoomAlreadyReserved(77, &#39;2021-11-13&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                                | 80/100 [01:10&lt;00:11,  1.70it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(53, &#39;2021-11-07&#39;)
+RoomAlreadyReserved(44, &#39;2021-11-04&#39;)
+RoomAlreadyReserved(56, &#39;2021-11-09&#39;)
+RoomAlreadyReserved(43, &#39;2021-10-01&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 81%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                              | 81/100 [01:12&lt;00:15,  1.23it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(32, &#39;2021-10-16&#39;)
+RoomUnavailable(80, &#39;2021-10-29&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 84%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                         | 84/100 [01:14&lt;00:09,  1.67it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(15, &#39;2021-11-06&#39;)
+RoomAlreadyReserved(44, &#39;2021-10-06&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                        | 85/100 [01:15&lt;00:10,  1.41it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(59, &#39;2021-11-05&#39;)
+RoomAlreadyReserved(24, &#39;2021-10-04&#39;)
+RoomAlreadyReserved(37, &#39;2021-10-23&#39;)
+RoomAlreadyReserved(46, &#39;2021-10-25&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                      | 86/100 [01:16&lt;00:12,  1.09it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(78, &#39;2021-10-26&#39;)
+RoomAlreadyReserved(59, &#39;2021-11-07&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 87/100 [01:16&lt;00:10,  1.27it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(78, &#39;2021-10-26&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 88%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                   | 88/100 [01:17&lt;00:09,  1.23it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(10, &#39;2021-11-09&#39;)
+RoomAlreadyReserved(56, &#39;2021-11-06&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                 | 89/100 [01:18&lt;00:08,  1.31it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(71, &#39;2021-10-04&#39;)
+RoomUnavailable(80, &#39;2021-10-29&#39;)
+RoomAlreadyReserved(74, &#39;2021-10-11&#39;)
+RoomAlreadyReserved(22, &#39;2021-10-03&#39;)
+RoomAlreadyReserved(64, &#39;2021-10-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                | 90/100 [01:19&lt;00:09,  1.03it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(60, &#39;2021-11-14&#39;)
+RoomAlreadyReserved(27, &#39;2021-11-04&#39;)
+RoomAlreadyReserved(8, &#39;2021-10-05&#39;)
+RoomAlreadyReserved(6, &#39;2021-11-05&#39;)
+RoomAlreadyReserved(33, &#39;2021-10-23&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌              | 91/100 [01:21&lt;00:09,  1.10s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-21&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████             | 92/100 [01:21&lt;00:07,  1.06it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomUnavailable(80, &#39;2021-10-02&#39;)
+RoomAlreadyReserved(37, &#39;2021-10-20&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 94/100 [01:22&lt;00:03,  1.64it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(6, &#39;2021-11-05&#39;)
+RoomAlreadyReserved(55, &#39;2021-11-09&#39;)
+RoomAlreadyReserved(35, &#39;2021-10-07&#39;)
+RoomAlreadyReserved(57, &#39;2021-11-05&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉        | 95/100 [01:23&lt;00:03,  1.51it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(43, &#39;2021-10-05&#39;)
+RoomAlreadyReserved(39, &#39;2021-10-14&#39;)
+RoomAlreadyReserved(21, &#39;2021-11-04&#39;)
+RoomAlreadyReserved(12, &#39;2021-10-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌      | 96/100 [01:23&lt;00:02,  1.59it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(70, &#39;2021-11-04&#39;)
+RoomAlreadyReserved(52, &#39;2021-10-04&#39;)
+RoomAlreadyReserved(75, &#39;2021-10-29&#39;)
+RoomAlreadyReserved(67, &#39;2021-10-02&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 97%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏    | 97/100 [01:24&lt;00:02,  1.34it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(6, &#39;2021-11-05&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 98%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊   | 98/100 [01:25&lt;00:01,  1.59it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(48, &#39;2021-10-19&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍ | 99/100 [01:26&lt;00:00,  1.46it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RoomAlreadyReserved(52, &#39;2021-11-14&#39;)
+RoomAlreadyReserved(9, &#39;2021-11-08&#39;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [01:26&lt;00:00,  1.16it/s]
+</pre></div>
+</div>
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">room</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">date</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">guest_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">credit_card</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>0</td>
+<td>2021-10-14</td>
+<td>2467043059</td>
+<td>2453673541841351 11/23 462</td></tr><tr><td>0</td>
+<td>2021-10-18</td>
+<td>845826740</td>
+<td>4528881031739606163 04/28 5583</td></tr><tr><td>0</td>
+<td>2021-10-24</td>
+<td>869198512</td>
+<td>4772595821214195133 12/26 759</td></tr><tr><td>0</td>
+<td>2021-11-02</td>
+<td>16581998</td>
+<td>30391204843665 11/28 632</td></tr><tr><td>0</td>
+<td>2021-11-05</td>
+<td>120232026</td>
+<td>4348858747347957 09/29 279</td></tr><tr><td>0</td>
+<td>2021-11-08</td>
+<td>522963624</td>
+<td>4045810724428447888 11/23 135</td></tr><tr><td>1</td>
+<td>2021-10-02</td>
+<td>576988272</td>
+<td>6515232227314782 05/25 632</td></tr><tr><td>1</td>
+<td>2021-10-03</td>
+<td>522963624</td>
+<td>4045810724428447888 11/23 135</td></tr><tr><td>1</td>
+<td>2021-10-05</td>
+<td>1231311424</td>
+<td>30570944113766 04/31 962</td></tr><tr><td>1</td>
+<td>2021-10-14</td>
+<td>3760759381</td>
+<td>3558142798582912 04/27 188</td></tr><tr><td>1</td>
+<td>2021-10-21</td>
+<td>26727245</td>
+<td>6011313298800641 07/23 421</td></tr><tr><td>1</td>
+<td>2021-10-27</td>
+<td>120232026</td>
+<td>4348858747347957 09/29 279</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 928</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Guest</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">guest_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">guest_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>1662864156</td>
+<td>Adam Schwartz</td></tr><tr><td>869198512</td>
+<td>Alexandra Sampson</td></tr><tr><td>3953620611</td>
+<td>Alexis Arias</td></tr><tr><td>1751304781</td>
+<td>Amy Murphy</td></tr><tr><td>576988272</td>
+<td>Amy Ray</td></tr><tr><td>500507429</td>
+<td>Andrew Barnes</td></tr><tr><td>2712870417</td>
+<td>Arthur Shepherd</td></tr><tr><td>120232026</td>
+<td>Ashley Williams</td></tr><tr><td>114175943</td>
+<td>Barbara Grant</td></tr><tr><td>2549454580</td>
+<td>Becky Harrington</td></tr><tr><td>1642873097</td>
+<td>Brandon Cook</td></tr><tr><td>26727245</td>
+<td>Brandon Villarreal</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 101</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try check in</span>
+
+<span class="n">check_in</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NoReservation</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">Input In [20],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Try check in</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">check_in</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="nn">Input In [16],</span> in <span class="ni">check_in</span><span class="nt">(room, date)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">raise</span> <span class="n">AlreadyChecked</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="k">raise</span> <span class="n">NoReservation</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+
+<span class="ne">NoReservation</span>: (2, &#39;2021-10-02&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># checkin a bunch of people</span>
+<span class="n">checkins</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">Reservation</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.9</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">Reservation</span><span class="p">())))</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">checkins</span><span class="p">):</span>
+    <span class="n">check_in</span><span class="p">(</span><span class="o">**</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 835/835 [00:34&lt;00:00, 24.37it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CheckIn</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try duplicate checkin</span>
+<span class="n">check_in</span><span class="p">(</span><span class="o">**</span><span class="n">checkins</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AlreadyChecked</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [22],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Try duplicate checkin</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">check_in</span><span class="p">(</span><span class="o">**</span><span class="n">checkins</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nn">Input In [16],</span> in <span class="ni">check_in</span><span class="nt">(room, date)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">CheckIn</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">room</span><span class="o">=</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DuplicateError</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="k">raise</span> <span class="n">AlreadyChecked</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">raise</span> <span class="n">NoReservation</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+
+<span class="ne">AlreadyChecked</span>: (26, &#39;2021-10-31&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try checkout</span>
+
+<span class="n">check_out</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NotCheckedIn</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">Input In [23],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Try checkout</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">check_out</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="nn">Input In [17],</span> in <span class="ni">check_out</span><span class="nt">(room, date)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">raise</span> <span class="n">AlreadyChecked</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="k">raise</span> <span class="n">NotCheckedIn</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+
+<span class="ne">NotCheckedIn</span>: (2, &#39;2021-10-02&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># checkout a bunch of people</span>
+<span class="n">checkouts</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">CheckIn</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.9</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">CheckIn</span><span class="p">())))</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">checkouts</span><span class="p">):</span>
+    <span class="n">check_out</span><span class="p">(</span><span class="o">**</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 751/751 [00:30&lt;00:00, 24.70it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># try duplicate checkout</span>
+
+<span class="n">check_out</span><span class="p">(</span><span class="o">**</span><span class="n">checkouts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AlreadyChecked</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [25],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># try duplicate checkout</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">check_out</span><span class="p">(</span><span class="o">**</span><span class="n">checkouts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nn">Input In [17],</span> in <span class="ni">check_out</span><span class="nt">(room, date)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">CheckOut</span><span class="o">.</span><span class="n">insert1</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">room</span><span class="o">=</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DuplicateError</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="k">raise</span> <span class="n">AlreadyChecked</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">except</span> <span class="n">dj</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">raise</span> <span class="n">NotCheckedIn</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span> <span class="kn">from</span> <span class="bp">None</span>
+
+<span class="ne">AlreadyChecked</span>: (29, &#39;2021-10-03&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="queries">
+<h1>Queries<a class="headerlink" href="#queries" title="Permalink to this heading">#</a></h1>
+<section id="query-1-list-all-guests-who-have-stayed-in-room-1">
+<h2>Query 1: List all guests who have stayed in room 1<a class="headerlink" href="#query-1-list-all-guests-who-have-stayed-in-room-1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Guest</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Reservation</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">CheckIn</span> <span class="o">&amp;</span> <span class="s1">&#39;room=1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">guest_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">guest_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>576988272</td>
+<td>Amy Ray</td></tr><tr><td>522963624</td>
+<td>Christopher Smith</td></tr><tr><td>1231311424</td>
+<td>Dylan Vincent</td></tr><tr><td>3760759381</td>
+<td>Jamie Atkinson</td></tr><tr><td>26727245</td>
+<td>Brandon Villarreal</td></tr><tr><td>120232026</td>
+<td>Ashley Williams</td></tr><tr><td>2783887783</td>
+<td>Emily Caldwell</td></tr><tr><td>290179231</td>
+<td>Judy Adkins</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 8</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Guest</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Reservation</span> <span class="o">*</span> <span class="n">CheckIn</span> <span class="o">&amp;</span> <span class="s1">&#39;room=1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">guest_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">guest_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>576988272</td>
+<td>Amy Ray</td></tr><tr><td>522963624</td>
+<td>Christopher Smith</td></tr><tr><td>1231311424</td>
+<td>Dylan Vincent</td></tr><tr><td>3760759381</td>
+<td>Jamie Atkinson</td></tr><tr><td>26727245</td>
+<td>Brandon Villarreal</td></tr><tr><td>120232026</td>
+<td>Ashley Williams</td></tr><tr><td>2783887783</td>
+<td>Emily Caldwell</td></tr><tr><td>290179231</td>
+<td>Judy Adkins</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 8</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">.</span><span class="n">make_sql</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;SELECT `guest_id`,`guest_name` FROM `shared_hotel`.`guest` WHERE ((`guest_id`) in (SELECT `guest_id` FROM `shared_hotel`.`reservation` NATURAL JOIN `shared_hotel`.`check_in` WHERE (room=1)))&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="query-2-list-all-nights-when-a-guest-stayed-at-a-hotel">
+<h2>Query 2: List all nights when a guest stayed at a hotel<a class="headerlink" href="#query-2-list-all-nights-when-a-guest-stayed-at-a-hotel" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pick a guest</span>
+<span class="n">guest</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">Guest</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;KEY&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guest</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;guest_id&#39;: 522963624}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Reservation</span> <span class="o">*</span> <span class="n">CheckIn</span> <span class="o">&amp;</span> <span class="n">guest</span><span class="p">)</span><span class="o">.</span><span class="n">proj</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Relation{
+            border-collapse:collapse;
+        }
+        .Relation th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Relation td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Relation tr:nth-child(odd){
+            background: #ffffff;
+        }
+        .Relation tr:nth-child(even){
+            background: #f3f1ff;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Relation">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">room</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">date</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>0</td>
+<td>2021-11-08</td></tr><tr><td>1</td>
+<td>2021-10-03</td></tr><tr><td>4</td>
+<td>2021-10-04</td></tr><tr><td>11</td>
+<td>2021-10-16</td></tr><tr><td>24</td>
+<td>2021-10-08</td></tr><tr><td>36</td>
+<td>2021-10-01</td></tr><tr><td>39</td>
+<td>2021-10-22</td></tr><tr><td>54</td>
+<td>2021-11-10</td></tr><tr><td>74</td>
+<td>2021-10-12</td></tr><tr><td>74</td>
+<td>2021-10-29</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 10</p></div>
+        </div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "benv"
+        },
+        kernelOptions: {
+            name: "benv",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'benv'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Hotel Database</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-database">Define the database</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#populate-room-availability">Populate Room Availability</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#queries">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-1-list-all-guests-who-have-stayed-in-room-1">Query 1: List all guests who have stayed in room 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-2-list-all-nights-when-a-guest-stayed-at-a-hotel">Query 2: List all nights when a guest stayed at a hotel</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dimitri Yatsenko, PhD
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,3767 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Queries &#8212; The DataJoint Course</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/005-Queries';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../root.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neuron.png" class="logo__image only-light" alt="The DataJoint Course - Home"/>
+    <script>document.write(`<img src="../_static/neuron.png" class="logo__image only-dark" alt="The DataJoint Course - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../root.html">
+                    The DataJoint Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Database Design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/relational.html">The Relational Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/normalization.html">Database normalization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Book</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../note.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/005-Queries.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/005-Queries.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Queries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-the-design">Recall the design</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-queries">Simple queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restriction-selecting-rows">Restriction (selecting rows)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-selecting-calculating-and-renaming-columns">Projection (selecting, calculating, and renaming columns)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#restrictions-by-a-query">Restrictions by a query</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demorgan-s-laws">DeMorgan’s Laws</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="queries">
+<h1>Queries<a class="headerlink" href="#queries" title="Permalink to this heading">#</a></h1>
+<p>We will use the design produced in <a class="reference internal" href="004-Design.html"><span class="doc std std-doc">004-Design</span></a>. Please execute that notebook first to define and populate the <code class="docutils literal notranslate"><span class="pre">app</span></code> schema.</p>
+<section id="recall-the-design">
+<h2>Recall the design<a class="headerlink" href="#recall-the-design" title="Permalink to this heading">#</a></h2>
+<p>The following code connects to the <code class="docutils literal notranslate"><span class="pre">app</span></code> schema and generates Python classes to access its classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
+<span class="n">schema</span><span class="o">.</span><span class="n">spawn_missing_classes</span><span class="p">()</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Connecting root@127.0.0.1:3306
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ConnectionRefusedError</span><span class="g g-Whitespace">                    </span>Traceback (most recent call last)
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:613,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">613</span>     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="k">break</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:845,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">845</span>     <span class="k">raise</span> <span class="n">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">846</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span>     <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:833,</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span>     <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">source_address</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">833</span> <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span> <span class="c1"># Break explicitly a reference cycle</span>
+
+<span class="ne">ConnectionRefusedError</span>: [Errno 61] Connection refused
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">dj</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">schema</span><span class="o">.</span><span class="n">spawn_missing_classes</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/schemas.py:69,</span> in <span class="ni">Schema.__init__</span><span class="nt">(self, schema_name, context, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="bp">self</span><span class="o">.</span><span class="n">declare_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="k">if</span> <span class="n">schema_name</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">69</span>     <span class="bp">self</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">schema_name</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/schemas.py:100,</span> in <span class="ni">Schema.activate</span><span class="nt">(self, schema_name, connection, create_schema, create_tables, add_objects)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">100</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">conn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">schema_name</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="k">if</span> <span class="n">create_schema</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:119,</span> in <span class="ni">conn</span><span class="nt">(host, user, password, init_fun, reset, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">init_fun</span> <span class="o">=</span> <span class="n">init_fun</span> <span class="k">if</span> <span class="n">init_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;connection.init_function&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="n">use_tls</span> <span class="o">=</span> <span class="n">use_tls</span> <span class="k">if</span> <span class="n">use_tls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database.use_tls&#39;</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">init_fun</span><span class="p">,</span> <span class="n">use_tls</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">return</span> <span class="n">conn</span><span class="o">.</span><span class="n">connection</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:178,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, host, user, password, port, init_fun, use_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">178</span> <span class="n">connect_host_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connected </span><span class="si">{user}</span><span class="s2">@</span><span class="si">{host}</span><span class="s2">:</span><span class="si">{port}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">conn_info</span><span class="p">))</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:45,</span> in <span class="ni">connect_host_hook</span><span class="nt">(connection_obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">DataJointError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>             <span class="s2">&quot;Connection plugin &#39;</span><span class="si">{}</span><span class="s2">&#39; not found.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plugin_name</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>     <span class="n">connection_obj</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:201,</span> in <span class="ni">Connection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s1">&#39;.*deprecated.*&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>                  <span class="s2">&quot;STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>         <span class="n">charset</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;connection.charset&#39;</span><span class="p">],</span>
+<span class="nn">    206         **{k: v for k, v</span> in <span class="ni">self.conn_info.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ssl_input&#39;</span><span class="p">,</span> <span class="s1">&#39;host_input&#39;</span><span class="p">]})</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">except</span> <span class="n">client</span><span class="o">.</span><span class="n">err</span><span class="o">.</span><span class="n">InternalError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">init_command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_fun</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>         <span class="n">sql_mode</span><span class="o">=</span><span class="s2">&quot;NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,&quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>            <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ssl_input&#39;</span><span class="p">,</span> <span class="s1">&#39;host_input&#39;</span><span class="p">]</span> <span class="ow">or</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>                   <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;ssl&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn_info</span><span class="p">[</span><span class="s1">&#39;ssl_input&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)})</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:353,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:664,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>     <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>         <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">traceback</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">664</span>     <span class="k">raise</span> <span class="n">exc</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="c1"># If e is neither DatabaseError or IOError, It&#39;s a bug.</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span> <span class="c1"># But raising AssertionError hides original error.</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="c1"># So just reraise it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span> <span class="k">raise</span>
+
+<span class="ne">OperationalError</span>: (2003, &quot;Can&#39;t connect to MySQL server on &#39;127.0.0.1&#39; ([Errno 61] Connection refused)&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Purchase</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="primary">addon_id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">card_number</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>57739576919</td>
+<td>1</td>
+<td>60400630491</td></tr><tr><td>13185990415</td>
+<td>2</td>
+<td>60400744029</td></tr><tr><td>95867190471</td>
+<td>1</td>
+<td>60402177269</td></tr><tr><td>74932324173</td>
+<td>1</td>
+<td>60404678041</td></tr><tr><td>74932324173</td>
+<td>2</td>
+<td>60404678041</td></tr><tr><td>74932324173</td>
+<td>3</td>
+<td>60404678041</td></tr><tr><td>54717139763</td>
+<td>3</td>
+<td>60405261136</td></tr><tr><td>66966252830</td>
+<td>1</td>
+<td>60406800650</td></tr><tr><td>35067438860</td>
+<td>1</td>
+<td>60410940211</td></tr><tr><td>50651554632</td>
+<td>1</td>
+<td>60413723457</td></tr><tr><td>25674636975</td>
+<td>1</td>
+<td>60416322612</td></tr><tr><td>25674636975</td>
+<td>2</td>
+<td>60416322612</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 5000</p></div>
+        </div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Queries<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="simple-queries">
+<h2>Simple queries<a class="headerlink" href="#simple-queries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10019062770</td>
+<td>Lauren</td>
+<td>Snyder</td>
+<td>1961-08-18</td>
+<td>F</td></tr><tr><td>10020965828</td>
+<td>Victor</td>
+<td>Ross</td>
+<td>1952-07-12</td>
+<td>M</td></tr><tr><td>10040756087</td>
+<td>Susan</td>
+<td>Brown</td>
+<td>1992-12-14</td>
+<td>F</td></tr><tr><td>10047410808</td>
+<td>Paige</td>
+<td>Holder</td>
+<td>1942-09-02</td>
+<td>F</td></tr><tr><td>10051015428</td>
+<td>William</td>
+<td>Estrada</td>
+<td>1985-12-31</td>
+<td>M</td></tr><tr><td>10068079952</td>
+<td>Natalie</td>
+<td>Brown</td>
+<td>1950-09-09</td>
+<td>F</td></tr><tr><td>10092122352</td>
+<td>Harold</td>
+<td>Rivera</td>
+<td>2011-10-19</td>
+<td>M</td></tr><tr><td>10103783887</td>
+<td>Jordan</td>
+<td>Gilbert</td>
+<td>2003-03-16</td>
+<td>M</td></tr><tr><td>10104072787</td>
+<td>Sharon</td>
+<td>Shaw</td>
+<td>1926-05-13</td>
+<td>F</td></tr><tr><td>10116699599</td>
+<td>Alec</td>
+<td>Smith</td>
+<td>1958-07-31</td>
+<td>M</td></tr><tr><td>10116742023</td>
+<td>Crystal</td>
+<td>Martin</td>
+<td>1997-09-20</td>
+<td>F</td></tr><tr><td>10119628924</td>
+<td>Paul</td>
+<td>King</td>
+<td>2014-03-10</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 10501</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">as_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;phone&#39;: 10019062770,
+  &#39;first_name&#39;: &#39;Lauren&#39;,
+  &#39;last_name&#39;: &#39;Snyder&#39;,
+  &#39;dob&#39;: datetime.date(1961, 8, 18),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 10020965828,
+  &#39;first_name&#39;: &#39;Victor&#39;,
+  &#39;last_name&#39;: &#39;Ross&#39;,
+  &#39;dob&#39;: datetime.date(1952, 7, 12),
+  &#39;sex&#39;: &#39;M&#39;},
+ {&#39;phone&#39;: 10040756087,
+  &#39;first_name&#39;: &#39;Susan&#39;,
+  &#39;last_name&#39;: &#39;Brown&#39;,
+  &#39;dob&#39;: datetime.date(1992, 12, 14),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 10047410808,
+  &#39;first_name&#39;: &#39;Paige&#39;,
+  &#39;last_name&#39;: &#39;Holder&#39;,
+  &#39;dob&#39;: datetime.date(1942, 9, 2),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 10051015428,
+  &#39;first_name&#39;: &#39;William&#39;,
+  &#39;last_name&#39;: &#39;Estrada&#39;,
+  &#39;dob&#39;: datetime.date(1985, 12, 31),
+  &#39;sex&#39;: &#39;M&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">as_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">),</span> <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;phone&#39;: 15366336995,
+  &#39;first_name&#39;: &#39;Rachel&#39;,
+  &#39;last_name&#39;: &#39;Abbott&#39;,
+  &#39;dob&#39;: datetime.date(2000, 4, 22),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 91972525114,
+  &#39;first_name&#39;: &#39;Robert&#39;,
+  &#39;last_name&#39;: &#39;Abbott&#39;,
+  &#39;dob&#39;: datetime.date(1929, 1, 19),
+  &#39;sex&#39;: &#39;M&#39;},
+ {&#39;phone&#39;: 36893728519,
+  &#39;first_name&#39;: &#39;William&#39;,
+  &#39;last_name&#39;: &#39;Abbott&#39;,
+  &#39;dob&#39;: datetime.date(2003, 6, 22),
+  &#39;sex&#39;: &#39;M&#39;},
+ {&#39;phone&#39;: 51992023735,
+  &#39;first_name&#39;: &#39;Brianna&#39;,
+  &#39;last_name&#39;: &#39;Acevedo&#39;,
+  &#39;dob&#39;: datetime.date(1982, 4, 2),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 38801647559,
+  &#39;first_name&#39;: &#39;Christian&#39;,
+  &#39;last_name&#39;: &#39;Acevedo&#39;,
+  &#39;dob&#39;: datetime.date(1940, 4, 10),
+  &#39;sex&#39;: &#39;M&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">as_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;dob DESC&#39;</span><span class="p">),</span> <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;phone&#39;: 61348693087,
+  &#39;first_name&#39;: &#39;Jennifer&#39;,
+  &#39;last_name&#39;: &#39;Singh&#39;,
+  &#39;dob&#39;: datetime.date(2022, 8, 6),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 40205369474,
+  &#39;first_name&#39;: &#39;Alexander&#39;,
+  &#39;last_name&#39;: &#39;Thomas&#39;,
+  &#39;dob&#39;: datetime.date(2022, 8, 6),
+  &#39;sex&#39;: &#39;M&#39;},
+ {&#39;phone&#39;: 47397056664,
+  &#39;first_name&#39;: &#39;Garrett&#39;,
+  &#39;last_name&#39;: &#39;Mooney&#39;,
+  &#39;dob&#39;: datetime.date(2022, 7, 27),
+  &#39;sex&#39;: &#39;M&#39;},
+ {&#39;phone&#39;: 72207025461,
+  &#39;first_name&#39;: &#39;Rhonda&#39;,
+  &#39;last_name&#39;: &#39;Bates&#39;,
+  &#39;dob&#39;: datetime.date(2022, 7, 21),
+  &#39;sex&#39;: &#39;F&#39;},
+ {&#39;phone&#39;: 85504732206,
+  &#39;first_name&#39;: &#39;Desiree&#39;,
+  &#39;last_name&#39;: &#39;Perez&#39;,
+  &#39;dob&#39;: datetime.date(2022, 7, 20),
+  &#39;sex&#39;: &#39;F&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="restriction-selecting-rows">
+<h2>Restriction (selecting rows)<a class="headerlink" href="#restriction-selecting-rows" title="Permalink to this heading">#</a></h2>
+<p>In SQL, this is the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause. In DataJoint, we use operators <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;phone&#39;</span><span class="p">:</span> <span class="mi">69235537483</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr>  </tr> </tbody>
+        </table>
+        
+        <p>Total: 0</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Michael&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10923785986</td>
+<td>Michael</td>
+<td>Soto</td>
+<td>1945-08-13</td>
+<td>M</td></tr><tr><td>11005781260</td>
+<td>Michael</td>
+<td>Washington</td>
+<td>1930-08-21</td>
+<td>M</td></tr><tr><td>11505392467</td>
+<td>Michael</td>
+<td>Russo</td>
+<td>1969-04-05</td>
+<td>M</td></tr><tr><td>11605501506</td>
+<td>Michael</td>
+<td>Lopez</td>
+<td>1927-02-09</td>
+<td>M</td></tr><tr><td>11842665345</td>
+<td>Michael</td>
+<td>Wright</td>
+<td>1950-02-04</td>
+<td>M</td></tr><tr><td>13730659059</td>
+<td>Michael</td>
+<td>Murphy</td>
+<td>None</td>
+<td></td></tr><tr><td>14362797615</td>
+<td>Michael</td>
+<td>Johnson</td>
+<td>1918-12-16</td>
+<td>M</td></tr><tr><td>14419578436</td>
+<td>Michael</td>
+<td>Fox</td>
+<td>2016-08-02</td>
+<td>M</td></tr><tr><td>14443705983</td>
+<td>Michael</td>
+<td>Jones</td>
+<td>2021-12-07</td>
+<td>M</td></tr><tr><td>14470747853</td>
+<td>Michael</td>
+<td>Gibson</td>
+<td>1929-11-08</td>
+<td>M</td></tr><tr><td>14979628541</td>
+<td>Michael</td>
+<td>Gill</td>
+<td>1997-07-20</td>
+<td>M</td></tr><tr><td>15011091753</td>
+<td>Michael</td>
+<td>Simpson</td>
+<td>1927-03-14</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 263</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span> <span class="o">&amp;</span> <span class="s1">&#39;first_name=&quot;Michael&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10923785986</td>
+<td>Michael</td>
+<td>Soto</td>
+<td>1945-08-13</td>
+<td>M</td></tr><tr><td>11005781260</td>
+<td>Michael</td>
+<td>Washington</td>
+<td>1930-08-21</td>
+<td>M</td></tr><tr><td>11505392467</td>
+<td>Michael</td>
+<td>Russo</td>
+<td>1969-04-05</td>
+<td>M</td></tr><tr><td>11605501506</td>
+<td>Michael</td>
+<td>Lopez</td>
+<td>1927-02-09</td>
+<td>M</td></tr><tr><td>11842665345</td>
+<td>Michael</td>
+<td>Wright</td>
+<td>1950-02-04</td>
+<td>M</td></tr><tr><td>13730659059</td>
+<td>Michael</td>
+<td>Murphy</td>
+<td>None</td>
+<td></td></tr><tr><td>14362797615</td>
+<td>Michael</td>
+<td>Johnson</td>
+<td>1918-12-16</td>
+<td>M</td></tr><tr><td>14419578436</td>
+<td>Michael</td>
+<td>Fox</td>
+<td>2016-08-02</td>
+<td>M</td></tr><tr><td>14443705983</td>
+<td>Michael</td>
+<td>Jones</td>
+<td>2021-12-07</td>
+<td>M</td></tr><tr><td>14470747853</td>
+<td>Michael</td>
+<td>Gibson</td>
+<td>1929-11-08</td>
+<td>M</td></tr><tr><td>14979628541</td>
+<td>Michael</td>
+<td>Gill</td>
+<td>1997-07-20</td>
+<td>M</td></tr><tr><td>15011091753</td>
+<td>Michael</td>
+<td>Simpson</td>
+<td>1927-03-14</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 263</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span> <span class="o">&amp;</span> <span class="s1">&#39;first_name=&quot;Anne&quot;&#39;</span> <span class="o">&amp;</span> <span class="s1">&#39;dob &gt; &quot;2001-01-01&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>18775649461</td>
+<td>Anne</td>
+<td>Lozano</td>
+<td>2018-10-25</td>
+<td>F</td></tr><tr><td>21157989480</td>
+<td>Anne</td>
+<td>Spencer</td>
+<td>2004-10-23</td>
+<td>F</td></tr><tr><td>34561118573</td>
+<td>Anne</td>
+<td>Wilson</td>
+<td>2010-12-31</td>
+<td>F</td></tr><tr><td>50673081066</td>
+<td>Anne</td>
+<td>Munoz</td>
+<td>2014-01-07</td>
+<td>F</td></tr><tr><td>62663220810</td>
+<td>Anne</td>
+<td>Williams</td>
+<td>2007-06-20</td>
+<td>F</td> </tr> </tbody>
+        </table>
+        
+        <p>Total: 5</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span> <span class="o">&amp;</span> <span class="s1">&#39;DATEDIFF(now(), dob) &lt; 300&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10306464131</td>
+<td>Zachary</td>
+<td>Vaughan</td>
+<td>2023-06-04</td>
+<td>M</td></tr><tr><td>11472981791</td>
+<td>Kristin</td>
+<td>Ward</td>
+<td>2023-06-14</td>
+<td>F</td></tr><tr><td>14249470562</td>
+<td>John</td>
+<td>Contreras</td>
+<td>2023-03-05</td>
+<td>M</td></tr><tr><td>14900154875</td>
+<td>Daniel</td>
+<td>Perry</td>
+<td>2023-04-08</td>
+<td>M</td></tr><tr><td>15775138364</td>
+<td>Eric</td>
+<td>Colon</td>
+<td>2023-04-30</td>
+<td>M</td></tr><tr><td>18206197063</td>
+<td>Erin</td>
+<td>Mendoza</td>
+<td>2023-07-18</td>
+<td>F</td></tr><tr><td>19118508049</td>
+<td>Rebekah</td>
+<td>Hardin</td>
+<td>2023-01-25</td>
+<td>F</td></tr><tr><td>20022976140</td>
+<td>Shawn</td>
+<td>Torres</td>
+<td>2023-09-14</td>
+<td>M</td></tr><tr><td>20280673168</td>
+<td>Rebecca</td>
+<td>Ford</td>
+<td>2023-02-28</td>
+<td>F</td></tr><tr><td>21265760789</td>
+<td>Steven</td>
+<td>Webster</td>
+<td>2023-03-11</td>
+<td>M</td></tr><tr><td>23861001702</td>
+<td>Michael</td>
+<td>Davis</td>
+<td>2023-01-26</td>
+<td>M</td></tr><tr><td>28389500853</td>
+<td>Michael</td>
+<td>Schmidt</td>
+<td>2023-06-24</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 70</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span> <span class="o">-</span> <span class="s1">&#39;DATEDIFF(now(), dob) &lt; 300&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10019062770</td>
+<td>Lauren</td>
+<td>Snyder</td>
+<td>1961-08-18</td>
+<td>F</td></tr><tr><td>10020965828</td>
+<td>Victor</td>
+<td>Ross</td>
+<td>1952-07-12</td>
+<td>M</td></tr><tr><td>10040756087</td>
+<td>Susan</td>
+<td>Brown</td>
+<td>1992-12-14</td>
+<td>F</td></tr><tr><td>10047410808</td>
+<td>Paige</td>
+<td>Holder</td>
+<td>1942-09-02</td>
+<td>F</td></tr><tr><td>10051015428</td>
+<td>William</td>
+<td>Estrada</td>
+<td>1985-12-31</td>
+<td>M</td></tr><tr><td>10068079952</td>
+<td>Natalie</td>
+<td>Brown</td>
+<td>1950-09-09</td>
+<td>F</td></tr><tr><td>10092122352</td>
+<td>Harold</td>
+<td>Rivera</td>
+<td>2011-10-19</td>
+<td>M</td></tr><tr><td>10103783887</td>
+<td>Jordan</td>
+<td>Gilbert</td>
+<td>2003-03-16</td>
+<td>M</td></tr><tr><td>10104072787</td>
+<td>Sharon</td>
+<td>Shaw</td>
+<td>1926-05-13</td>
+<td>F</td></tr><tr><td>10116699599</td>
+<td>Alec</td>
+<td>Smith</td>
+<td>1958-07-31</td>
+<td>M</td></tr><tr><td>10116742023</td>
+<td>Crystal</td>
+<td>Martin</td>
+<td>1997-09-20</td>
+<td>F</td></tr><tr><td>10119628924</td>
+<td>Paul</td>
+<td>King</td>
+<td>2014-03-10</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 9931</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">millennials</span> <span class="o">=</span> <span class="n">Account</span> <span class="o">&amp;</span> <span class="s1">&#39;dob &gt; &quot;1978-01-01&quot;&#39;</span> <span class="o">&amp;</span> <span class="s1">&#39;dob &lt; &quot;1997-01-01&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">millennials</span> <span class="o">&amp;</span> <span class="s1">&#39;first_name=&quot;Michael&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>15523841597</td>
+<td>Michael</td>
+<td>Lane</td>
+<td>1978-10-30</td>
+<td>M</td></tr><tr><td>17473604755</td>
+<td>Michael</td>
+<td>Garcia</td>
+<td>1988-01-04</td>
+<td>M</td></tr><tr><td>17839832842</td>
+<td>Michael</td>
+<td>Novak</td>
+<td>1982-12-13</td>
+<td>M</td></tr><tr><td>19103518385</td>
+<td>Michael</td>
+<td>Lee</td>
+<td>1988-05-13</td>
+<td>M</td></tr><tr><td>21002247444</td>
+<td>Michael</td>
+<td>Owens</td>
+<td>1989-09-13</td>
+<td>M</td></tr><tr><td>21096585246</td>
+<td>Michael</td>
+<td>Jones</td>
+<td>1980-09-28</td>
+<td>M</td></tr><tr><td>23404263421</td>
+<td>Michael</td>
+<td>Kramer</td>
+<td>1990-01-02</td>
+<td>M</td></tr><tr><td>29638831412</td>
+<td>Michael</td>
+<td>Atkins</td>
+<td>1981-08-09</td>
+<td>M</td></tr><tr><td>30870173313</td>
+<td>Michael</td>
+<td>Gomez</td>
+<td>1993-08-22</td>
+<td>M</td></tr><tr><td>31813197078</td>
+<td>Michael</td>
+<td>Martinez</td>
+<td>1990-06-27</td>
+<td>M</td></tr><tr><td>37528261688</td>
+<td>Michael</td>
+<td>Richardson</td>
+<td>1991-02-16</td>
+<td>M</td></tr><tr><td>39402056546</td>
+<td>Michael</td>
+<td>Hall</td>
+<td>1984-03-18</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 38</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">millennials</span> <span class="o">=</span> <span class="n">Account</span> <span class="o">&amp;</span> <span class="s1">&#39;dob BETWEEN &quot;1978-01-01&quot; AND &quot;1997-01-01&quot;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">millennials</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10040756087</td>
+<td>Susan</td>
+<td>Brown</td>
+<td>1992-12-14</td>
+<td>F</td></tr><tr><td>10051015428</td>
+<td>William</td>
+<td>Estrada</td>
+<td>1985-12-31</td>
+<td>M</td></tr><tr><td>10126431571</td>
+<td>Jessica</td>
+<td>Hayes</td>
+<td>1983-05-29</td>
+<td>F</td></tr><tr><td>10170646196</td>
+<td>Anthony</td>
+<td>Camacho</td>
+<td>1992-10-11</td>
+<td>M</td></tr><tr><td>10177712986</td>
+<td>Mario</td>
+<td>Lewis</td>
+<td>1996-06-14</td>
+<td>M</td></tr><tr><td>10187345213</td>
+<td>Danny</td>
+<td>Ellis</td>
+<td>1993-10-07</td>
+<td>M</td></tr><tr><td>10324766437</td>
+<td>Karen</td>
+<td>Daniels</td>
+<td>1996-09-04</td>
+<td>F</td></tr><tr><td>10358655985</td>
+<td>Christina</td>
+<td>Miller</td>
+<td>1978-10-05</td>
+<td>F</td></tr><tr><td>10430100835</td>
+<td>Maurice</td>
+<td>Leach</td>
+<td>1978-06-10</td>
+<td>M</td></tr><tr><td>10545086383</td>
+<td>Alexis</td>
+<td>Williams</td>
+<td>1980-08-07</td>
+<td>F</td></tr><tr><td>10565161854</td>
+<td>Billy</td>
+<td>Price</td>
+<td>1988-09-12</td>
+<td>M</td></tr><tr><td>10582843624</td>
+<td>Sabrina</td>
+<td>Key</td>
+<td>1989-01-07</td>
+<td>F</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 1624</p></div>
+        </div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="projection-selecting-calculating-and-renaming-columns">
+<h1>Projection (selecting, calculating, and renaming columns)<a class="headerlink" href="#projection-selecting-calculating-and-renaming-columns" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10019062770</td>
+<td>Lauren</td>
+<td>Snyder</td>
+<td>1961-08-18</td>
+<td>F</td></tr><tr><td>10020965828</td>
+<td>Victor</td>
+<td>Ross</td>
+<td>1952-07-12</td>
+<td>M</td></tr><tr><td>10040756087</td>
+<td>Susan</td>
+<td>Brown</td>
+<td>1992-12-14</td>
+<td>F</td></tr><tr><td>10047410808</td>
+<td>Paige</td>
+<td>Holder</td>
+<td>1942-09-02</td>
+<td>F</td></tr><tr><td>10051015428</td>
+<td>William</td>
+<td>Estrada</td>
+<td>1985-12-31</td>
+<td>M</td></tr><tr><td>10068079952</td>
+<td>Natalie</td>
+<td>Brown</td>
+<td>1950-09-09</td>
+<td>F</td></tr><tr><td>10092122352</td>
+<td>Harold</td>
+<td>Rivera</td>
+<td>2011-10-19</td>
+<td>M</td></tr><tr><td>10103783887</td>
+<td>Jordan</td>
+<td>Gilbert</td>
+<td>2003-03-16</td>
+<td>M</td></tr><tr><td>10104072787</td>
+<td>Sharon</td>
+<td>Shaw</td>
+<td>1926-05-13</td>
+<td>F</td></tr><tr><td>10116699599</td>
+<td>Alec</td>
+<td>Smith</td>
+<td>1958-07-31</td>
+<td>M</td></tr><tr><td>10116742023</td>
+<td>Crystal</td>
+<td>Martin</td>
+<td>1997-09-20</td>
+<td>F</td></tr><tr><td>10119628924</td>
+<td>Paul</td>
+<td>King</td>
+<td>2014-03-10</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 10501</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">proj</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10019062770</td></tr><tr><td>10020965828</td></tr><tr><td>10040756087</td></tr><tr><td>10047410808</td></tr><tr><td>10051015428</td></tr><tr><td>10068079952</td></tr><tr><td>10092122352</td></tr><tr><td>10103783887</td></tr><tr><td>10104072787</td></tr><tr><td>10116699599</td></tr><tr><td>10116742023</td></tr><tr><td>10119628924</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 10501</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10019062770</td>
+<td>Snyder</td></tr><tr><td>10020965828</td>
+<td>Ross</td></tr><tr><td>10040756087</td>
+<td>Brown</td></tr><tr><td>10047410808</td>
+<td>Holder</td></tr><tr><td>10051015428</td>
+<td>Estrada</td></tr><tr><td>10068079952</td>
+<td>Brown</td></tr><tr><td>10092122352</td>
+<td>Rivera</td></tr><tr><td>10103783887</td>
+<td>Gilbert</td></tr><tr><td>10104072787</td>
+<td>Shaw</td></tr><tr><td>10116699599</td>
+<td>Smith</td></tr><tr><td>10116742023</td>
+<td>Martin</td></tr><tr><td>10119628924</td>
+<td>King</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 10501</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="s1">&#39;-dob&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">sex</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10019062770</td>
+<td>Lauren</td>
+<td>Snyder</td>
+<td>F</td></tr><tr><td>10020965828</td>
+<td>Victor</td>
+<td>Ross</td>
+<td>M</td></tr><tr><td>10040756087</td>
+<td>Susan</td>
+<td>Brown</td>
+<td>F</td></tr><tr><td>10047410808</td>
+<td>Paige</td>
+<td>Holder</td>
+<td>F</td></tr><tr><td>10051015428</td>
+<td>William</td>
+<td>Estrada</td>
+<td>M</td></tr><tr><td>10068079952</td>
+<td>Natalie</td>
+<td>Brown</td>
+<td>F</td></tr><tr><td>10092122352</td>
+<td>Harold</td>
+<td>Rivera</td>
+<td>M</td></tr><tr><td>10103783887</td>
+<td>Jordan</td>
+<td>Gilbert</td>
+<td>M</td></tr><tr><td>10104072787</td>
+<td>Sharon</td>
+<td>Shaw</td>
+<td>F</td></tr><tr><td>10116699599</td>
+<td>Alec</td>
+<td>Smith</td>
+<td>M</td></tr><tr><td>10116742023</td>
+<td>Crystal</td>
+<td>Martin</td>
+<td>F</td></tr><tr><td>10119628924</td>
+<td>Paul</td>
+<td>King</td>
+<td>M</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 10501</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_name</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="n">full_name</span><span class="o">=</span><span class="s1">&#39;concat(last_name, &quot;, &quot;, first_name)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">full_name</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">order_by</span><span class="o">=</span><span class="s2">&quot;full_name&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>full_name</th>
+    </tr>
+    <tr>
+      <th>phone</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>51444261372</th>
+      <td>Abbott, Alexis</td>
+    </tr>
+    <tr>
+      <th>71380323330</th>
+      <td>Abbott, Emily</td>
+    </tr>
+    <tr>
+      <th>53177609092</th>
+      <td>Abbott, Gregory</td>
+    </tr>
+    <tr>
+      <th>66079291453</th>
+      <td>Abbott, Stephen</td>
+    </tr>
+    <tr>
+      <th>27358861634</th>
+      <td>Acevedo, Brandon</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>67805643956</th>
+      <td>Zuniga, Chris</td>
+    </tr>
+    <tr>
+      <th>73169559080</th>
+      <td>Zuniga, Erica</td>
+    </tr>
+    <tr>
+      <th>20170335500</th>
+      <td>Zuniga, Rachel</td>
+    </tr>
+    <tr>
+      <th>93436697026</th>
+      <td>Zuniga, Spencer</td>
+    </tr>
+    <tr>
+      <th>60580791112</th>
+      <td>Zuniga, Tracey</td>
+    </tr>
+  </tbody>
+</table>
+<p>10001 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accounts</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="s2">&quot;floor(datediff(now(), dob)/365.25)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accounts</span> <span class="o">&amp;</span> <span class="s1">&#39;age &gt; 35&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">age</p>
+                            <span class="djtooltiptext">calculated attribute</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10012512171</td>
+<td>Henderson</td>
+<td>102</td></tr><tr><td>10017661220</td>
+<td>Anderson</td>
+<td>68</td></tr><tr><td>10037061898</td>
+<td>Foley</td>
+<td>94</td></tr><tr><td>10068182298</td>
+<td>Clark</td>
+<td>37</td></tr><tr><td>10070173668</td>
+<td>Duffy</td>
+<td>54</td></tr><tr><td>10070547405</td>
+<td>Pratt</td>
+<td>37</td></tr><tr><td>10079669194</td>
+<td>Johnson</td>
+<td>45</td></tr><tr><td>10099464091</td>
+<td>Smith</td>
+<td>74</td></tr><tr><td>10102995813</td>
+<td>Young</td>
+<td>99</td></tr><tr><td>10116323806</td>
+<td>Hernandez</td>
+<td>92</td></tr><tr><td>10120727834</td>
+<td>Rodriguez</td>
+<td>72</td></tr><tr><td>10127762503</td>
+<td>Mack</td>
+<td>53</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 6896</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accounts</span> <span class="o">&amp;</span> <span class="s1">&#39;age between 35 and 45&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">age</p>
+                            <span class="djtooltiptext">calculated attribute</span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10068182298</td>
+<td>Clark</td>
+<td>37</td></tr><tr><td>10070547405</td>
+<td>Pratt</td>
+<td>37</td></tr><tr><td>10079669194</td>
+<td>Johnson</td>
+<td>45</td></tr><tr><td>10219719840</td>
+<td>Roberts</td>
+<td>43</td></tr><tr><td>10229438507</td>
+<td>Coleman</td>
+<td>38</td></tr><tr><td>10291521740</td>
+<td>Davis</td>
+<td>40</td></tr><tr><td>10337689941</td>
+<td>Richardson</td>
+<td>44</td></tr><tr><td>10460216558</td>
+<td>Smith</td>
+<td>41</td></tr><tr><td>11089394344</td>
+<td>Sparks</td>
+<td>41</td></tr><tr><td>11157317272</td>
+<td>Ruiz</td>
+<td>37</td></tr><tr><td>11158833057</td>
+<td>Chung</td>
+<td>39</td></tr><tr><td>11517267921</td>
+<td>Ortega</td>
+<td>36</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 893</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span><span class="p">()</span><span class="o">.</span><span class="n">proj</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;phone&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;(first_name)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">id</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10008004398</td>
+<td>Thomas</td>
+<td>Thomas</td>
+<td>Li</td>
+<td>2009-05-22</td></tr><tr><td>10010213238</td>
+<td>Stacey</td>
+<td>Stacey</td>
+<td>Mitchell</td>
+<td>2015-10-02</td></tr><tr><td>10012512171</td>
+<td>James</td>
+<td>James</td>
+<td>Henderson</td>
+<td>1920-10-09</td></tr><tr><td>10017661220</td>
+<td>Donald</td>
+<td>Donald</td>
+<td>Anderson</td>
+<td>1955-04-16</td></tr><tr><td>10025696662</td>
+<td>James</td>
+<td>James</td>
+<td>Small</td>
+<td>2016-12-29</td></tr><tr><td>10037061898</td>
+<td>Deborah</td>
+<td>Deborah</td>
+<td>Foley</td>
+<td>1929-02-06</td></tr><tr><td>10046294691</td>
+<td>Gwendolyn</td>
+<td>Gwendolyn</td>
+<td>Turner</td>
+<td>2020-12-19</td></tr><tr><td>10046839321</td>
+<td>Marcia</td>
+<td>Marcia</td>
+<td>Martinez</td>
+<td>1990-07-15</td></tr><tr><td>10068182298</td>
+<td>Victor</td>
+<td>Victor</td>
+<td>Clark</td>
+<td>1986-09-13</td></tr><tr><td>10070173668</td>
+<td>Ronald</td>
+<td>Ronald</td>
+<td>Duffy</td>
+<td>1969-03-23</td></tr><tr><td>10070547405</td>
+<td>Leah</td>
+<td>Leah</td>
+<td>Pratt</td>
+<td>1986-06-06</td></tr><tr><td>10079669194</td>
+<td>Ryan</td>
+<td>Ryan</td>
+<td>Johnson</td>
+<td>1978-03-08</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 10001</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Account</span> <span class="o">&amp;</span> <span class="s1">&#39;last_name &gt; &quot;S&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">proj</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10025696662</td></tr><tr><td>10046294691</td></tr><tr><td>10099464091</td></tr><tr><td>10102995813</td></tr><tr><td>10152397506</td></tr><tr><td>10206755444</td></tr><tr><td>10358819974</td></tr><tr><td>10405413361</td></tr><tr><td>10422669197</td></tr><tr><td>10433061621</td></tr><tr><td>10454308663</td></tr><tr><td>10455743181</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 2225</p></div>
+        </div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="restrictions-by-a-query">
+<h1>Restrictions by a query<a class="headerlink" href="#restrictions-by-a-query" title="Permalink to this heading">#</a></h1>
+<p>In SQL, this is a query where the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause includes another `SELECT`` clause.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/86c340faae53bbc98ca6641a25758b1a77624e3dd1876829bd62a460dfb4be67.svg" src="../_images/86c340faae53bbc98ca6641a25758b1a77624e3dd1876829bd62a460dfb4be67.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span> <span class="o">&amp;</span> <span class="n">CreditCard</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10012512171</td>
+<td>James</td>
+<td>Henderson</td>
+<td>1920-10-09</td></tr><tr><td>10017661220</td>
+<td>Donald</td>
+<td>Anderson</td>
+<td>1955-04-16</td></tr><tr><td>10037061898</td>
+<td>Deborah</td>
+<td>Foley</td>
+<td>1929-02-06</td></tr><tr><td>10046294691</td>
+<td>Gwendolyn</td>
+<td>Turner</td>
+<td>2020-12-19</td></tr><tr><td>10046839321</td>
+<td>Marcia</td>
+<td>Martinez</td>
+<td>1990-07-15</td></tr><tr><td>10079669194</td>
+<td>Ryan</td>
+<td>Johnson</td>
+<td>1978-03-08</td></tr><tr><td>10099464091</td>
+<td>Matthew</td>
+<td>Smith</td>
+<td>1949-05-04</td></tr><tr><td>10102995813</td>
+<td>David</td>
+<td>Young</td>
+<td>1923-12-29</td></tr><tr><td>10116323806</td>
+<td>Scott</td>
+<td>Hernandez</td>
+<td>1930-11-01</td></tr><tr><td>10120727834</td>
+<td>Robert</td>
+<td>Rodriguez</td>
+<td>1951-04-10</td></tr><tr><td>10151756488</td>
+<td>Chelsea</td>
+<td>Cox</td>
+<td>1940-12-19</td></tr><tr><td>10153686421</td>
+<td>Aaron</td>
+<td>Bradley</td>
+<td>1912-02-04</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 7768</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Account</span> <span class="o">-</span> <span class="n">CreditCard</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10008004398</td>
+<td>Thomas</td>
+<td>Li</td>
+<td>2009-05-22</td></tr><tr><td>10010213238</td>
+<td>Stacey</td>
+<td>Mitchell</td>
+<td>2015-10-02</td></tr><tr><td>10025696662</td>
+<td>James</td>
+<td>Small</td>
+<td>2016-12-29</td></tr><tr><td>10068182298</td>
+<td>Victor</td>
+<td>Clark</td>
+<td>1986-09-13</td></tr><tr><td>10070173668</td>
+<td>Ronald</td>
+<td>Duffy</td>
+<td>1969-03-23</td></tr><tr><td>10070547405</td>
+<td>Leah</td>
+<td>Pratt</td>
+<td>1986-06-06</td></tr><tr><td>10092945283</td>
+<td>Deanna</td>
+<td>Hayes</td>
+<td>2015-08-16</td></tr><tr><td>10095918854</td>
+<td>Raymond</td>
+<td>Adams</td>
+<td>2018-05-22</td></tr><tr><td>10127762503</td>
+<td>Tracy</td>
+<td>Mack</td>
+<td>1970-04-14</td></tr><tr><td>10152397506</td>
+<td>James</td>
+<td>Wade</td>
+<td>1963-04-15</td></tr><tr><td>10271564710</td>
+<td>Juan</td>
+<td>Cook</td>
+<td>1951-05-25</td></tr><tr><td>10313226393</td>
+<td>Eric</td>
+<td>Mann</td>
+<td>1925-11-01</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 2233</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># All the people that purchased AddOn #2.</span>
+<span class="n">Account</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Purchase</span> <span class="o">&amp;</span> <span class="s1">&#39;addon_id=2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10153686421</td>
+<td>Aaron</td>
+<td>Bradley</td>
+<td>1912-02-04</td></tr><tr><td>10291521740</td>
+<td>Melissa</td>
+<td>Davis</td>
+<td>1983-04-26</td></tr><tr><td>10451478023</td>
+<td>Diane</td>
+<td>Davis</td>
+<td>1919-12-31</td></tr><tr><td>10496786948</td>
+<td>Andrew</td>
+<td>Carter</td>
+<td>2001-05-02</td></tr><tr><td>10734349722</td>
+<td>Kenneth</td>
+<td>Graves</td>
+<td>1932-10-16</td></tr><tr><td>10782010443</td>
+<td>Amber</td>
+<td>Walters</td>
+<td>1933-02-12</td></tr><tr><td>10844022864</td>
+<td>Gary</td>
+<td>Rogers</td>
+<td>1927-04-10</td></tr><tr><td>10862836412</td>
+<td>Randy</td>
+<td>Sanchez</td>
+<td>2018-09-21</td></tr><tr><td>11194304584</td>
+<td>Matthew</td>
+<td>Lucas</td>
+<td>2003-03-25</td></tr><tr><td>11221407194</td>
+<td>Justin</td>
+<td>Nelson</td>
+<td>1953-04-11</td></tr><tr><td>11279950296</td>
+<td>Lance</td>
+<td>Lynch</td>
+<td>1999-03-15</td></tr><tr><td>11545066688</td>
+<td>Natalie</td>
+<td>Jensen</td>
+<td>1908-03-17</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 660</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Give me all accounts who have purchased both Addon 2 and 3</span>
+<span class="n">Account</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Purchase</span> <span class="o">&amp;</span> <span class="s1">&#39;addon_id=2&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Purchase</span> <span class="o">&amp;</span> <span class="s1">&#39;addon_id=3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10496786948</td>
+<td>Andrew</td>
+<td>Carter</td>
+<td>2001-05-02</td></tr><tr><td>11883734808</td>
+<td>Philip</td>
+<td>Black</td>
+<td>2014-01-10</td></tr><tr><td>12328381833</td>
+<td>Louis</td>
+<td>Davis</td>
+<td>1946-10-09</td></tr><tr><td>12966892803</td>
+<td>Kathryn</td>
+<td>Norman</td>
+<td>1913-02-27</td></tr><tr><td>15503931605</td>
+<td>Robert</td>
+<td>Adams</td>
+<td>1921-06-04</td></tr><tr><td>16065195696</td>
+<td>Mathew</td>
+<td>Johnson</td>
+<td>1981-11-10</td></tr><tr><td>16266465922</td>
+<td>Mary</td>
+<td>Mcpherson</td>
+<td>2003-11-23</td></tr><tr><td>17386440647</td>
+<td>Caleb</td>
+<td>Roth</td>
+<td>1953-04-11</td></tr><tr><td>18690145667</td>
+<td>Caleb</td>
+<td>Parks</td>
+<td>2012-04-18</td></tr><tr><td>19361732502</td>
+<td>Rodney</td>
+<td>Wise</td>
+<td>1934-08-11</td></tr><tr><td>21566103221</td>
+<td>Michael</td>
+<td>Guerrero</td>
+<td>1971-07-15</td></tr><tr><td>23868945012</td>
+<td>Tristan</td>
+<td>Lopez</td>
+<td>1992-01-20</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 66</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Give me all accounts who have purchased Addon 2 or 3</span>
+<span class="n">Account</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Purchase</span> <span class="o">&amp;</span> <span class="s1">&#39;addon_id=2 OR addon_id=3&#39;</span><span class="p">)</span>
+<span class="n">Account</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Purchase</span> <span class="o">&amp;</span> <span class="s1">&#39;addon_id in (2, 3)&#39;</span><span class="p">)</span>
+<span class="n">Account</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Purchase</span> <span class="o">&amp;</span> <span class="p">[</span><span class="s1">&#39;addon_id=3&#39;</span><span class="p">,</span> <span class="s1">&#39;addon_id=2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10153686421</td>
+<td>Aaron</td>
+<td>Bradley</td>
+<td>1912-02-04</td></tr><tr><td>10166849316</td>
+<td>Benjamin</td>
+<td>Gomez</td>
+<td>1929-04-24</td></tr><tr><td>10291521740</td>
+<td>Melissa</td>
+<td>Davis</td>
+<td>1983-04-26</td></tr><tr><td>10303625356</td>
+<td>Rebecca</td>
+<td>Griffith</td>
+<td>1975-01-10</td></tr><tr><td>10451478023</td>
+<td>Diane</td>
+<td>Davis</td>
+<td>1919-12-31</td></tr><tr><td>10496786948</td>
+<td>Andrew</td>
+<td>Carter</td>
+<td>2001-05-02</td></tr><tr><td>10535081800</td>
+<td>John</td>
+<td>Mcmahon</td>
+<td>1929-01-30</td></tr><tr><td>10661381021</td>
+<td>Kenneth</td>
+<td>Shaffer</td>
+<td>1946-09-07</td></tr><tr><td>10722472340</td>
+<td>Heidi</td>
+<td>Callahan</td>
+<td>1932-01-05</td></tr><tr><td>10734349722</td>
+<td>Kenneth</td>
+<td>Graves</td>
+<td>1932-10-16</td></tr><tr><td>10782010443</td>
+<td>Amber</td>
+<td>Walters</td>
+<td>1933-02-12</td></tr><tr><td>10789671183</td>
+<td>Michael</td>
+<td>Rush</td>
+<td>1913-12-31</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 1284</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Give me all accounts who have purchased Addon 2 but not 3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Accounts with credit cards that have no purchases</span>
+<span class="n">Account</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">CreditCard</span> <span class="o">-</span> <span class="n">Purchase</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10012512171</td>
+<td>James</td>
+<td>Henderson</td>
+<td>1920-10-09</td></tr><tr><td>10017661220</td>
+<td>Donald</td>
+<td>Anderson</td>
+<td>1955-04-16</td></tr><tr><td>10037061898</td>
+<td>Deborah</td>
+<td>Foley</td>
+<td>1929-02-06</td></tr><tr><td>10046294691</td>
+<td>Gwendolyn</td>
+<td>Turner</td>
+<td>2020-12-19</td></tr><tr><td>10046839321</td>
+<td>Marcia</td>
+<td>Martinez</td>
+<td>1990-07-15</td></tr><tr><td>10079669194</td>
+<td>Ryan</td>
+<td>Johnson</td>
+<td>1978-03-08</td></tr><tr><td>10099464091</td>
+<td>Matthew</td>
+<td>Smith</td>
+<td>1949-05-04</td></tr><tr><td>10102995813</td>
+<td>David</td>
+<td>Young</td>
+<td>1923-12-29</td></tr><tr><td>10116323806</td>
+<td>Scott</td>
+<td>Hernandez</td>
+<td>1930-11-01</td></tr><tr><td>10120727834</td>
+<td>Robert</td>
+<td>Rodriguez</td>
+<td>1951-04-10</td></tr><tr><td>10151756488</td>
+<td>Chelsea</td>
+<td>Cox</td>
+<td>1940-12-19</td></tr><tr><td>10153686421</td>
+<td>Aaron</td>
+<td>Bradley</td>
+<td>1912-02-04</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 7304</p></div>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Accounts with credit cards but no purchases</span>
+<span class="p">(</span><span class="n">Account</span> <span class="o">&amp;</span> <span class="n">CreditCard</span><span class="p">)</span> <span class="o">-</span> <span class="n">Purchase</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    
+    <style type="text/css">
+        .Table{
+            border-collapse:collapse;
+        }
+        .Table th{
+            background: #A0A0A0; color: #ffffff; padding:4px; border:#f0e0e0 1px solid;
+            font-weight: normal; font-family: monospace; font-size: 100%;
+        }
+        .Table td{
+            padding:4px; border:#f0e0e0 1px solid; font-size:100%;
+        }
+        .Table tr:nth-child(odd){
+            background: #ffffff;
+            color: #000000;
+        }
+        .Table tr:nth-child(even){
+            background: #f3f1ff;
+            color: #000000;
+        }
+        /* Tooltip container */
+        .djtooltip {
+        }
+        /* Tooltip text */
+        .djtooltip .djtooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+        }
+        #primary {
+            font-weight: bold;
+            color: black;
+        }
+        #nonprimary {
+            font-weight: normal;
+            color: white;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .djtooltip:hover .djtooltiptext {
+            visibility: visible;
+        }
+    </style>
+    
+    <b></b>
+        <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+        <table border="1" class="Table">
+            <thead> <tr style="text-align: right;"> <th> <div class="djtooltip">
+                            <p id="primary">phone</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">first_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">last_name</p>
+                            <span class="djtooltiptext"></span>
+                        </div></th><th><div class="djtooltip">
+                            <p id="nonprimary">dob</p>
+                            <span class="djtooltiptext"></span>
+                        </div> </th> </tr> </thead>
+            <tbody> <tr> <td>10012512171</td>
+<td>James</td>
+<td>Henderson</td>
+<td>1920-10-09</td></tr><tr><td>10017661220</td>
+<td>Donald</td>
+<td>Anderson</td>
+<td>1955-04-16</td></tr><tr><td>10037061898</td>
+<td>Deborah</td>
+<td>Foley</td>
+<td>1929-02-06</td></tr><tr><td>10046294691</td>
+<td>Gwendolyn</td>
+<td>Turner</td>
+<td>2020-12-19</td></tr><tr><td>10046839321</td>
+<td>Marcia</td>
+<td>Martinez</td>
+<td>1990-07-15</td></tr><tr><td>10079669194</td>
+<td>Ryan</td>
+<td>Johnson</td>
+<td>1978-03-08</td></tr><tr><td>10099464091</td>
+<td>Matthew</td>
+<td>Smith</td>
+<td>1949-05-04</td></tr><tr><td>10102995813</td>
+<td>David</td>
+<td>Young</td>
+<td>1923-12-29</td></tr><tr><td>10116323806</td>
+<td>Scott</td>
+<td>Hernandez</td>
+<td>1930-11-01</td></tr><tr><td>10120727834</td>
+<td>Robert</td>
+<td>Rodriguez</td>
+<td>1951-04-10</td></tr><tr><td>10151756488</td>
+<td>Chelsea</td>
+<td>Cox</td>
+<td>1940-12-19</td></tr><tr><td>10169406225</td>
+<td>Jennifer</td>
+<td>Reid</td>
+<td>1954-09-30</td> </tr> </tbody>
+        </table>
+        <p>...</p>
+        <p>Total: 5936</p></div>
+        </div></div>
+</div>
+<section id="demorgan-s-laws">
+<h2>DeMorgan’s Laws<a class="headerlink" href="#demorgan-s-laws" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="p">(</span><span class="n">A</span> <span class="ow">or</span> <span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="ow">not</span> <span class="n">A</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">B</span>
+
+<span class="ow">not</span> <span class="p">(</span><span class="n">A</span> <span class="ow">and</span> <span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="ow">not</span> <span class="n">A</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">B</span>
+
+<span class="ow">not</span> <span class="p">(</span><span class="n">A</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="ow">not</span> <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="ow">not</span> <span class="p">(</span><span class="n">A</span> <span class="ow">or</span> <span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="ow">not</span> <span class="n">A</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">B</span>
+                    <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-the-design">Recall the design</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Queries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-queries">Simple queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restriction-selecting-rows">Restriction (selecting rows)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-selecting-calculating-and-renaming-columns">Projection (selecting, calculating, and renaming columns)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#restrictions-by-a-query">Restrictions by a query</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demorgan-s-laws">DeMorgan’s Laws</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dimitri Yatsenko, PhD
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

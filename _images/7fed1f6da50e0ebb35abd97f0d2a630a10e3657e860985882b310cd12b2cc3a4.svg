@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="353pt" height="185pt" viewBox="0.00 0.00 353.00 185.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 181)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-181 349,-181 349,4 -4,4"/>
+<!-- Assignment -->
+<g id="node1" class="node">
+<title>Assignment</title>
+<g id="a_node1"><a xlink:title="assignment           
+------------------------------
+due_date             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="80,-177 0,-177 0,-142 80,-142 80,-177"/>
+<text text-anchor="start" x="8" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Assignment</text>
+</a>
+</g>
+</g>
+<!-- Submission -->
+<g id="node7" class="node">
+<title>Submission</title>
+<g id="a_node7"><a xlink:title="→ Student
+→ Assignment
+------------------------------
+submit_date          
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="123,-106 43,-106 43,-71 123,-71 123,-106"/>
+<text text-anchor="middle" x="83" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Submission</text>
+</a>
+</g>
+</g>
+<!-- Assignment&#45;&gt;Submission -->
+<g id="edge1" class="edge">
+<title>Assignment-&gt;Submission</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M50.41,-141.8C57.17,-130.95 65.95,-116.87 72.69,-106.05"/>
+</g>
+<!-- Student -->
+<g id="node2" class="node">
+<title>Student</title>
+<g id="a_node2"><a xlink:title="student_id           
+------------------------------
+student_name         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="156,-177 98,-177 98,-142 156,-142 156,-177"/>
+<text text-anchor="start" x="106" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Student</text>
+</a>
+</g>
+</g>
+<!-- Student&#45;&gt;Submission -->
+<g id="edge2" class="edge">
+<title>Student-&gt;Submission</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M116.35,-141.8C109.43,-130.95 100.45,-116.87 93.55,-106.05"/>
+</g>
+<!-- Grade -->
+<g id="node3" class="node">
+<title>Grade</title>
+<g id="a_node3"><a xlink:title="→ Submission
+------------------------------
+grade                
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="108,-35 58,-35 58,0 108,0 108,-35"/>
+<text text-anchor="middle" x="83" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Grade</text>
+</a>
+</g>
+</g>
+<!-- Pet -->
+<g id="node4" class="node">
+<title>Pet</title>
+<g id="a_node4"><a xlink:title="→ Owner
+→ Species
+nickname             
+------------------------------
+birthdate            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="218.5,-106 183.5,-106 183.5,-71 218.5,-71 218.5,-106"/>
+<text text-anchor="start" x="191.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Pet</text>
+</a>
+</g>
+</g>
+<!-- Shot -->
+<g id="node9" class="node">
+<title>Shot</title>
+<g id="a_node9"><a xlink:title="→ Pet
+→ RequiredVaccine
+------------------------------
+shot_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="266.5,-35 225.5,-35 225.5,0 266.5,0 266.5,-35"/>
+<text text-anchor="middle" x="246" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Shot</text>
+</a>
+</g>
+</g>
+<!-- Pet&#45;&gt;Shot -->
+<g id="edge3" class="edge">
+<title>Pet-&gt;Shot</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M211.89,-70.8C218.97,-59.95 228.15,-45.87 235.21,-35.05"/>
+</g>
+<!-- Species -->
+<g id="node5" class="node">
+<title>Species</title>
+<g id="a_node5"><a xlink:title="species              
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="none" points="307,-177 255,-177 255,-142 307,-142 307,-177"/>
+<text text-anchor="start" x="263" y="-158" font-family="arial" text-decoration="underline" font-size="10.00">Species</text>
+</a>
+</g>
+</g>
+<!-- Species&#45;&gt;Pet -->
+<g id="edge4" class="edge">
+<title>Species-&gt;Pet</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M261.63,-141.8C248.5,-130.47 231.28,-115.62 218.55,-104.64"/>
+</g>
+<!-- RequiredVaccine -->
+<g id="node6" class="node">
+<title>RequiredVaccine</title>
+<g id="a_node6"><a xlink:title="→ Species
+vaccine              
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="345,-106 237,-106 237,-71 345,-71 345,-106"/>
+<text text-anchor="start" x="245" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">RequiredVaccine</text>
+</a>
+</g>
+</g>
+<!-- Species&#45;&gt;RequiredVaccine -->
+<g id="edge5" class="edge">
+<title>Species-&gt;RequiredVaccine</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M283.42,-141.8C284.99,-130.95 287.03,-116.87 288.6,-106.05"/>
+</g>
+<!-- RequiredVaccine&#45;&gt;Shot -->
+<g id="edge6" class="edge">
+<title>RequiredVaccine-&gt;Shot</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M280.11,-70.8C273.03,-59.95 263.85,-45.87 256.79,-35.05"/>
+</g>
+<!-- Submission&#45;&gt;Grade -->
+<g id="edge7" class="edge">
+<title>Submission-&gt;Grade</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M83,-70.8C83,-59.95 83,-45.87 83,-35.05"/>
+</g>
+<!-- Owner -->
+<g id="node8" class="node">
+<title>Owner</title>
+<g id="a_node8"><a xlink:title="cell_phone           
+------------------------------
+full_name            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="227,-177 175,-177 175,-142 227,-142 227,-177"/>
+<text text-anchor="start" x="183" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Owner</text>
+</a>
+</g>
+</g>
+<!-- Owner&#45;&gt;Pet -->
+<g id="edge8" class="edge">
+<title>Owner-&gt;Pet</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M201,-141.8C201,-130.95 201,-116.87 201,-106.05"/>
+</g>
+</g>
+</svg>

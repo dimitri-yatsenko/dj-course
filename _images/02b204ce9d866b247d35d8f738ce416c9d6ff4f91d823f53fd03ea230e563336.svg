@@ -1,0 +1,433 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="688pt" height="256pt" viewBox="0.00 0.00 688.00 256.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-252 684,-252 684,4 -4,4"/>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="#ff8800" fill-opacity="0.501961" stroke="#ff8800" stroke-opacity="0.501961" cx="14" cy="-159.5" rx="2" ry="2"/>
+<text text-anchor="middle" x="14" y="-159.2" font-family="arial" font-size="1.00" fill="#ff8800" fill-opacity="0.501961">1</text>
+</g>
+<!-- Synapse -->
+<g id="node7" class="node">
+<title>Synapse</title>
+<g id="a_node7"><a xlink:title="synapse_id           
+------------------------------
+→ Neuron.proj(pre=&quot;neuron&quot;)
+→ Neuron.proj(post=&quot;neuron&quot;)
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="64,-106 0,-106 0,-71 64,-71 64,-106"/>
+<text text-anchor="start" x="8" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Synapse</text>
+</a>
+</g>
+</g>
+<!-- 1&#45;&gt;Synapse -->
+<g id="edge1" class="edge">
+<title>1-&gt;Synapse</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M14.31,-157.3C15.87,-151.33 22.92,-124.29 27.64,-106.22"/>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="#ff8800" fill-opacity="0.501961" stroke="#ff8800" stroke-opacity="0.501961" cx="49" cy="-159.5" rx="2" ry="2"/>
+<text text-anchor="middle" x="49" y="-159.2" font-family="arial" font-size="1.00" fill="#ff8800" fill-opacity="0.501961">2</text>
+</g>
+<!-- 2&#45;&gt;Synapse -->
+<g id="edge2" class="edge">
+<title>2-&gt;Synapse</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M48.7,-157.3C47.23,-151.33 40.57,-124.29 36.12,-106.22"/>
+</g>
+<!-- 3 -->
+<g id="node3" class="node">
+<title>3</title>
+<ellipse fill="#ff8800" fill-opacity="0.501961" stroke="#ff8800" stroke-opacity="0.501961" cx="91" cy="-88.5" rx="2" ry="2"/>
+<text text-anchor="middle" x="91" y="-88.2" font-family="arial" font-size="1.00" fill="#ff8800" fill-opacity="0.501961">3</text>
+</g>
+<!-- Subordinate -->
+<g id="node4" class="node">
+<title>Subordinate</title>
+<g id="a_node4"><a xlink:title="→ Employee
+------------------------------
+→ Employee.proj(manager_id=&quot;person_id&quot;)
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="151,-35 69,-35 69,0 151,0 151,-35"/>
+<text text-anchor="middle" x="110" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Subordinate</text>
+</a>
+</g>
+</g>
+<!-- 3&#45;&gt;Subordinate -->
+<g id="edge3" class="edge">
+<title>3-&gt;Subordinate</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M91.33,-86.3C92.98,-80.33 100.42,-53.29 105.4,-35.22"/>
+</g>
+<!-- AuthorBook -->
+<g id="node5" class="node">
+<title>AuthorBook</title>
+<g id="a_node5"><a xlink:title="→ Author
+→ Book
+------------------------------
+order                
+UNIQUE INDEX (isbn, order)
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="338,-177 258,-177 258,-142 338,-142 338,-177"/>
+<text text-anchor="middle" x="298" y="-156.4" font-family="arial" font-size="12.00" fill="darkgreen">AuthorBook</text>
+</a>
+</g>
+</g>
+<!-- Scan -->
+<g id="node6" class="node">
+<title>Scan</title>
+<g id="a_node6"><a xlink:title="→ Session
+scan_id              
+------------------------------
+laser_power          
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="408,-106 364,-106 364,-71 408,-71 408,-106"/>
+<text text-anchor="start" x="372" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Scan</text>
+</a>
+</g>
+</g>
+<!-- Cell -->
+<g id="node13" class="node">
+<title>Cell</title>
+<g id="a_node13"><a xlink:title="→ Scan
+cell_id              
+------------------------------
+cell_type            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="405,-35 367,-35 367,0 405,0 405,-35"/>
+<text text-anchor="start" x="375" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Cell</text>
+</a>
+</g>
+</g>
+<!-- Scan&#45;&gt;Cell -->
+<g id="edge4" class="edge">
+<title>Scan-&gt;Cell</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M386,-70.8C386,-59.95 386,-45.87 386,-35.05"/>
+</g>
+<!-- Cell2 -->
+<g id="node8" class="node">
+<title>Cell2</title>
+<g id="a_node8"><a xlink:title="cell_id              
+------------------------------
+→ Scan2
+cell_type            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="490.5,-35 445.5,-35 445.5,0 490.5,0 490.5,-35"/>
+<text text-anchor="start" x="453.5" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Cell2</text>
+</a>
+</g>
+</g>
+<!-- Session -->
+<g id="node9" class="node">
+<title>Session</title>
+<g id="a_node9"><a xlink:title="→ Subject
+session              
+------------------------------
+session_timestamp=&quot;current_timestamp()&quot; 
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="416,-177 356,-177 356,-142 416,-142 416,-177"/>
+<text text-anchor="start" x="364" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Session</text>
+</a>
+</g>
+</g>
+<!-- Session&#45;&gt;Scan -->
+<g id="edge5" class="edge">
+<title>Session-&gt;Scan</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M386,-141.8C386,-130.95 386,-116.87 386,-106.05"/>
+</g>
+<!-- Confirm -->
+<g id="node10" class="node">
+<title>Confirm</title>
+<g id="a_node10"><a xlink:title="→ Shipment
+------------------------------
+confirm_date         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="583.5,-106 524.5,-106 524.5,-71 583.5,-71 583.5,-106"/>
+<text text-anchor="middle" x="554" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Confirm</text>
+</a>
+</g>
+</g>
+<!-- Scan2 -->
+<g id="node11" class="node">
+<title>Scan2</title>
+<g id="a_node11"><a xlink:title="scan_id              
+------------------------------
+→ Session2
+laser_power          
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="493.5,-106 442.5,-106 442.5,-71 493.5,-71 493.5,-106"/>
+<text text-anchor="start" x="450.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Scan2</text>
+</a>
+</g>
+</g>
+<!-- Scan2&#45;&gt;Cell2 -->
+<g id="edge6" class="edge">
+<title>Scan2-&gt;Cell2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M468,-70.8C468,-59.95 468,-45.87 468,-35.05"/>
+</g>
+<!-- Subject -->
+<g id="node12" class="node">
+<title>Subject</title>
+<g id="a_node12"><a xlink:title="subject_id           
+------------------------------
+species=&quot;mouse&quot;      
+sex                  
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="414.5,-248 357.5,-248 357.5,-213 414.5,-213 414.5,-248"/>
+<text text-anchor="start" x="365.5" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Subject</text>
+</a>
+</g>
+</g>
+<!-- Subject&#45;&gt;Session -->
+<g id="edge7" class="edge">
+<title>Subject-&gt;Session</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M386,-212.8C386,-201.95 386,-187.87 386,-177.05"/>
+</g>
+<!-- Shipment2 -->
+<g id="node14" class="node">
+<title>Shipment2</title>
+<g id="a_node14"><a xlink:title="shipment_id          
+------------------------------
+→ [unique] Order2
+ship_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="680,-177 606,-177 606,-142 680,-142 680,-177"/>
+<text text-anchor="start" x="614" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Shipment2</text>
+</a>
+</g>
+</g>
+<!-- Confirm2 -->
+<g id="node16" class="node">
+<title>Confirm2</title>
+<g id="a_node16"><a xlink:title="confirm_id           
+------------------------------
+→ [unique] Shipment2
+confirm_date         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="675.5,-106 610.5,-106 610.5,-71 675.5,-71 675.5,-106"/>
+<text text-anchor="start" x="618.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Confirm2</text>
+</a>
+</g>
+</g>
+<!-- Shipment2&#45;&gt;Confirm2 -->
+<g id="edge8" class="edge">
+<title>Shipment2-&gt;Confirm2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M643,-141.8C643,-130.95 643,-116.87 643,-106.05"/>
+</g>
+<!-- Employee -->
+<g id="node15" class="node">
+<title>Employee</title>
+<g id="a_node15"><a xlink:title="→ Person
+------------------------------
+hire_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="163.5,-177 92.5,-177 92.5,-142 163.5,-142 163.5,-177"/>
+<text text-anchor="middle" x="128" y="-156.4" font-family="arial" font-size="12.00" fill="darkgreen">Employee</text>
+</a>
+</g>
+</g>
+<!-- Employee&#45;&gt;3 -->
+<g id="edge9" class="edge">
+<title>Employee-&gt;3</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M119.04,-141.8C109.46,-123.93 95.18,-97.29 91.76,-90.91"/>
+</g>
+<!-- Employee&#45;&gt;Subordinate -->
+<g id="edge10" class="edge">
+<title>Employee-&gt;Subordinate</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M125.86,-141.89C122.4,-114.95 115.6,-62.02 112.13,-35.09"/>
+</g>
+<!-- Instructor -->
+<g id="node26" class="node">
+<title>Instructor</title>
+<g id="a_node26"><a xlink:title="→ Employee
+------------------------------
+department           
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="221.5,-106 156.5,-106 156.5,-71 221.5,-71 221.5,-106"/>
+<text text-anchor="middle" x="189" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Instructor</text>
+</a>
+</g>
+</g>
+<!-- Employee&#45;&gt;Instructor -->
+<g id="edge11" class="edge">
+<title>Employee-&gt;Instructor</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M142.77,-141.8C152.36,-130.95 164.81,-116.87 174.37,-106.05"/>
+</g>
+<!-- Shipment -->
+<g id="node17" class="node">
+<title>Shipment</title>
+<g id="a_node17"><a xlink:title="→ Order
+------------------------------
+ship_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="588,-177 520,-177 520,-142 588,-142 588,-177"/>
+<text text-anchor="middle" x="554" y="-156.4" font-family="arial" font-size="12.00" fill="darkgreen">Shipment</text>
+</a>
+</g>
+</g>
+<!-- Shipment&#45;&gt;Confirm -->
+<g id="edge12" class="edge">
+<title>Shipment-&gt;Confirm</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M554,-141.8C554,-130.95 554,-116.87 554,-106.05"/>
+</g>
+<!-- Session2 -->
+<g id="node18" class="node">
+<title>Session2</title>
+<g id="a_node18"><a xlink:title="session              
+------------------------------
+→ Subject2
+session_timestamp=&quot;current_timestamp()&quot; 
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="501.5,-177 434.5,-177 434.5,-142 501.5,-142 501.5,-177"/>
+<text text-anchor="start" x="442.5" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Session2</text>
+</a>
+</g>
+</g>
+<!-- Session2&#45;&gt;Scan2 -->
+<g id="edge13" class="edge">
+<title>Session2-&gt;Scan2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M468,-141.8C468,-130.95 468,-116.87 468,-106.05"/>
+</g>
+<!-- Person -->
+<g id="node19" class="node">
+<title>Person</title>
+<g id="a_node19"><a xlink:title="person_id            
+------------------------------
+date_of_birth        
+gender               
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="171.5,-248 116.5,-248 116.5,-213 171.5,-213 171.5,-248"/>
+<text text-anchor="start" x="124.5" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Person</text>
+</a>
+</g>
+</g>
+<!-- Person&#45;&gt;Employee -->
+<g id="edge14" class="edge">
+<title>Person-&gt;Employee</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M140.13,-212.8C137.61,-201.95 134.35,-187.87 131.84,-177.05"/>
+</g>
+<!-- Student -->
+<g id="node27" class="node">
+<title>Student</title>
+<g id="a_node27"><a xlink:title="→ Person
+------------------------------
+admission_date       
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="240,-177 182,-177 182,-142 240,-142 240,-177"/>
+<text text-anchor="middle" x="211" y="-156.4" font-family="arial" font-size="12.00" fill="darkgreen">Student</text>
+</a>
+</g>
+</g>
+<!-- Person&#45;&gt;Student -->
+<g id="edge15" class="edge">
+<title>Person-&gt;Student</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M160.22,-212.8C170.75,-201.95 184.43,-187.87 194.93,-177.05"/>
+</g>
+<!-- Order2 -->
+<g id="node20" class="node">
+<title>Order2</title>
+<g id="a_node20"><a xlink:title="order_number         
+------------------------------
+order_date           
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="669.5,-248 616.5,-248 616.5,-213 669.5,-213 669.5,-248"/>
+<text text-anchor="start" x="624.5" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Order2</text>
+</a>
+</g>
+</g>
+<!-- Order2&#45;&gt;Shipment2 -->
+<g id="edge16" class="edge">
+<title>Order2-&gt;Shipment2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M643,-212.8C643,-201.95 643,-187.87 643,-177.05"/>
+</g>
+<!-- Order -->
+<g id="node21" class="node">
+<title>Order</title>
+<g id="a_node21"><a xlink:title="order_number         
+------------------------------
+order_date           
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="577.5,-248 530.5,-248 530.5,-213 577.5,-213 577.5,-248"/>
+<text text-anchor="start" x="538.5" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Order</text>
+</a>
+</g>
+</g>
+<!-- Order&#45;&gt;Shipment -->
+<g id="edge17" class="edge">
+<title>Order-&gt;Shipment</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M554,-212.8C554,-201.95 554,-187.87 554,-177.05"/>
+</g>
+<!-- Author -->
+<g id="node22" class="node">
+<title>Author</title>
+<g id="a_node22"><a xlink:title="author_id            
+------------------------------
+name                 
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="267,-248 215,-248 215,-213 267,-213 267,-248"/>
+<text text-anchor="start" x="223" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Author</text>
+</a>
+</g>
+</g>
+<!-- Author&#45;&gt;AuthorBook -->
+<g id="edge18" class="edge">
+<title>Author-&gt;AuthorBook</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M254.8,-212.8C263.76,-201.95 275.39,-187.87 284.33,-177.05"/>
+</g>
+<!-- Book -->
+<g id="node23" class="node">
+<title>Book</title>
+<g id="a_node23"><a xlink:title="isbn                 
+------------------------------
+title                
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="329,-248 285,-248 285,-213 329,-213 329,-248"/>
+<text text-anchor="start" x="293" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Book</text>
+</a>
+</g>
+</g>
+<!-- Book&#45;&gt;AuthorBook -->
+<g id="edge19" class="edge">
+<title>Book-&gt;AuthorBook</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M304.82,-212.8C303.41,-201.95 301.57,-187.87 300.16,-177.05"/>
+</g>
+<!-- Neuron -->
+<g id="node24" class="node">
+<title>Neuron</title>
+<g id="a_node24"><a xlink:title="neuron               
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="60,-248 4,-248 4,-213 60,-213 60,-248"/>
+<text text-anchor="start" x="12" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Neuron</text>
+</a>
+</g>
+</g>
+<!-- Neuron&#45;&gt;1 -->
+<g id="edge20" class="edge">
+<title>Neuron-&gt;1</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M27.64,-212.8C22.98,-194.93 16.03,-168.29 14.37,-161.91"/>
+</g>
+<!-- Neuron&#45;&gt;2 -->
+<g id="edge21" class="edge">
+<title>Neuron-&gt;2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M36.12,-212.8C40.52,-194.93 47.08,-168.29 48.65,-161.91"/>
+</g>
+<!-- Subject2 -->
+<g id="node25" class="node">
+<title>Subject2</title>
+<g id="a_node25"><a xlink:title="subject_id           
+------------------------------
+species=&quot;mouse&quot;      
+sex                  
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="500,-248 436,-248 436,-213 500,-213 500,-248"/>
+<text text-anchor="start" x="444" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Subject2</text>
+</a>
+</g>
+</g>
+<!-- Subject2&#45;&gt;Session2 -->
+<g id="edge22" class="edge">
+<title>Subject2-&gt;Session2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M468,-212.8C468,-201.95 468,-187.87 468,-177.05"/>
+</g>
+</g>
+</svg>

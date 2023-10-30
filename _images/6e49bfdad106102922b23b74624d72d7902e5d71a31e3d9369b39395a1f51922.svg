@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="168pt" height="185pt" viewBox="0.00 0.00 168.00 185.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 181)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-181 164,-181 164,4 -4,4"/>
+<!-- Confirm -->
+<g id="node1" class="node">
+<title>Confirm</title>
+<g id="a_node1"><a xlink:title="→ Shipment
+------------------------------
+confirm_date         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="63.5,-35 4.5,-35 4.5,0 63.5,0 63.5,-35"/>
+<text text-anchor="middle" x="34" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Confirm</text>
+</a>
+</g>
+</g>
+<!-- Order2 -->
+<g id="node2" class="node">
+<title>Order2</title>
+<g id="a_node2"><a xlink:title="order_number         
+------------------------------
+order_date           
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="149.5,-177 96.5,-177 96.5,-142 149.5,-142 149.5,-177"/>
+<text text-anchor="start" x="104.5" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Order2</text>
+</a>
+</g>
+</g>
+<!-- Shipment2 -->
+<g id="node5" class="node">
+<title>Shipment2</title>
+<g id="a_node5"><a xlink:title="shipment_id          
+------------------------------
+→ [unique] Order2
+ship_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="160,-106 86,-106 86,-71 160,-71 160,-106"/>
+<text text-anchor="start" x="94" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Shipment2</text>
+</a>
+</g>
+</g>
+<!-- Order2&#45;&gt;Shipment2 -->
+<g id="edge1" class="edge">
+<title>Order2-&gt;Shipment2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M123,-141.8C123,-130.95 123,-116.87 123,-106.05"/>
+</g>
+<!-- Shipment -->
+<g id="node3" class="node">
+<title>Shipment</title>
+<g id="a_node3"><a xlink:title="→ Order
+------------------------------
+ship_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="68,-106 0,-106 0,-71 68,-71 68,-106"/>
+<text text-anchor="middle" x="34" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Shipment</text>
+</a>
+</g>
+</g>
+<!-- Shipment&#45;&gt;Confirm -->
+<g id="edge2" class="edge">
+<title>Shipment-&gt;Confirm</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M34,-70.8C34,-59.95 34,-45.87 34,-35.05"/>
+</g>
+<!-- Confirm2 -->
+<g id="node4" class="node">
+<title>Confirm2</title>
+<g id="a_node4"><a xlink:title="confirm_id           
+------------------------------
+→ [unique] Shipment2
+confirm_date         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="155.5,-35 90.5,-35 90.5,0 155.5,0 155.5,-35"/>
+<text text-anchor="start" x="98.5" y="-15.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Confirm2</text>
+</a>
+</g>
+</g>
+<!-- Shipment2&#45;&gt;Confirm2 -->
+<g id="edge3" class="edge">
+<title>Shipment2-&gt;Confirm2</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M123,-70.8C123,-59.95 123,-45.87 123,-35.05"/>
+</g>
+<!-- Order -->
+<g id="node6" class="node">
+<title>Order</title>
+<g id="a_node6"><a xlink:title="order_number         
+------------------------------
+order_date           
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="57.5,-177 10.5,-177 10.5,-142 57.5,-142 57.5,-177"/>
+<text text-anchor="start" x="18.5" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Order</text>
+</a>
+</g>
+</g>
+<!-- Order&#45;&gt;Shipment -->
+<g id="edge4" class="edge">
+<title>Order-&gt;Shipment</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M34,-141.8C34,-130.95 34,-116.87 34,-106.05"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,119 @@
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 641, in run_until_complete
+    return future.result()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import datajoint as dj
+
+schema = dj.Schema('app')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mConnectionRefusedError[0m                    Traceback (most recent call last)
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:613[0m, in [0;36mConnection.connect[0;34m(self, sock)[0m
+[1;32m    612[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 613[0m     sock [38;5;241m=[39m [43msocket[49m[38;5;241;43m.[39;49m[43mcreate_connection[49m[43m([49m
+[1;32m    614[0m [43m        [49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mhost[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mport[49m[43m)[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect_timeout[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m
+[1;32m    615[0m [43m    [49m[43m)[49m
+[1;32m    616[0m     [38;5;28;01mbreak[39;00m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:845[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address)[0m
+[1;32m    844[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 845[0m     [38;5;28;01mraise[39;00m err
+[1;32m    846[0m [38;5;28;01mfinally[39;00m:
+[1;32m    847[0m     [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py:833[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address)[0m
+[1;32m    832[0m     sock[38;5;241m.[39mbind(source_address)
+[0;32m--> 833[0m [43msock[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43msa[49m[43m)[49m
+[1;32m    834[0m [38;5;66;03m# Break explicitly a reference cycle[39;00m
+
+[0;31mConnectionRefusedError[0m: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+[0;31mOperationalError[0m                          Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mdatajoint[39;00m [38;5;28;01mas[39;00m [38;5;21;01mdj[39;00m
+[0;32m----> 3[0m schema [38;5;241m=[39m [43mdj[49m[38;5;241;43m.[39;49m[43mSchema[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mapp[39;49m[38;5;124;43m'[39;49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/schemas.py:69[0m, in [0;36mSchema.__init__[0;34m(self, schema_name, context, connection, create_schema, create_tables, add_objects)[0m
+[1;32m     67[0m [38;5;28mself[39m[38;5;241m.[39mdeclare_list [38;5;241m=[39m []
+[1;32m     68[0m [38;5;28;01mif[39;00m schema_name:
+[0;32m---> 69[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mactivate[49m[43m([49m[43mschema_name[49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/schemas.py:100[0m, in [0;36mSchema.activate[0;34m(self, schema_name, connection, create_schema, create_tables, add_objects)[0m
+[1;32m     98[0m     [38;5;28mself[39m[38;5;241m.[39mconnection [38;5;241m=[39m connection
+[1;32m     99[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mconnection [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m--> 100[0m     [38;5;28mself[39m[38;5;241m.[39mconnection [38;5;241m=[39m [43mconn[49m[43m([49m[43m)[49m
+[1;32m    101[0m [38;5;28mself[39m[38;5;241m.[39mdatabase [38;5;241m=[39m schema_name
+[1;32m    102[0m [38;5;28;01mif[39;00m create_schema [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:119[0m, in [0;36mconn[0;34m(host, user, password, init_fun, reset, use_tls)[0m
+[1;32m    117[0m     init_fun [38;5;241m=[39m init_fun [38;5;28;01mif[39;00m init_fun [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m config[[38;5;124m'[39m[38;5;124mconnection.init_function[39m[38;5;124m'[39m]
+[1;32m    118[0m     use_tls [38;5;241m=[39m use_tls [38;5;28;01mif[39;00m use_tls [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m config[[38;5;124m'[39m[38;5;124mdatabase.use_tls[39m[38;5;124m'[39m]
+[0;32m--> 119[0m     conn[38;5;241m.[39mconnection [38;5;241m=[39m [43mConnection[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43muser[49m[43m,[49m[43m [49m[43mpassword[49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m,[49m[43m [49m[43minit_fun[49m[43m,[49m[43m [49m[43muse_tls[49m[43m)[49m
+[1;32m    120[0m [38;5;28;01mreturn[39;00m conn[38;5;241m.[39mconnection
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:178[0m, in [0;36mConnection.__init__[0;34m(self, host, user, password, port, init_fun, use_tls)[0m
+[1;32m    176[0m [38;5;28mself[39m[38;5;241m.[39m_conn [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m    177[0m [38;5;28mself[39m[38;5;241m.[39m_query_cache [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m--> 178[0m [43mconnect_host_hook[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+[1;32m    179[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mis_connected:
+[1;32m    180[0m     logger[38;5;241m.[39minfo([38;5;124m"[39m[38;5;124mConnected [39m[38;5;132;01m{user}[39;00m[38;5;124m@[39m[38;5;132;01m{host}[39;00m[38;5;124m:[39m[38;5;132;01m{port}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat([38;5;241m*[39m[38;5;241m*[39m[38;5;28mself[39m[38;5;241m.[39mconn_info))
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:45[0m, in [0;36mconnect_host_hook[0;34m(connection_obj)[0m
+[1;32m     42[0m         [38;5;28;01mraise[39;00m errors[38;5;241m.[39mDataJointError(
+[1;32m     43[0m             [38;5;124m"[39m[38;5;124mConnection plugin [39m[38;5;124m'[39m[38;5;132;01m{}[39;00m[38;5;124m'[39m[38;5;124m not found.[39m[38;5;124m"[39m[38;5;241m.[39mformat(plugin_name))
+[1;32m     44[0m [38;5;28;01melse[39;00m:
+[0;32m---> 45[0m     [43mconnection_obj[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/datajoint/connection.py:201[0m, in [0;36mConnection.connect[0;34m(self)[0m
+[1;32m    199[0m warnings[38;5;241m.[39mfilterwarnings([38;5;124m'[39m[38;5;124mignore[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124m.*deprecated.*[39m[38;5;124m'[39m)
+[1;32m    200[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 201[0m     [38;5;28mself[39m[38;5;241m.[39m_conn [38;5;241m=[39m [43mclient[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m
+[1;32m    202[0m [43m        [49m[43minit_command[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43minit_fun[49m[43m,[49m
+[1;32m    203[0m [43m        [49m[43msql_mode[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mNO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,[39;49m[38;5;124;43m"[39;49m
+[1;32m    204[0m [43m                 [49m[38;5;124;43m"[39;49m[38;5;124;43mSTRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m    205[0m [43m        [49m[43mcharset[49m[38;5;241;43m=[39;49m[43mconfig[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mconnection.charset[39;49m[38;5;124;43m'[39;49m[43m][49m[43m,[49m
+[1;32m    206[0m [43m        [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43m{[49m[43mk[49m[43m:[49m[43m [49m[43mv[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mk[49m[43m,[49m[43m [49m[43mv[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconn_info[49m[38;5;241;43m.[39;49m[43mitems[49m[43m([49m[43m)[49m
+[1;32m    207[0m [43m           [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mk[49m[43m [49m[38;5;129;43;01mnot[39;49;00m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mssl_input[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mhost_input[39;49m[38;5;124;43m'[39;49m[43m][49m[43m}[49m[43m)[49m
+[1;32m    208[0m [38;5;28;01mexcept[39;00m client[38;5;241m.[39merr[38;5;241m.[39mInternalError:
+[1;32m    209[0m     [38;5;28mself[39m[38;5;241m.[39m_conn [38;5;241m=[39m client[38;5;241m.[39mconnect(
+[1;32m    210[0m         init_command[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39minit_fun,
+[1;32m    211[0m         sql_mode[38;5;241m=[39m[38;5;124m"[39m[38;5;124mNO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,[39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m    215[0m            [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m(k [38;5;129;01min[39;00m [[38;5;124m'[39m[38;5;124mssl_input[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mhost_input[39m[38;5;124m'[39m] [38;5;129;01mor[39;00m
+[1;32m    216[0m                   k [38;5;241m==[39m [38;5;124m'[39m[38;5;124mssl[39m[38;5;124m'[39m [38;5;129;01mand[39;00m [38;5;28mself[39m[38;5;241m.[39mconn_info[[38;5;124m'[39m[38;5;124mssl_input[39m[38;5;124m'[39m] [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m)})
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:353[0m, in [0;36mConnection.__init__[0;34m(self, user, password, host, database, unix_socket, port, charset, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)[0m
+[1;32m    351[0m     [38;5;28mself[39m[38;5;241m.[39m_sock [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m    352[0m [38;5;28;01melse[39;00m:
+[0;32m--> 353[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pymysql/connections.py:664[0m, in [0;36mConnection.connect[0;34m(self, sock)[0m
+[1;32m    662[0m     [38;5;28;01mif[39;00m DEBUG:
+[1;32m    663[0m         [38;5;28mprint[39m(exc[38;5;241m.[39mtraceback)
+[0;32m--> 664[0m     [38;5;28;01mraise[39;00m exc
+[1;32m    666[0m [38;5;66;03m# If e is neither DatabaseError or IOError, It's a bug.[39;00m
+[1;32m    667[0m [38;5;66;03m# But raising AssertionError hides original error.[39;00m
+[1;32m    668[0m [38;5;66;03m# So just reraise it.[39;00m
+[1;32m    669[0m [38;5;28;01mraise[39;00m
+
+[0;31mOperationalError[0m: (2003, "Can't connect to MySQL server on '127.0.0.1' ([Errno 61] Connection refused)")
+OperationalError: (2003, "Can't connect to MySQL server on '127.0.0.1' ([Errno 61] Connection refused)")
+

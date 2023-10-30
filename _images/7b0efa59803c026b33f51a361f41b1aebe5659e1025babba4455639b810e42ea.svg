@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="445pt" height="256pt" viewBox="0.00 0.00 445.00 256.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 252)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-252 441,-252 441,4 -4,4"/>
+<!-- Response -->
+<g id="node1" class="node">
+<title>Response</title>
+<g id="a_node1"><a xlink:title="→ Post
+→ Guest
+------------------------------
+response             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="90.5,-35 19.5,-35 19.5,0 90.5,0 90.5,-35"/>
+<text text-anchor="middle" x="55" y="-14.4" font-family="arial" font-size="12.00" fill="darkgreen">Response</text>
+</a>
+</g>
+</g>
+<!-- Assignment -->
+<g id="node2" class="node">
+<title>Assignment</title>
+<g id="a_node2"><a xlink:title="assignment           
+------------------------------
+due_date             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="172,-248 92,-248 92,-213 172,-213 172,-248"/>
+<text text-anchor="start" x="100" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Assignment</text>
+</a>
+</g>
+</g>
+<!-- Submission -->
+<g id="node12" class="node">
+<title>Submission</title>
+<g id="a_node12"><a xlink:title="→ Student
+→ Assignment
+------------------------------
+submit_date          
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="235,-177 155,-177 155,-142 235,-142 235,-177"/>
+<text text-anchor="middle" x="195" y="-156.4" font-family="arial" font-size="12.00" fill="darkgreen">Submission</text>
+</a>
+</g>
+</g>
+<!-- Assignment&#45;&gt;Submission -->
+<g id="edge1" class="edge">
+<title>Assignment-&gt;Submission</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M147.25,-212.8C157.16,-201.95 170.01,-187.87 179.89,-177.05"/>
+</g>
+<!-- Student -->
+<g id="node3" class="node">
+<title>Student</title>
+<g id="a_node3"><a xlink:title="student_id           
+------------------------------
+student_name         
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="248,-248 190,-248 190,-213 248,-213 248,-248"/>
+<text text-anchor="start" x="198" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Student</text>
+</a>
+</g>
+</g>
+<!-- Student&#45;&gt;Submission -->
+<g id="edge2" class="edge">
+<title>Student-&gt;Submission</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M213.19,-212.8C209.42,-201.95 204.52,-187.87 200.76,-177.05"/>
+</g>
+<!-- Grade -->
+<g id="node4" class="node">
+<title>Grade</title>
+<g id="a_node4"><a xlink:title="→ Submission
+------------------------------
+grade                
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="220,-106 170,-106 170,-71 220,-71 220,-106"/>
+<text text-anchor="middle" x="195" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Grade</text>
+</a>
+</g>
+</g>
+<!-- User -->
+<g id="node5" class="node">
+<title>User</title>
+<g id="a_node5"><a xlink:title="username             
+------------------------------
+irl_name             
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="74,-248 32,-248 32,-213 74,-213 74,-248"/>
+<text text-anchor="start" x="40" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">User</text>
+</a>
+</g>
+</g>
+<!-- Guest -->
+<g id="node6" class="node">
+<title>Guest</title>
+<g id="a_node6"><a xlink:title="→ Channel
+→ User
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="48,-106 0,-106 0,-71 48,-71 48,-106"/>
+<text text-anchor="middle" x="24" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Guest</text>
+</a>
+</g>
+</g>
+<!-- User&#45;&gt;Guest -->
+<g id="edge3" class="edge">
+<title>User-&gt;Guest</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M49.56,-212.89C43.98,-185.95 33.01,-133.02 27.44,-106.09"/>
+</g>
+<!-- Channel -->
+<g id="node11" class="node">
+<title>Channel</title>
+<g id="a_node11"><a xlink:title="channel              
+------------------------------
+→ User
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="114,-177 52,-177 52,-142 114,-142 114,-177"/>
+<text text-anchor="start" x="60" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Channel</text>
+</a>
+</g>
+</g>
+<!-- User&#45;&gt;Channel -->
+<g id="edge4" class="edge">
+<title>User-&gt;Channel</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-dasharray="5,2" stroke-opacity="0.250980" d="M60.26,-212.8C64.98,-201.95 71.1,-187.87 75.8,-177.05"/>
+</g>
+<!-- Guest&#45;&gt;Response -->
+<g id="edge5" class="edge">
+<title>Guest-&gt;Response</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M31.5,-70.8C36.38,-59.95 42.7,-45.87 47.56,-35.05"/>
+</g>
+<!-- Pet -->
+<g id="node7" class="node">
+<title>Pet</title>
+<g id="a_node7"><a xlink:title="→ Owner
+→ Species
+nickname             
+------------------------------
+birthdate            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="310.5,-177 275.5,-177 275.5,-142 310.5,-142 310.5,-177"/>
+<text text-anchor="start" x="283.5" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Pet</text>
+</a>
+</g>
+</g>
+<!-- Shot -->
+<g id="node14" class="node">
+<title>Shot</title>
+<g id="a_node14"><a xlink:title="→ Pet
+→ RequiredVaccine
+------------------------------
+shot_date            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="358.5,-106 317.5,-106 317.5,-71 358.5,-71 358.5,-106"/>
+<text text-anchor="middle" x="338" y="-85.4" font-family="arial" font-size="12.00" fill="darkgreen">Shot</text>
+</a>
+</g>
+</g>
+<!-- Pet&#45;&gt;Shot -->
+<g id="edge6" class="edge">
+<title>Pet-&gt;Shot</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M303.89,-141.8C310.97,-130.95 320.15,-116.87 327.21,-106.05"/>
+</g>
+<!-- Post -->
+<g id="node8" class="node">
+<title>Post</title>
+<g id="a_node8"><a xlink:title="→ Channel
+post                 
+------------------------------
+message              
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="107.5,-106 66.5,-106 66.5,-71 107.5,-71 107.5,-106"/>
+<text text-anchor="start" x="74.5" y="-86.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Post</text>
+</a>
+</g>
+</g>
+<!-- Post&#45;&gt;Response -->
+<g id="edge7" class="edge">
+<title>Post-&gt;Response</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M79.25,-70.8C74.22,-59.95 67.69,-45.87 62.67,-35.05"/>
+</g>
+<!-- Species -->
+<g id="node9" class="node">
+<title>Species</title>
+<g id="a_node9"><a xlink:title="species              
+">
+<polygon fill="#000000" fill-opacity="0.125490" stroke="none" points="399,-248 347,-248 347,-213 399,-213 399,-248"/>
+<text text-anchor="start" x="355" y="-229" font-family="arial" text-decoration="underline" font-size="10.00">Species</text>
+</a>
+</g>
+</g>
+<!-- Species&#45;&gt;Pet -->
+<g id="edge8" class="edge">
+<title>Species-&gt;Pet</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M353.63,-212.8C340.5,-201.47 323.28,-186.62 310.55,-175.64"/>
+</g>
+<!-- RequiredVaccine -->
+<g id="node10" class="node">
+<title>RequiredVaccine</title>
+<g id="a_node10"><a xlink:title="→ Species
+vaccine              
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="437,-177 329,-177 329,-142 437,-142 437,-177"/>
+<text text-anchor="start" x="337" y="-157.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">RequiredVaccine</text>
+</a>
+</g>
+</g>
+<!-- Species&#45;&gt;RequiredVaccine -->
+<g id="edge9" class="edge">
+<title>Species-&gt;RequiredVaccine</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M375.42,-212.8C376.99,-201.95 379.03,-187.87 380.6,-177.05"/>
+</g>
+<!-- RequiredVaccine&#45;&gt;Shot -->
+<g id="edge10" class="edge">
+<title>RequiredVaccine-&gt;Shot</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M372.11,-141.8C365.03,-130.95 355.85,-116.87 348.79,-106.05"/>
+</g>
+<!-- Channel&#45;&gt;Guest -->
+<g id="edge11" class="edge">
+<title>Channel-&gt;Guest</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M68.72,-141.8C59.44,-130.95 47.4,-116.87 38.15,-106.05"/>
+</g>
+<!-- Channel&#45;&gt;Post -->
+<g id="edge12" class="edge">
+<title>Channel-&gt;Post</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M83.97,-141.8C84.6,-130.95 85.41,-116.87 86.04,-106.05"/>
+</g>
+<!-- Submission&#45;&gt;Grade -->
+<g id="edge13" class="edge">
+<title>Submission-&gt;Grade</title>
+<path fill="none" stroke="#000000" stroke-width="2" stroke-opacity="0.250980" d="M195,-141.8C195,-130.95 195,-116.87 195,-106.05"/>
+</g>
+<!-- Owner -->
+<g id="node13" class="node">
+<title>Owner</title>
+<g id="a_node13"><a xlink:title="cell_phone           
+------------------------------
+full_name            
+">
+<polygon fill="#00ff00" fill-opacity="0.188235" stroke="#00ff00" stroke-opacity="0.188235" points="319,-248 267,-248 267,-213 319,-213 319,-248"/>
+<text text-anchor="start" x="275" y="-228.4" font-family="arial" text-decoration="underline" font-size="12.00" fill="darkgreen">Owner</text>
+</a>
+</g>
+</g>
+<!-- Owner&#45;&gt;Pet -->
+<g id="edge14" class="edge">
+<title>Owner-&gt;Pet</title>
+<path fill="none" stroke="#000000" stroke-width="0.75" stroke-opacity="0.250980" d="M293,-212.8C293,-201.95 293,-187.87 293,-177.05"/>
+</g>
+</g>
+</svg>
